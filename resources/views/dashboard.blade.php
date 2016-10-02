@@ -28,7 +28,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <!-- Modernizr js -->
-    <script src="./Uplon - Responsive Admin Dashboard Template_files/modernizr.min.js"></script>
+    <script src="/js/modernizr.min.js"></script>
 
 </head>
 
@@ -823,7 +823,7 @@
 
 <!-- App js -->
 <script src="/js/jquery.core.js"></script><div id="ascrail2000" class="nicescroll-rails" style="width: 8px; z-index: auto; cursor: default; position: absolute; top: 863px; left: 456.75px; height: 320px; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 6px; height: 210px; border: 1px solid rgb(255, 255, 255); border-radius: 5px; background-color: rgb(152, 166, 173); background-clip: padding-box;"></div></div><div id="ascrail2000-hr" class="nicescroll-rails" style="height: 8px; z-index: auto; top: 1175px; left: 109.75px; position: absolute; cursor: default; display: none; width: 347px; opacity: 0;"><div style="position: relative; top: 0px; height: 6px; width: 355px; border: 1px solid rgb(255, 255, 255); border-radius: 5px; background-color: rgb(152, 166, 173); background-clip: padding-box;"></div></div>
-<script src="./Uplon - Responsive Admin Dashboard Template_files/jquery.app.js"></script>
+<script src="/js/jquery.app.js"></script>
 
 <!-- Page specific js -->
 <script src="/js/jquery.dashboard.js"></script>
