@@ -7,7 +7,11 @@
     <meta name="author" content="Coderthemes">
 
     <!-- App Favicon -->
-    <link rel="shortcut icon" href="http://alpha.homedeliverynetwork.net/assets/images/favicon.ico">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
     <!-- App title -->
     <title>Uplon - Responsive Admin Dashboard Template</title>
@@ -124,7 +128,7 @@
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                 <div class="notify-icon bg-faded">
-                                    <img src="/img/avatar-2.jpg" alt="img" class="img-circle img-fluid">
+                                    <img src="/images/avatar-2.jpg" alt="img" class="img-circle img-fluid">
                                 </div>
                                 <p class="notify-details">
                                     <b>Robert Taylor</b>
@@ -136,7 +140,7 @@
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                 <div class="notify-icon bg-faded">
-                                    <img src="/img/avatar-3.jpg" alt="img" class="img-circle img-fluid">
+                                    <img src="/images/avatar-3.jpg" alt="img" class="img-circle img-fluid">
                                 </div>
                                 <p class="notify-details">
                                     <b>Carlos Crouch</b>
@@ -148,7 +152,7 @@
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                 <div class="notify-icon bg-faded">
-                                    <img src="/img/avatar-4.jpg" alt="img" class="img-circle img-fluid">
+                                    <img src="/images/avatar-4.jpg" alt="img" class="img-circle img-fluid">
                                 </div>
                                 <p class="notify-details">
                                     <b>Robert Taylor</b>
@@ -173,7 +177,7 @@
 
                     <li class="nav-item dropdown notification-list">
                         <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light nav-user" data-toggle="dropdown" href="http://alpha.homedeliverynetwork.net/index.html#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <img src="/img/avatar-1.jpg" alt="user" class="img-circle">
+                            <img src="/images/avatar-1.jpg" alt="user" class="img-circle">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-arrow profile-dropdown " aria-labelledby="Preview">
                             <!-- item-->
@@ -498,7 +502,7 @@
                             <div class="inbox-widget nicescroll" style="height: 320px; overflow: hidden; outline: none;" tabindex="5000">
                                 <a href="http://alpha.homedeliverynetwork.net/index.html#">
                                     <div class="inbox-item">
-                                        <div class="inbox-item-img"><img src="/img/avatar-1.jpg" class="img-circle" alt=""></div>
+                                        <div class="inbox-item-img"><img src="/images/avatar-1.jpg" class="img-circle" alt=""></div>
                                         <p class="inbox-item-author">Chadengle</p>
                                         <p class="inbox-item-text">Hey! there I'm available...</p>
                                         <p class="inbox-item-date">13:40 PM</p>
@@ -506,7 +510,7 @@
                                 </a>
                                 <a href="http://alpha.homedeliverynetwork.net/index.html#">
                                     <div class="inbox-item">
-                                        <div class="inbox-item-img"><img src="/img/avatar-2.jpg" class="img-circle" alt=""></div>
+                                        <div class="inbox-item-img"><img src="/images/avatar-2.jpg" class="img-circle" alt=""></div>
                                         <p class="inbox-item-author">Tomaslau</p>
                                         <p class="inbox-item-text">I've finished it! See you so...</p>
                                         <p class="inbox-item-date">13:34 PM</p>
@@ -514,7 +518,7 @@
                                 </a>
                                 <a href="http://alpha.homedeliverynetwork.net/index.html#">
                                     <div class="inbox-item">
-                                        <div class="inbox-item-img"><img src="/img/avatar-3.jpg" class="img-circle" alt=""></div>
+                                        <div class="inbox-item-img"><img src="/images/avatar-3.jpg" class="img-circle" alt=""></div>
                                         <p class="inbox-item-author">Stillnotdavid</p>
                                         <p class="inbox-item-text">This theme is awesome!</p>
                                         <p class="inbox-item-date">13:17 PM</p>
@@ -522,7 +526,7 @@
                                 </a>
                                 <a href="http://alpha.homedeliverynetwork.net/index.html#">
                                     <div class="inbox-item">
-                                        <div class="inbox-item-img"><img src="/img/avatar-4.jpg" class="img-circle" alt=""></div>
+                                        <div class="inbox-item-img"><img src="/images/avatar-4.jpg" class="img-circle" alt=""></div>
                                         <p class="inbox-item-author">Kurafire</p>
                                         <p class="inbox-item-text">Nice to meet you</p>
                                         <p class="inbox-item-date">12:20 PM</p>
@@ -530,7 +534,7 @@
                                 </a>
                                 <a href="http://alpha.homedeliverynetwork.net/index.html#">
                                     <div class="inbox-item">
-                                        <div class="inbox-item-img"><img src="/img/avatar-5.jpg" class="img-circle" alt=""></div>
+                                        <div class="inbox-item-img"><img src="/images/avatar-5.jpg" class="img-circle" alt=""></div>
                                         <p class="inbox-item-author">Shahedk</p>
                                         <p class="inbox-item-text">Hey! there I'm available...</p>
                                         <p class="inbox-item-date">10:15 AM</p>
@@ -538,7 +542,7 @@
                                 </a>
                                 <a href="http://alpha.homedeliverynetwork.net/index.html#">
                                     <div class="inbox-item">
-                                        <div class="inbox-item-img"><img src="/img/avatar-6.jpg" class="img-circle" alt=""></div>
+                                        <div class="inbox-item-img"><img src="/images/avatar-6.jpg" class="img-circle" alt=""></div>
                                         <p class="inbox-item-author">Adhamdannaway</p>
                                         <p class="inbox-item-text">This theme is awesome!</p>
                                         <p class="inbox-item-date">9:56 AM</p>
@@ -546,7 +550,7 @@
                                 </a>
                                 <a href="http://alpha.homedeliverynetwork.net/index.html#">
                                     <div class="inbox-item">
-                                        <div class="inbox-item-img"><img src="/img/avatar-8.jpg" class="img-circle" alt=""></div>
+                                        <div class="inbox-item-img"><img src="/images/avatar-8.jpg" class="img-circle" alt=""></div>
                                         <p class="inbox-item-author">Arashasghari</p>
                                         <p class="inbox-item-text">Hey! there I'm available...</p>
                                         <p class="inbox-item-date">10:15 AM</p>
@@ -554,7 +558,7 @@
                                 </a>
                                 <a href="http://alpha.homedeliverynetwork.net/index.html#">
                                     <div class="inbox-item">
-                                        <div class="inbox-item-img"><img src="/img/avatar-9.jpg" class="img-circle" alt=""></div>
+                                        <div class="inbox-item-img"><img src="/images/avatar-9.jpg" class="img-circle" alt=""></div>
                                         <p class="inbox-item-author">Joshaustin</p>
                                         <p class="inbox-item-text">I've finished it! See you so...</p>
                                         <p class="inbox-item-date">9:56 AM</p>
