@@ -9,7 +9,7 @@
 
                 <!-- LOGO -->
                 <div class="topbar-left">
-                    <a href="http://alpha.homedeliverynetwork.net/index.html" class="logo">
+                    <a href="{{ url('/home') }}" class="logo">
                         <i class="zmdi zmdi-group-work icon-c-logo"></i>
                         <span>{{ config('app.name') }}</span>
                     </a>
@@ -198,119 +198,121 @@
                         <li class="active">
                             <a href="{{ url('/dashboard') }}"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                         </li>
-                        <li class="has-submenu">
-                            <a href="http://alpha.homedeliverynetwork.net/index.html#"><i class="zmdi zmdi-format-underlined"></i> <span> User Interface </span> </a>
-                            <ul class="submenu megamenu">
-                                <li>
-                                    <ul>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/ui-buttons.html">Buttons</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/ui-cards.html">Cards</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/ui-dropdowns.html">Dropdowns</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/ui-checkbox-radio.html">Checkboxs-Radios</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/ui-navs.html">Navs</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/ui-progress.html">Progress</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/ui-modals.html">Modals</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/ui-alerts.html">Alerts</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/ui-bootstrap.html">Bootstrap UI</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/ui-typography.html">Typography</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <ul>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/ui-notification.html">Notification</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/ui-carousel.html">Carousel</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/components-grid.html">Grid</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/components-range-sliders.html">Range sliders</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/components-sweet-alert.html">Sweet Alerts</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/components-ratings.html">Ratings</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/components-treeview.html">Treeview</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/components-tour.html">Tour</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/widgets-tiles.html">Tile Box</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/widgets-charts.html">Chart Widgets</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
+                        {{--<li class="has-submenu">--}}
+                            {{--<a href="http://alpha.homedeliverynetwork.net/index.html#">--}}
+                                {{--<i class="zmdi zmdi-format-underlined"></i> <span> User Interface </span>--}}
+                            {{--</a>--}}
+                            {{--<ul class="submenu megamenu">--}}
+                                {{--<li>--}}
+                                    {{--<ul>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/ui-buttons.html">Buttons</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/ui-cards.html">Cards</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/ui-dropdowns.html">Dropdowns</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/ui-checkbox-radio.html">Checkboxs-Radios</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/ui-navs.html">Navs</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/ui-progress.html">Progress</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/ui-modals.html">Modals</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/ui-alerts.html">Alerts</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/ui-bootstrap.html">Bootstrap UI</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/ui-typography.html">Typography</a></li>--}}
+                                    {{--</ul>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<ul>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/ui-notification.html">Notification</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/ui-carousel.html">Carousel</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/components-grid.html">Grid</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/components-range-sliders.html">Range sliders</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/components-sweet-alert.html">Sweet Alerts</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/components-ratings.html">Ratings</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/components-treeview.html">Treeview</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/components-tour.html">Tour</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/widgets-tiles.html">Tile Box</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/widgets-charts.html">Chart Widgets</a></li>--}}
+                                    {{--</ul>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
 
-                        <li class="has-submenu">
-                            <a href="http://alpha.homedeliverynetwork.net/index.html#"><i class="zmdi zmdi-album"></i> <span> Icons </span> </a>
-                            <ul class="submenu">
-                                <li><a href="http://alpha.homedeliverynetwork.net/icons-materialdesign.html">Material Design</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/icons-ionicons.html">Ion Icons</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/icons-fontawesome.html">Font awesome</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/icons-themify.html">Themify Icons</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/icons-simple-line.html">Simple line Icons</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/icons-weather.html">Weather Icons</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/icons-pe7.html">PE7 Icons</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/icons-typicons.html">Typicons</a></li>
-                            </ul>
-                        </li>
+                        {{--<li class="has-submenu">--}}
+                            {{--<a href="http://alpha.homedeliverynetwork.net/index.html#"><i class="zmdi zmdi-album"></i> <span> Icons </span> </a>--}}
+                            {{--<ul class="submenu">--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/icons-materialdesign.html">Material Design</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/icons-ionicons.html">Ion Icons</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/icons-fontawesome.html">Font awesome</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/icons-themify.html">Themify Icons</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/icons-simple-line.html">Simple line Icons</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/icons-weather.html">Weather Icons</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/icons-pe7.html">PE7 Icons</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/icons-typicons.html">Typicons</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
 
-                        <li class="has-submenu">
-                            <a href="http://alpha.homedeliverynetwork.net/index.html#"><i class="zmdi zmdi-collection-text"></i><span> Forms </span> </a>
-                            <ul class="submenu">
-                                <li><a href="http://alpha.homedeliverynetwork.net/form-elements.html">General Elements</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/form-advanced.html">Advanced Form</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/form-validation.html">Form Validation</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/form-pickers.html">Form Pickers</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/form-wizard.html">Form Wizard</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/form-mask.html">Form Masks</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/form-uploads.html">Multiple File Upload</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/form-xeditable.html">X-editable</a></li>
-                            </ul>
-                        </li>
+                        {{--<li class="has-submenu">--}}
+                            {{--<a href="http://alpha.homedeliverynetwork.net/index.html#"><i class="zmdi zmdi-collection-text"></i><span> Forms </span> </a>--}}
+                            {{--<ul class="submenu">--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/form-elements.html">General Elements</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/form-advanced.html">Advanced Form</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/form-validation.html">Form Validation</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/form-pickers.html">Form Pickers</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/form-wizard.html">Form Wizard</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/form-mask.html">Form Masks</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/form-uploads.html">Multiple File Upload</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/form-xeditable.html">X-editable</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
 
-                        <li class="has-submenu">
-                            <a href="http://alpha.homedeliverynetwork.net/index.html#"><i class="zmdi zmdi-format-list-bulleted"></i> <span> Tables </span> </a>
-                            <ul class="submenu">
-                                <li><a href="http://alpha.homedeliverynetwork.net/tables-basic.html">Basic Tables</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/tables-datatable.html">Data Table</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/tables-responsive.html">Responsive Table</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/tables-tablesaw.html">Tablesaw</a></li>
-                            </ul>
-                        </li>
+                        {{--<li class="has-submenu">--}}
+                            {{--<a href="http://alpha.homedeliverynetwork.net/index.html#"><i class="zmdi zmdi-format-list-bulleted"></i> <span> Tables </span> </a>--}}
+                            {{--<ul class="submenu">--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/tables-basic.html">Basic Tables</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/tables-datatable.html">Data Table</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/tables-responsive.html">Responsive Table</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/tables-tablesaw.html">Tablesaw</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
 
-                        <li class="has-submenu">
-                            <a href="http://alpha.homedeliverynetwork.net/index.html#"><i class="zmdi zmdi-chart"></i><span> Charts </span> </a>
-                            <ul class="submenu">
-                                <li><a href="http://alpha.homedeliverynetwork.net/chart-flot.html">Flot Chart</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/chart-morris.html">Morris Chart</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/chart-chartjs.html">Chartjs</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/chart-peity.html">Peity Charts</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/chart-chartist.html">Chartist Charts</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/chart-c3.html">C3 Charts</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/chart-sparkline.html">Sparkline charts</a></li>
-                                <li><a href="http://alpha.homedeliverynetwork.net/chart-knob.html">Jquery Knob</a></li>
-                            </ul>
-                        </li>
+                        {{--<li class="has-submenu">--}}
+                            {{--<a href="http://alpha.homedeliverynetwork.net/index.html#"><i class="zmdi zmdi-chart"></i><span> Charts </span> </a>--}}
+                            {{--<ul class="submenu">--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/chart-flot.html">Flot Chart</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/chart-morris.html">Morris Chart</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/chart-chartjs.html">Chartjs</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/chart-peity.html">Peity Charts</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/chart-chartist.html">Chartist Charts</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/chart-c3.html">C3 Charts</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/chart-sparkline.html">Sparkline charts</a></li>--}}
+                                {{--<li><a href="http://alpha.homedeliverynetwork.net/chart-knob.html">Jquery Knob</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
 
-                        <li class="has-submenu last-elements">
-                            <a href="http://alpha.homedeliverynetwork.net/index.html#"><i class="zmdi zmdi-collection-item"></i> <span> Pages </span> </a>
-                            <ul class="submenu megamenu">
-                                <li>
-                                    <ul>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/calendar.html">Calendar</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/pages-starter.html">Starter Page</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/pages-login.html">Login</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/pages-register.html">Register</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/pages-recoverpw.html">Recover Password</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/pages-lock-screen.html">Lock Screen</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/pages-404.html">Error 404</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <ul>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/pages-500.html">Error 500</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/pages-timeline.html">Timeline</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/pages-invoice.html">Invoice</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/pages-pricing.html">Pricing</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/pages-gallery.html">Gallery</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/pages-maintenance.html">Maintenance</a></li>
-                                        <li><a href="http://alpha.homedeliverynetwork.net/pages-comingsoon.html">Coming Soon</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
+                        {{--<li class="has-submenu last-elements">--}}
+                            {{--<a href="http://alpha.homedeliverynetwork.net/index.html#"><i class="zmdi zmdi-collection-item"></i> <span> Pages </span> </a>--}}
+                            {{--<ul class="submenu megamenu">--}}
+                                {{--<li>--}}
+                                    {{--<ul>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/calendar.html">Calendar</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/pages-starter.html">Starter Page</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/pages-login.html">Login</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/pages-register.html">Register</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/pages-recoverpw.html">Recover Password</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/pages-lock-screen.html">Lock Screen</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/pages-404.html">Error 404</a></li>--}}
+                                    {{--</ul>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<ul>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/pages-500.html">Error 500</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/pages-timeline.html">Timeline</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/pages-invoice.html">Invoice</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/pages-pricing.html">Pricing</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/pages-gallery.html">Gallery</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/pages-maintenance.html">Maintenance</a></li>--}}
+                                        {{--<li><a href="http://alpha.homedeliverynetwork.net/pages-comingsoon.html">Coming Soon</a></li>--}}
+                                    {{--</ul>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
                         @if(Auth::user()->is_super)
                         <li class="has-submenu last-elements">
                             <a href="{{ url('/users') }}">

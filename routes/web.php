@@ -11,10 +11,9 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-Route::get('/', 'StoreController@index');
+Route::get('/', function () {
+    return view('auth.login');
+});
 Route::get('/store', 'StoreController@index');
 Route::get('/store/home-v2', 'StoreController@home_v2');
 Route::get('/store/home-v3', 'StoreController@home_v3');
