@@ -173,14 +173,18 @@
             <div class="toolbar-section" id="account">
                 <h3 class="toolbar-title space-bottom">You are not logged in.</h3>
                 <div class="inner">
-                    <form method="post" class="login-form">
-                        <input type="text" class="form-control" placeholder="Username" required="">
-                        <input type="password" class="form-control" placeholder="Password" required="">
+                    <form method="post" class="login-form" role="form" method="POST" action="{{ url('/login') }}">
+                        {{ csrf_field() }}
+                        <input type="email" class="form-control" placeholder="E-mail Address"
+                               id="email" name="email" required>
+                        <input type="password" class="form-control" placeholder="Password"
+                               id="password" name="password" required>
                         <div class="form-footer">
                             <div class="rememberme">
                                 <label class="checkbox">
-                                    <div class="icheckbox checked"><input type="checkbox" checked=""
-                                                                          style="position: absolute; opacity: 0;">
+                                    <div class="icheckbox checked">
+                                        <input type="checkbox" name="remember"
+                                               style="position: absolute; opacity: 0;">
                                         <ins class="iCheck-helper"
                                              style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
                                     </div>

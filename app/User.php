@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Validator;
 
 class User extends Authenticatable
 {
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'is_super'
     ];
 
     /**
@@ -26,4 +27,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function validator(array $data, $isUpdate = false)
+    {
+        $id = $isUpdate ? ", " . $data['id'] : '';
+        $passwordConfirmed = !$isUpdate ? '|confirmed' : '';
+        return Validator::make($data, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users' . $id,
+            'password' => 'required|min:6' . $passwordConfirmed,
+        ]);
+    }
 }

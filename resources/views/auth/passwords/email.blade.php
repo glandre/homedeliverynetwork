@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.laravel')
 
 <!-- Main Content -->
 @section('content')

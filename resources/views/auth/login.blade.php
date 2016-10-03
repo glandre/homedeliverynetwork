@@ -1,68 +1,109 @@
-@extends('layouts.app')
+@extends('layouts.basic')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+@section('basic-content')
+    <div class="account-pages"></div>
+    <div class="clearfix"></div>
+    <div class="wrapper-page">
+
+        @include('layouts.messages')
+
+        <div class="account-bg">
+            <div class="card-box m-b-0">
+                <div class="text-xs-center m-t-20">
+                    <a href="{{url('/')}}" class="logo">
+                        <i class="zmdi zmdi-group-work icon-c-logo"></i>
+                        <span>{{config('app.name')}}</span>
+                    </a>
+                </div>
+                <div class="m-t-10 p-20">
+                    <div class="row">
+                        <div class="col-xs-12 text-xs-center">
+                            <h6 class="text-muted text-uppercase m-b-0 m-t-0">Sign In</h6>
+                        </div>
+                    </div>
+                    <form class="m-t-20" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <input class="form-control" required autofocus
+                                       placeholder="E-mail Address" value="{{ old('email') }}"
+                                       id="email" type="email" name="email">
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <input class="form-control" required
+                                       placeholder="Password"
+                                       id="password" type="password" name="password">
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <div class="checkbox checkbox-custom">
+                                    <input id="remember" name="remember" type="checkbox">
+                                    <label for="remember">
+                                        Remember me
                                     </label>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password?
-                                </a>
+                        <div class="form-group text-center row m-t-10">
+                            <div class="col-xs-12">
+                                <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Log In</button>
                             </div>
                         </div>
+
+                        <div class="form-group row m-t-30 m-b-0">
+                            <div class="col-sm-12">
+                                <a href="{{ url('/password/reset') }}"
+                                   class="text-muted">
+                                    <i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group row m-t-30 m-b-0">
+                            <div class="col-sm-12 text-xs-center">
+                                <h5 class="text-muted"><b>Sign in with</b></h5>
+                            </div>
+                        </div>
+
+                        <div class="form-group row m-b-0 text-xs-center">
+                            <div class="col-sm-12">
+                                <button type="button" class="btn btn-facebook waves-effect waves-light m-t-20">
+                                    <i class="fa fa-facebook m-r-5"></i> Facebook
+                                </button>
+
+                                <button type="button" class="btn btn-twitter waves-effect waves-light m-t-20">
+                                    <i class="fa fa-twitter m-r-5"></i> Twitter
+                                </button>
+
+                                <button type="button" class="btn btn-googleplus waves-effect waves-light m-t-20">
+                                    <i class="fa fa-google-plus m-r-5"></i> Google+
+                                </button>
+                            </div>
+                        </div>
+
                     </form>
+
                 </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- end card-box-->
+
+        <div class="m-t-20">
+            <div class="text-xs-center">
+                <p class="text-white">
+                    Don't have an account? <a href="{{url('/register')}}" class="text-white m-l-5">
+                    <b>Sign Up</b></a>
+                </p>
             </div>
         </div>
     </div>
-</div>
+    <!-- end wrapper page -->
 @endsection

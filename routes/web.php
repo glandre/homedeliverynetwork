@@ -11,14 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+Route::get('/', 'StoreController@index');
 Route::get('/store', 'StoreController@index');
 Route::get('/store/home-v2', 'StoreController@home_v2');
 Route::get('/store/home-v3', 'StoreController@home_v3');
 
 Auth::routes();
 
-Route::get('/index', 'HomeController@index');
-Route::get('/home', 'HomeController@dashboard');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/index', 'HomeController@index');
+    Route::get('/home', 'HomeController@dashboard');
+    Route::get('/dashboard', 'HomeController@dashboard');
+
+    // User Management
+    Route::get('users/search', 'UserManagementController@index');
+    Route::post('users/search', 'UserManagementController@search');
+    Route::resource('users', 'UserManagementController');
+});
