@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/store', 'StoreController@index');
+Route::get('/store/home-v2', 'StoreController@home_v2');
+Route::get('/store/home-v3', 'StoreController@home_v3');
 
 Auth::routes();
 
