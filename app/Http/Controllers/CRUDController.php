@@ -66,7 +66,7 @@ abstract class CRUDController extends Controller
     public function create()
     {
         return view($this->editView(), [
-            'title' => $this->editViewTitle(),
+            'title' => $this->createViewTitle(),
             'url' => $this->collectionName(),
             'method' => 'post',
             'saveEnabled' => true,

@@ -1,20 +1,38 @@
 @extends('layouts.app')
 
 @section('head-extensions')
-
+<script>
+    function deleteUser() {
+        if(confirm('Are you sure you want to delete {{ $model->name }}?')) {
+            document.getElementById('delete{{ $model->id }}').submit();
+        }
+    }
+</script>
 @endsection
 
 @section('settings-menu')
     <div class="dropdown-menu">
         <a class="dropdown-item" href="{{ url("/users/{$model->id}/edit") }}">Edit User</a>
         <a class="dropdown-item" href="{{ url("/users/{$model->id}") }}">View User</a>
+        <a class="dropdown-item"
+           href="Javascript:deleteUser()">
+            Delete User
+        </a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="{{ url('/users') }}">Back to User's List</a>
     </div>
+
+    {{Form::open([
+        'url' => "/users/{$model->id}",
+        'method' => 'delete',
+        'id' => 'delete' . $model->id,
+        'name' => 'delete' . $model->id
+    ])}}
+    {{Form::close()}}
 @endsection
 
 @section('page-title')
-{{{ $title }}}
+{{{ $title }}} User
 @endsection
 
 @section('content')
@@ -53,7 +71,7 @@
                                placeholder="Type a new password (optional)">
                     </div>
                     <div class="m-t-10">
-                        <input type="password" id="password-confirm" name="password-confirm"
+                        <input type="password" id="password-confirm" name="password_confirmation"
                                {{ $readonly }} class="form-control"
                                data-parsley-equalto="#password"
                                placeholder="Re-Type Password" data-parsley-id="38">

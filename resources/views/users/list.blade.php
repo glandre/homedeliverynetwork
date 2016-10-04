@@ -12,14 +12,9 @@
 
 @section('settings-menu')
     <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another
-            action</a>
-        <a class="dropdown-item" href="#">Something
-            else here</a>
+        <a class="dropdown-item" href="{{ url('/users/create') }}">Create a New User</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Separated
-            link</a>
+        <a class="dropdown-item" href="{{ url('/home') }}">Back to Dashboard</a>
     </div>
 @endsection
 

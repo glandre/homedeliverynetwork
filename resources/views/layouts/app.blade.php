@@ -359,6 +359,8 @@
                 </div>
             </div>
 
+            @include('layouts.messages')
+
             @yield('content')
 
             <!-- Footer -->
