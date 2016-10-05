@@ -134,11 +134,11 @@
                             </div>
                         </li>
 
-                        <li class="nav-item dropdown notification-list">
-                            <a class="nav-link waves-effect waves-light right-bar-toggle" href="javascript:void(0);">
-                                <i class="zmdi zmdi-format-subject noti-icon"></i>
-                            </a>
-                        </li>
+                        {{--<li class="nav-item dropdown notification-list">--}}
+                            {{--<a class="nav-link waves-effect waves-light right-bar-toggle" href="javascript:void(0);">--}}
+                                {{--<i class="zmdi zmdi-format-subject noti-icon"></i>--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
 
                         <li class="nav-item dropdown notification-list">
                             <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light nav-user" data-toggle="dropdown"
