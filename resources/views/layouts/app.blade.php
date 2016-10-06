@@ -78,67 +78,68 @@
                             </div>
                         </li>
 
-                        <li class="nav-item dropdown notification-list">
-                            <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown"
-                               href="http://alpha.homedeliverynetwork.net/index.html#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <i class="zmdi zmdi-email noti-icon"></i>
-                                <span class="noti-icon-badge"></span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg" aria-labelledby="Preview">
-                                <!-- item-->
-                                <div class="dropdown-item noti-title bg-success">
-                                    <h5><small><span class="label label-danger pull-xs-right">7</span>Messages</small></h5>
-                                </div>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <div class="notify-icon bg-faded">
-                                        <img src="/images/avatar-2.jpg" alt="img" class="img-circle img-fluid">
-                                    </div>
-                                    <p class="notify-details">
-                                        <b>Robert Taylor</b>
-                                        <span>New tasks needs to be done</span>
-                                        <small class="text-muted">1min ago</small>
-                                    </p>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <div class="notify-icon bg-faded">
-                                        <img src="/images/avatar-3.jpg" alt="img" class="img-circle img-fluid">
-                                    </div>
-                                    <p class="notify-details">
-                                        <b>Carlos Crouch</b>
-                                        <span>New tasks needs to be done</span>
-                                        <small class="text-muted">1min ago</small>
-                                    </p>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <div class="notify-icon bg-faded">
-                                        <img src="/images/avatar-4.jpg" alt="img" class="img-circle img-fluid">
-                                    </div>
-                                    <p class="notify-details">
-                                        <b>Robert Taylor</b>
-                                        <span>New tasks needs to be done</span>
-                                        <small class="text-muted">1min ago</small>
-                                    </p>
-                                </a>
-
-                                <!-- All-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item notify-all">
-                                    View All
-                                </a>
-
-                            </div>
-                        </li>
-
                         {{--<li class="nav-item dropdown notification-list">--}}
-                            {{--<a class="nav-link waves-effect waves-light right-bar-toggle" href="javascript:void(0);">--}}
-                                {{--<i class="zmdi zmdi-format-subject noti-icon"></i>--}}
+                            {{--<a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown"--}}
+                               {{--href="http://alpha.homedeliverynetwork.net/index.html#" role="button" aria-haspopup="false" aria-expanded="false">--}}
+                                {{--<i class="zmdi zmdi-email noti-icon"></i>--}}
+                                {{--<span class="noti-icon-badge"></span>--}}
                             {{--</a>--}}
+                            {{--<div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg"--}}
+                                 {{--aria-labelledby="Preview">--}}
+                                {{--<!-- item-->--}}
+                                {{--<div class="dropdown-item noti-title bg-success">--}}
+                                    {{--<h5><small><span class="label label-danger pull-xs-right">7</span>Messages</small></h5>--}}
+                                {{--</div>--}}
+
+                                {{--<!-- item-->--}}
+                                {{--<a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+                                    {{--<div class="notify-icon bg-faded">--}}
+                                        {{--<img src="/images/avatar-2.jpg" alt="img" class="img-circle img-fluid">--}}
+                                    {{--</div>--}}
+                                    {{--<p class="notify-details">--}}
+                                        {{--<b>Robert Taylor</b>--}}
+                                        {{--<span>New tasks needs to be done</span>--}}
+                                        {{--<small class="text-muted">1min ago</small>--}}
+                                    {{--</p>--}}
+                                {{--</a>--}}
+
+                                {{--<!-- item-->--}}
+                                {{--<a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+                                    {{--<div class="notify-icon bg-faded">--}}
+                                        {{--<img src="/images/avatar-3.jpg" alt="img" class="img-circle img-fluid">--}}
+                                    {{--</div>--}}
+                                    {{--<p class="notify-details">--}}
+                                        {{--<b>Carlos Crouch</b>--}}
+                                        {{--<span>New tasks needs to be done</span>--}}
+                                        {{--<small class="text-muted">1min ago</small>--}}
+                                    {{--</p>--}}
+                                {{--</a>--}}
+
+                                {{--<!-- item-->--}}
+                                {{--<a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+                                    {{--<div class="notify-icon bg-faded">--}}
+                                        {{--<img src="/images/avatar-4.jpg" alt="img" class="img-circle img-fluid">--}}
+                                    {{--</div>--}}
+                                    {{--<p class="notify-details">--}}
+                                        {{--<b>Robert Taylor</b>--}}
+                                        {{--<span>New tasks needs to be done</span>--}}
+                                        {{--<small class="text-muted">1min ago</small>--}}
+                                    {{--</p>--}}
+                                {{--</a>--}}
+
+                                {{--<!-- All-->--}}
+                                {{--<a href="javascript:void(0);" class="dropdown-item notify-item notify-all">--}}
+                                    {{--View All--}}
+                                {{--</a>--}}
+
+                            {{--</div>--}}
                         {{--</li>--}}
+
+                        <li class="nav-item dropdown notification-list">
+                            <a class="nav-link waves-effect waves-light right-bar-toggle" href="javascript:void(0);">
+                                <i class="zmdi zmdi-format-subject noti-icon"></i>
+                            </a>
+                        </li>
 
                         <li class="nav-item dropdown notification-list">
                             <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light nav-user" data-toggle="dropdown"
