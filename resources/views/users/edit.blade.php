@@ -2,7 +2,7 @@
 
 @section('head-extensions')
 <script>
-    function deleteUser() {
+    function deleteItem() {
         if(confirm('Are you sure you want to delete {{ $model->name }}?')) {
             document.getElementById('delete{{ $model->id }}').submit();
         }

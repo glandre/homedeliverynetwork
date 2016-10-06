@@ -19,6 +19,18 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="has-submenu last-elements">
+                        <a href="{{ url('/users') }}">
+                            <i class="zmdi zmdi-shopping-basket"></i> <span> Products </span>
+                        </a>
+                        <ul class="submenu megamenu">
+                            <li>
+                                <ul>
+                                    <li><a href="{{ url('/products/types') }}">Product Types</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                 @endif
 
             </ul>

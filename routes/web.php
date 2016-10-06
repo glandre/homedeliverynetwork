@@ -29,4 +29,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('users/search', 'UserManagementController@index');
     Route::post('users/search', 'UserManagementController@search');
     Route::resource('users', 'UserManagementController');
+
+    // Product Management
+
+    // Product Type
+    Route::resource('products/types', 'ProductTypeController');
 });

@@ -23,6 +23,10 @@ abstract class CRUDController extends Controller
     protected abstract function newModel();
     protected abstract function validateRequest($isUpdate = false);
 
+    protected function baseUrl() {
+        return $this->collectionName();
+    }
+
     public abstract function store();
     public abstract function update($id);
 
@@ -67,7 +71,7 @@ abstract class CRUDController extends Controller
     {
         return view($this->editView(), [
             'title' => $this->createViewTitle(),
-            'url' => $this->collectionName(),
+            'url' => $this->baseUrl(),
             'method' => 'post',
             'saveEnabled' => true,
             'readonly' => '',
@@ -84,7 +88,7 @@ abstract class CRUDController extends Controller
     {
         return view($this->editView(), [
             'title' => $this->showViewTitle(),
-            'url' => $this->collectionName(),
+            'url' => $this->baseUrl(),
             'method' => 'get',
             'saveEnabled' => false,
             'readonly' => 'readonly',
@@ -101,7 +105,7 @@ abstract class CRUDController extends Controller
     {
         return view($this->editView(), [
             'title' => $this->editViewTitle(),
-            'url' => "{$this->collectionName()}/$id",
+            'url' => "{$this->baseUrl()}/$id",
             'method' => 'patch',
             'saveEnabled' => true,
             'readonly' => '',
