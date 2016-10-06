@@ -16,6 +16,8 @@ class Product extends Model
         'name',
         'description',
         'quantity',
+        'incoming',
+        'continue_selling',
         'type_id',
         'vendor_id'
     ];
@@ -26,7 +28,9 @@ class Product extends Model
         return Validator::make($data, [
             'name' => 'required|max:255|unique:product_types' . $id,
             'description' => 'required|max:255',
-            'quantity' => 'numeric',
+            'quantity' => 'integer|min:0',
+            'incoming' => 'integer|min:0',
+            'continue_selling' => 'boolean',
             'type_id' => 'required',
             'vendor_id' => 'required'
         ]);

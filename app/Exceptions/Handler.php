@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
@@ -44,6 +45,29 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($request->expectsJson()) {
+
+            $response = ['error' => 'Something wrong is not right...'];
+
+            // If the app is in debug mode
+            if (config('app.debug'))
+            {
+                // Add the exception class name, message and stack trace to response
+                $response['exception'] = get_class($exception);
+                $response['message'] = $exception->getMessage();
+                $response['trace'] = $exception->getTrace();
+            }
+
+            $code = 500;
+
+            if($exception instanceof ValidationException) {
+                $code = 400;
+                $response['error'] = 'Invalid input data.';
+            }
+
+            return response()->json($response, $code);
+        }
+
         return parent::render($request, $exception);
     }
 

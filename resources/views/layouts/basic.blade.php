@@ -8,6 +8,8 @@
     <meta name="author" content="Theme Author: Coderthemes">
     <meta name="author" content="Lead Developer: Geraldo B. Landre">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- App Favicon -->
     <link rel="shortcut icon" href="/images/favicon.ico">
 
@@ -64,6 +66,14 @@
 <!-- App js -->
 <script src="/js/jquery.core.js"></script>
 <script src="/js/jquery.app.js"></script>
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+</script>
 
 @yield('page-js')
 

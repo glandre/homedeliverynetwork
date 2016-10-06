@@ -36,6 +36,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('product-types', 'ProductTypeController');
     // Product Vendors
     Route::resource('vendors', 'VendorController');
-    // Product Vendors
+    // Product
+    Route::get('products/inventory', 'ProductController@showInventory');
+    Route::post('products/update-quantity', 'ProductController@updateQuantity');
     Route::resource('products', 'ProductController');
 });

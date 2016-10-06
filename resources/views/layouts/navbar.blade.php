@@ -26,10 +26,10 @@
                         <ul class="submenu megamenu">
                             <li>
                                 <ul>
-                                    <li><a href="{{ url('/products') }}">Products</a></li>
+                                    <li><a href="{{ url('/products/inventory') }}">Inventory</a></li>
                                 </ul>
                                 <ul>
-                                    <li><a href="{{ url('/products/types') }}">Product Types</a></li>
+                                    <li><a href="{{ url('/product-types') }}">Product Types</a></li>
                                 </ul>
                                 <ul>
                                     <li><a href="{{ url('/vendors') }}">Product Vendors</a></li>

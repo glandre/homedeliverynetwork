@@ -18,6 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('name')->unique();
             $table->string('description');
             $table->integer('quantity')->unsigned()->default(0);
+            $table->integer('incoming')->unsigned()->default(0);
+            $table->boolean('continue_selling')->default(false)->comment('What to do when the inventory sold out');
             $table->integer('type_id')->unsigned();
             $table->foreign('type_id')->references('id')->on('product_types');
             $table->integer('vendor_id')->unsigned();

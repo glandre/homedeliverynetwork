@@ -40,9 +40,15 @@ class ProductController extends CRUDController
         return new Product();
     }
 
-    protected function validateRequest($isUpdate = false)
+    protected function validateRequest($isUpdate = false, $data = null)
     {
-        Product::validator($this->request->all(), $isUpdate)->validate();
+        if(is_null($data)) {
+            $data = $this->request->all();
+        }
+        else if($data instanceof Product) {
+            $data = $data->toArray();
+        }
+        Product::validator($data, $isUpdate)->validate();
     }
 
     public function store()
@@ -52,6 +58,8 @@ class ProductController extends CRUDController
             'name' => $this->request->input('name'),
             'description' => $this->request->input('description'),
             'quantity' => $this->request->input('quantity'),
+            'incoming' => $this->request->input('incoming'),
+            'continue_selling' => $this->request->input('continue_selling') == 'Continue selling',
             'type_id' => $this->request->input('type_id'),
             'vendor_id' => $this->request->input('vendor_id')
         ]);
@@ -69,6 +77,9 @@ class ProductController extends CRUDController
         $updated = $this->model->update([
             'name' => $this->request->input('name'),
             'description' => $this->request->input('description'),
+            'quantity' => $this->request->input('quantity'),
+            'incoming' => $this->request->input('incoming'),
+            'continue_selling' => $this->request->input('continue_selling') == 'Continue selling',
             'type_id' => $this->request->input('type_id'),
             'vendor_id' => $this->request->input('vendor_id')
         ]);
@@ -90,11 +101,32 @@ class ProductController extends CRUDController
      * @return \Illuminate\Http\Response
      */
     public function index($models = null) {
+        return $this->showCollection($models, $this->listView());
+    }
 
+    public function updateQuantity() {
+        $productId = $this->request->input('productId');
+        $newQuantity = $this->request->input('newQuantity');
+
+        $product = Product::find($productId);
+        $product->quantity = $newQuantity;
+
+        $this->validateRequest(true, $product);
+
+        $product->saveOrFail();
+
+        return response()->json('success');
+    }
+
+    public function showInventory($models = null) {
+        return $this->showCollection($models, 'products.inventory');
+    }
+
+    private function showCollection($models, $viewName) {
         if(!isset($models)) {
             $models = $this->model->orderBy($this->columnToSort())->with('type', 'vendor')->get();
         }
-        return view($this->listView(), [
+        return view($viewName, [
             $this->collectionName() => $models
         ]);
     }

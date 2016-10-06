@@ -4,7 +4,7 @@
     <div class="row">
 
         <!-- NEW WIDGET START -->
-        <article class="col-sm-12">
+        <article class="col-sm-12" id="messageBox">
 
             @if(Session::has('message_warning'))
                 <div class="alert alert-warning fade in">

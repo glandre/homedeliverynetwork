@@ -62,10 +62,18 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="name">Inventory</label>
+                    <label for="name">Quantity Incoming</label>
+                    <input type="text" class="form-control" id="incoming" name="incoming"
+                           {{ $readonly }} data-parsley-id="34"
+                           value="{{{ $model->incoming }}}"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Quantity in the Inventory</label>
                     <input type="text" class="form-control" required id="quantity" name="quantity"
                            {{ $readonly }} data-parsley-id="34"
-                           value="{{{ ($saveEnabled) ? $model->quantity : 'N/A' }}}"
+                           value="{{{ $model->quantity }}}"
                     >
                 </div>
 
