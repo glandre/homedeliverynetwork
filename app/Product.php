@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Validator;
 
-class Vendor extends Model
+class Product extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -13,7 +13,11 @@ class Vendor extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description'
+        'name',
+        'description',
+        'quantity',
+        'type_id',
+        'vendor_id'
     ];
 
     public static function validator(array $data, $isUpdate = false)
@@ -21,15 +25,18 @@ class Vendor extends Model
         $id = $isUpdate ? ", " . $data['id'] : '';
         return Validator::make($data, [
             'name' => 'required|max:255|unique:product_types' . $id,
-            'description' => 'required|max:255'
+            'description' => 'required|max:255',
+            'quantity' => 'numeric',
+            'type_id' => 'required',
+            'vendor_id' => 'required'
         ]);
     }
 
-    public function products() {
-        return $this->hasMany(Product::class);
+    public function type() {
+        return $this->belongsTo(ProductType::class);
     }
 
-    public function pluckNames($orderBy = 'name') {
-        return $this->orderBy('name')->pluck('name', 'id');
+    public function vendor() {
+        return $this->belongsTo(Vendor::class);
     }
 }

@@ -12,14 +12,14 @@
 
 @section('settings-menu')
     <div class="dropdown-menu">
-        <a class="dropdown-item" href="{{ url('/product-types/create') }}">Create a New Product Type</a>
+        <a class="dropdown-item" href="{{ url('/products/create') }}">Create a New Product</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="{{ url('/home') }}">Back to Dashboard</a>
     </div>
 @endsection
 
 @section('page-title')
-    Manage Product Types
+    Manage Products
 @endsection
 
 @section('content')
@@ -27,10 +27,10 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="card-box table-responsive">
-                <h4 class="m-t-0 header-title"><b>Managing product types:</b></h4>
+                <h4 class="m-t-0 header-title"><b>Managing products:</b></h4>
                 <p class="text-muted font-13 m-b-30">
-                    These are the types used to classify products.
-                    Click on a product type name to view its description and edit it.
+                    These are the products available in the inventory.
+                    Click on a product name to view its description and edit it.
                 </p>
 
                 <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap4 no-footer">
@@ -45,18 +45,42 @@
                                         aria-label="Name: activate to sort column descending"
                                         style="width: 279.5px;">Name
                                     </th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Name: activate to sort column descending"
+                                        style="width: 279.5px;">Inventory
+                                    </th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Name: activate to sort column descending"
+                                        style="width: 279.5px;">Type
+                                    </th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Name: activate to sort column descending"
+                                        style="width: 279.5px;">Vendor
+                                    </th>
                                 </tr>
                                 </thead>
 
 
                                 <tbody>
 
-                                @foreach($productTypes as $productType)
+                                @foreach($products as $product)
                                 <tr role="row" class="odd">
-                                    <td class="sorting">
-                                        <a href="{{ url("/product-types/{$productType->id}") }}">
-                                            {{{ $productType->name }}}
+                                    <td class="sorting_asc">
+                                        <a href="{{ url("/products/{$product->id}") }}">
+                                            {{{ $product->name }}}
                                         </a>
+                                    </td>
+                                    <td class="sorting_asc">
+                                        {{{ ($product->quantity > 0) ? $product->quantity : 'N/A' }}}
+                                    </td>
+                                    <td class="sorting_asc">
+                                        {{{ $product->type->name }}}
+                                    </td>
+                                    <td class="sorting_asc">
+                                        {{{ $product->vendor->name }}}
                                     </td>
                                 </tr>
                                 @endforeach

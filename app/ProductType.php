@@ -24,4 +24,12 @@ class ProductType extends Model
             'description' => 'required|max:255'
         ]);
     }
+
+    public function products() {
+        return $this->hasMany(Product::class);
+    }
+
+    public function pluckNames($orderBy = 'name') {
+        return $this->orderBy('name')->pluck('name', 'id');
+    }
 }

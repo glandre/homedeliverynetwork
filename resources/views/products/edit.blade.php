@@ -12,18 +12,18 @@
 
 @section('settings-menu')
     <div class="dropdown-menu">
-        <a class="dropdown-item" href="{{ url("/product-types/{$model->id}/edit") }}">Edit Product Type</a>
-        <a class="dropdown-item" href="{{ url("/product-types/{$model->id}") }}">View Product Type</a>
+        <a class="dropdown-item" href="{{ url("/products/{$model->id}/edit") }}">Edit Product</a>
+        <a class="dropdown-item" href="{{ url("/products/{$model->id}") }}">View Product</a>
         <a class="dropdown-item"
            href="Javascript:deleteItem()">
-            Delete Product Type
+            Delete Product
         </a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="{{ url('/product-types') }}">Back to Product Types's List</a>
+        <a class="dropdown-item" href="{{ url('/products') }}">Back to Product's List</a>
     </div>
 
     {{Form::open([
-        'url' => "/product-types/{$model->id}",
+        'url' => "/products/{$model->id}",
         'method' => 'delete',
         'id' => 'delete' . $model->id,
         'name' => 'delete' . $model->id
@@ -32,14 +32,14 @@
 @endsection
 
 @section('page-title')
-{{{ $title }}} Product Type
+{{{ $title }}} Product
 @endsection
 
 @section('content')
     <div class="col-sm-6 col-xs-12 m-t-20">
-        <h4 class="header-title m-t-0">{{{ $title }}} Product Type</h4>
+        <h4 class="header-title m-t-0">{{{ $title }}} Product</h4>
         <p class="text-muted font-13 m-b-10">
-            Here you can view product type information. Click on edit to enable updates.
+            Here you can view product information. Click on edit to enable updates.
         </p>
 
         <div class="p-20">
@@ -59,6 +59,32 @@
                     <label for="description">Description</label>
                     <textarea class="form-control" required id="description" name="description"
                            {{ $readonly }} data-parsley-id="34">{{{ $model->description }}}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Inventory</label>
+                    <input type="text" class="form-control" required id="quantity" name="quantity"
+                           {{ $readonly }} data-parsley-id="34"
+                           value="{{{ ($saveEnabled) ? $model->quantity : 'N/A' }}}"
+                    >
+                </div>
+
+                <div class="form-group">
+                    {{Form::label('type_id', 'Type:')}}
+
+                    {{Form::select('type_id', (new App\ProductType())->pluckNames(), [
+                        $readonly,
+                        'class' => 'selectpicker'
+                    ])}}
+                </div>
+
+                <div class="form-group">
+                    {{Form::label('vendor_id', 'Vendor:')}}
+
+                    {{Form::select('vendor_id', (new App\Vendor())->pluckNames(), [
+                        $readonly,
+                        'class' => 'selectpicker'
+                    ])}}
                 </div>
 
                 @if($saveEnabled)

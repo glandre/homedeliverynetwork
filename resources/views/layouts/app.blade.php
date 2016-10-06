@@ -208,7 +208,7 @@
                 <div class="col-sm-12">
                     <div class="btn-group pull-right m-t-15">
                         <button type="button" class="btn btn-custom dropdown-toggle waves-effect waves-light"
-                                data-toggle="dropdown" aria-expanded="false">Settings <span class="m-l-5"><i
+                                data-toggle="dropdown" aria-expanded="false">Actions <span class="m-l-5"><i
                                         class="fa fa-cog"></i></span></button>
                         @yield('settings-menu')
 
