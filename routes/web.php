@@ -32,6 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Product Management
 
-    // Product Type
+    // Product Types
     Route::resource('products/types', 'ProductTypeController');
+    // Product Vendors
+    Route::resource('vendors', 'VendorController');
 });
