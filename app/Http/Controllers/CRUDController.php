@@ -7,12 +7,18 @@ use Illuminate\Http\Request;
 abstract class CRUDController extends Controller
 {
     protected $request;
+    protected $requestFilteredData;
     protected $model;
     protected $session;
 
     public function __construct(Request $request)
     {
         $this->request = $request;
+
+        $this->requestFilteredData = array_filter($this->request->all(), function($field){
+            return !empty($field);
+        });
+
         $this->session = Session();
     }
 

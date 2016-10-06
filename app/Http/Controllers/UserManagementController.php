@@ -41,7 +41,7 @@ class UserManagementController extends CRUDController
 
     protected function validateRequest($isUpdate = false)
     {
-        User::validator($this->request->all(), $isUpdate)->validate();
+        User::validator($this->requestFilteredData, $isUpdate)->validate();
     }
 
     public function store()
@@ -51,6 +51,7 @@ class UserManagementController extends CRUDController
             'name' => $this->request->input('name'),
             'email' => $this->request->input('email'),
             'password' => $this->request->input('password'),
+            'is_super' => $this->request->input('is_super') == true
         ]);
 
         $this->session->flash('message_success', trans('strings.saveSuccess'));

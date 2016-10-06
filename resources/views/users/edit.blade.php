@@ -15,7 +15,7 @@
         <a class="dropdown-item" href="{{ url("/users/{$model->id}/edit") }}">Edit User</a>
         <a class="dropdown-item" href="{{ url("/users/{$model->id}") }}">View User</a>
         <a class="dropdown-item"
-           href="Javascript:deleteUser()">
+           href="Javascript:deleteItem()">
             Delete User
         </a>
         <div class="dropdown-divider"></div>
