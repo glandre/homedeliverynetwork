@@ -42,7 +42,7 @@ class ProductTypeController extends CRUDController
 
     protected function baseUrl()
     {
-        return 'products/types';
+        return 'product-types';
     }
 
     /**
@@ -70,7 +70,7 @@ class ProductTypeController extends CRUDController
     public function update($id)
     {
         $this->validateRequest(true);
-        $this->model = $this->model->findOrFail($id);
+        $this->model = $this->model->find($id);
 
         $this->model->name = $this->request->input('name');
         $this->model->description = $this->request->input('description');
