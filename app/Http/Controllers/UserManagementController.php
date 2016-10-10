@@ -62,7 +62,7 @@ class UserManagementController extends CRUDController
     public function update($id)
     {
         $this->validateRequest(true);
-        $this->model = $this->model->findOrFail($id);
+        $this->model = $this->model->find($id);
 
         $this->model->name = $this->request->input('name');
         $this->model->email = $this->request->input('email');
