@@ -20,9 +20,9 @@ class Vendor extends Model
 
     public static function validator(array $data, $isUpdate = false)
     {
-        $id = $isUpdate ? ", " . $data['id'] : '';
+        $id = $isUpdate ? "," . $data['id'] : '';
         return Validator::make($data, [
-            'name' => 'required|max:255|unique:vendors' . $id,
+            'name' => 'required|max:255|unique:vendors,name' . $id,
             'description' => 'required|max:255',
             'picture' => 'max:511'
         ]);

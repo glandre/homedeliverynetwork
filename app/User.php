@@ -35,11 +35,11 @@ class User extends Authenticatable
 
     public static function validator(array $data, $isUpdate = false)
     {
-        $id = $isUpdate ? ", " . $data['id'] : '';
+        $id = $isUpdate ? "," . $data['id'] : '';
         $passwordConfirmed = !$isUpdate ? '|confirmed' : '';
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users' . $id,
+            'email' => 'required|email|max:255|unique:users,email' . $id,
             'password' => 'min:6' . $passwordConfirmed,
             'picture' => 'max:511'
         ]);

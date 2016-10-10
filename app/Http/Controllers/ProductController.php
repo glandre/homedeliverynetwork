@@ -66,7 +66,7 @@ class ProductController extends CRUDController
         ];
 
         if($this->request->file('picture')) {
-            $values['picture'] = $this->request->file('picture')->store('products');
+            $values['picture'] = $this->request->file('picture')->store('public');
         }
 
         Product::create($values);

@@ -28,7 +28,7 @@ class Product extends Model
     {
         $id = $isUpdate ? ", " . $data['id'] : '';
         return Validator::make($data, [
-            'name' => 'required|max:255|unique:products' . $id,
+            'name' => 'required|max:255|unique:products,name' . $id,
             'description' => 'required|max:255',
             'quantity' => 'integer|min:0',
             'incoming' => 'integer|min:0',

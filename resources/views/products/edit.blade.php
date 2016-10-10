@@ -53,20 +53,21 @@
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" required id="name" name="name"
-                           {{ $readonly }} data-parsley-id="34" value="{{{ $model->name }}}">
+                           {{ $readonly }} data-parsley-id="34"
+                           value="{{{ (empty(old('name'))) ? $model->name : old('name') }}}">
                 </div>
 
                 <div class="form-group">
                     <label for="description">Description</label>
                     <textarea class="form-control" required id="description" name="description"
-                           {{ $readonly }} data-parsley-id="34">{{{ $model->description }}}</textarea>
+                           {{ $readonly }} data-parsley-id="34">{{{ (empty(old('description'))) ? $model->description : old('description') }}}</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="name">Quantity Incoming</label>
                     <input type="text" class="form-control" id="incoming" name="incoming"
                            {{ $readonly }} data-parsley-id="34"
-                           value="{{{ $model->incoming }}}"
+                           value="{{{ (empty(old('incoming'))) ? $model->incoming : old('incoming') }}}"
                     >
                 </div>
 
@@ -74,7 +75,7 @@
                     <label for="name">Quantity in the Inventory</label>
                     <input type="text" class="form-control" required id="quantity" name="quantity"
                            {{ $readonly }} data-parsley-id="34"
-                           value="{{{ $model->quantity }}}"
+                           value="{{{ (empty(old('quantity'))) ? $model->quantity : old('quantity') }}}"
                     >
                 </div>
 

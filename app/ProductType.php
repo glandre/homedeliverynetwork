@@ -22,7 +22,7 @@ class ProductType extends Model
     {
         $id = $isUpdate ? ", " . $data['id'] : '';
         return Validator::make($data, [
-            'name' => 'required|max:255|unique:product_types' . $id,
+            'name' => 'required|max:255|unique:product_types,name' . $id,
             'description' => 'required|max:255',
             'picture' => 'max:511'
         ]);
