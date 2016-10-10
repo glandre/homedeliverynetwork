@@ -52,10 +52,17 @@ class VendorController extends CRUDController
     public function store()
     {
         $this->validateRequest();
-        Vendor::create([
+
+        $values = [
             'name' => $this->request->input('name'),
             'description' => $this->request->input('description')
-        ]);
+        ];
+
+        if($this->request->file('picture')) {
+            $values['picture'] = $this->request->file('picture')->store('public');
+        }
+
+        Vendor::create($values);
 
         $this->session->flash('message_success', trans('strings.saveSuccess'));
 
@@ -65,10 +72,14 @@ class VendorController extends CRUDController
     public function update($id)
     {
         $this->validateRequest(true);
-        $this->model = $this->model->findOrFail($id);
+        $this->model = $this->model->find($id);
 
         $this->model->name = $this->request->input('name');
         $this->model->description = $this->request->input('description');
+
+        if($this->request->file('picture')) {
+            $this->model->picture = $this->request->file('picture')->store('public');
+        }
 
         $updated = $this->model->update();
 

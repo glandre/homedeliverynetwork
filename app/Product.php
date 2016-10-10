@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Validator;
 
 class Product extends Model
@@ -19,20 +20,22 @@ class Product extends Model
         'incoming',
         'continue_selling',
         'type_id',
-        'vendor_id'
+        'vendor_id',
+        'picture'
     ];
 
     public static function validator(array $data, $isUpdate = false)
     {
         $id = $isUpdate ? ", " . $data['id'] : '';
         return Validator::make($data, [
-            'name' => 'required|max:255|unique:product_types' . $id,
+            'name' => 'required|max:255|unique:products' . $id,
             'description' => 'required|max:255',
             'quantity' => 'integer|min:0',
             'incoming' => 'integer|min:0',
             'continue_selling' => 'boolean',
             'type_id' => 'required',
-            'vendor_id' => 'required'
+            'vendor_id' => 'required',
+            'picture' => 'max:511'
         ]);
     }
 
@@ -42,5 +45,21 @@ class Product extends Model
 
     public function vendor() {
         return $this->belongsTo(Vendor::class);
+    }
+
+    public function pictureUrl() {
+        if($this->picture) {
+            return Storage::url($this->picture);
+        }
+
+        if($this->type->picture) {
+            return Storage::url($this->type->picture);
+        }
+
+        if($this->vendor->picture) {
+            return Storage::url($this->vendor->picture);
+        }
+
+        return '';
     }
 }

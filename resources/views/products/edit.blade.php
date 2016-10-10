@@ -46,7 +46,8 @@
             {{Form::open([
                 'url' => $url,
                 'method' => $method,
-                'class' => 'form-horizontal'
+                'class' => 'form-horizontal',
+                'files' => true
             ])}}
                 {{Form::hidden('id', $model->id)}}
                 <div class="form-group">
@@ -80,18 +81,27 @@
                 <div class="form-group">
                     {{Form::label('type_id', 'Type:')}}
 
-                    {{Form::select('type_id', (new App\ProductType())->pluckNames(), [
+                    {{Form::select('type_id', (new App\ProductType())->pluckNames(), null, [
                         $readonly,
-                        'class' => 'selectpicker'
+                        'class' => 'form-control'
                     ])}}
                 </div>
 
                 <div class="form-group">
                     {{Form::label('vendor_id', 'Vendor:')}}
 
-                    {{Form::select('vendor_id', (new App\Vendor())->pluckNames(), [
+                    {{Form::select('vendor_id', (new App\Vendor())->pluckNames(), null, [
                         $readonly,
-                        'class' => 'selectpicker'
+                        'class' => 'form-control'
+                    ])}}
+                </div>
+
+                <div class="form-group">
+                    {{Form::label('picture', 'Picture:')}}
+                    {{Form::file('picture', [
+                        'class' => 'form-control',
+                        $readonly,
+                        $disabled
                     ])}}
                 </div>
 

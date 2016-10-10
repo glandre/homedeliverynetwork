@@ -54,7 +54,8 @@ class ProductController extends CRUDController
     public function store()
     {
         $this->validateRequest();
-        Product::create([
+
+        $values = [
             'name' => $this->request->input('name'),
             'description' => $this->request->input('description'),
             'quantity' => $this->request->input('quantity'),
@@ -62,7 +63,13 @@ class ProductController extends CRUDController
             'continue_selling' => $this->request->input('continue_selling') == 'Continue selling',
             'type_id' => $this->request->input('type_id'),
             'vendor_id' => $this->request->input('vendor_id')
-        ]);
+        ];
+
+        if($this->request->file('picture')) {
+            $values['picture'] = $this->request->file('picture')->store('products');
+        }
+
+        Product::create($values);
 
         $this->session->flash('message_success', trans('strings.saveSuccess'));
 
@@ -72,9 +79,9 @@ class ProductController extends CRUDController
     public function update($id)
     {
         $this->validateRequest(true);
-        $this->model = $this->model->findOrFail($id);
+        $this->model = $this->model->find($id);
 
-        $updated = $this->model->update([
+        $values = [
             'name' => $this->request->input('name'),
             'description' => $this->request->input('description'),
             'quantity' => $this->request->input('quantity'),
@@ -82,7 +89,13 @@ class ProductController extends CRUDController
             'continue_selling' => $this->request->input('continue_selling') == 'Continue selling',
             'type_id' => $this->request->input('type_id'),
             'vendor_id' => $this->request->input('vendor_id')
-        ]);
+        ];
+
+        if($this->request->file('picture')) {
+            $values['picture'] = $this->request->file('picture')->store('public');
+        }
+
+        $updated = $this->model->update($values);
 
         if($updated) {
             $this->session->flash('message_success', trans('strings.updatedSuccess'));

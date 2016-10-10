@@ -46,9 +46,21 @@
             {{Form::open([
                 'url' => $url,
                 'method' => $method,
-                'class' => 'form-horizontal'
+                'class' => 'form-horizontal',
+                'files' => true
             ])}}
                 {{Form::hidden('id', $model->id)}}
+
+
+                <div class="form-group">
+                    {{Form::label('picture', 'Avatar:')}}
+                    {{Form::file('picture', [
+                        'class' => 'form-control',
+                        $readonly,
+                        $disabled
+                    ])}}
+                </div>
+
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" required id="name" name="name"

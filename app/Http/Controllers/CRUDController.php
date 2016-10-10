@@ -81,6 +81,7 @@ abstract class CRUDController extends Controller
             'method' => 'post',
             'saveEnabled' => true,
             'readonly' => '',
+            'disabled' => '',
             'model' => $this->newModel()]);
     }
 
@@ -98,6 +99,7 @@ abstract class CRUDController extends Controller
             'method' => 'get',
             'saveEnabled' => false,
             'readonly' => 'readonly',
+            'disabled' => 'disabled',
             'model' => $this->model->findOrFail($id)]);
     }
 
@@ -115,6 +117,7 @@ abstract class CRUDController extends Controller
             'method' => 'patch',
             'saveEnabled' => true,
             'readonly' => '',
+            'disabled' => '',
             'model' => $this->model->findOrFail($id)]);
     }
 

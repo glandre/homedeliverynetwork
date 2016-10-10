@@ -13,7 +13,9 @@ class ProductType extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description'
+        'name',
+        'description',
+        'picture'
     ];
 
     public static function validator(array $data, $isUpdate = false)
@@ -21,7 +23,8 @@ class ProductType extends Model
         $id = $isUpdate ? ", " . $data['id'] : '';
         return Validator::make($data, [
             'name' => 'required|max:255|unique:product_types' . $id,
-            'description' => 'required|max:255'
+            'description' => 'required|max:255',
+            'picture' => 'max:511'
         ]);
     }
 

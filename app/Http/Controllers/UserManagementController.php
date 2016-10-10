@@ -68,6 +68,10 @@ class UserManagementController extends CRUDController
         $this->model->email = $this->request->input('email');
         $this->model->is_super = $this->request->input('is_super') == true;
 
+        if($this->request->file('picture') !== null) {
+            $this->model->picture = $this->request->file('picture')->store('public');
+        }
+
         if($this->request->input('password') !== null) {
             $this->model->password = bcrypt($this->request->input('password'));
         }

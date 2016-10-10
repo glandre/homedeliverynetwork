@@ -69,6 +69,8 @@
                                 @foreach($products as $product)
                                 <tr role="row" class="odd">
                                     <td class="sorting_asc">
+                                        <img src="{{{ $product->pictureUrl() }}}"
+                                             alt="{{{ $product->name }}} picture" height="42" width="42" />
                                         <a href="{{ url("/products/{$product->id}") }}">
                                             {{{ $product->name }}}
                                         </a>

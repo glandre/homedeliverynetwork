@@ -57,10 +57,17 @@ class ProductTypeController extends CRUDController
     public function store()
     {
         $this->validateRequest();
-        ProductType::create([
+
+        $values = [
             'name' => $this->request->input('name'),
             'description' => $this->request->input('description')
-        ]);
+        ];
+
+        if($this->request->file('picture')) {
+            $values['picture'] = $this->request->file('picture')->store('public');
+        }
+
+        ProductType::create($values);
 
         $this->session->flash('message_success', trans('strings.saveSuccess'));
 
@@ -74,6 +81,10 @@ class ProductTypeController extends CRUDController
 
         $this->model->name = $this->request->input('name');
         $this->model->description = $this->request->input('description');
+
+        if($this->request->file('picture')) {
+            $this->model->picture = $this->request->file('picture')->store('public');
+        }
 
         $updated = $this->model->update();
 

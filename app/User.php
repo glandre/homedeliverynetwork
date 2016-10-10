@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Validator;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_super'
+        'name',
+        'email',
+        'password',
+        'is_super',
+        'picture'
     ];
 
     /**
@@ -36,6 +41,15 @@ class User extends Authenticatable
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users' . $id,
             'password' => 'min:6' . $passwordConfirmed,
+            'picture' => 'max:511'
         ]);
+    }
+
+    public function pictureUrl() {
+        if($this->picture) {
+            return Storage::url($this->picture);
+        }
+
+        return Storage::url('avatar.png');
     }
 }
