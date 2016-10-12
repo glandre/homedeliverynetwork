@@ -64,16 +64,16 @@ class UserManagementController extends CRUDController
         $this->validateRequest(true);
         $this->model = $this->model->find($id);
 
-        $this->model->name = $this->request->input('name');
-        $this->model->email = $this->request->input('email');
-        $this->model->is_super = $this->request->input('is_super') == true;
+        $this->model->name = $this->request->name ?? $this->model->name;
+        $this->model->email = $this->request->email ?? $this->model->email;
+        $this->model->is_super = ($this->request->is_super ?? false) == true;
 
-        if($this->request->file('picture') !== null) {
+        if($this->request->file('picture')) {
             $this->model->picture = $this->request->file('picture')->store('public');
         }
 
-        if($this->request->input('password') !== null) {
-            $this->model->password = bcrypt($this->request->input('password'));
+        if($this->request->password) {
+            $this->model->password = bcrypt($this->request->password);
         }
 
         $updated = $this->model->update();

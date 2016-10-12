@@ -91,17 +91,14 @@
                 </div>
 
                 <div class="form-group">
-                    @if(!empty($readonly))
+                    @if($saveEnabled)
+                        {{Form::checkbox('is_super', 1, $model->is_super)}}
+                        {{Form::label('is_super', 'Super User')}}
+                    @else
                         {{Form::label(
                             'isSuper',
                             'Super? ' . ($model->is_super ? trans('strings.yes') : trans('strings.no')) . '.'
                         )}}
-                    @else
-                        {{Form::label('is_super', 'Super')}}
-                        {{Form::checkbox('is_super', $model->is_super, [
-                            'readonly','disabled',
-                            'class' => 'form-control'
-                        ])}}
                     @endif
                 </div>
 

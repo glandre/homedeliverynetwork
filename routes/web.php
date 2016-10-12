@@ -14,9 +14,18 @@
 Route::get('/', function () {
     return view('auth.login');
 });
+
 Route::get('/store', 'StoreController@index');
 Route::get('/store/home-v2', 'StoreController@home_v2');
 Route::get('/store/home-v3', 'StoreController@home_v3');
+
+Route::get('/dev/info', function () {
+    if(!config('app.debug')) {
+        abort(403, 'Access denied');
+    }
+    dump(config('database'));
+    phpinfo();
+});
 
 Auth::routes();
 
