@@ -76,11 +76,6 @@
 </script>
 
 @yield('page-js')
-<?php
-if(config('app.debug')) {
-    dump(config('database'));
-}
-?>
 
 </body>
 </html>

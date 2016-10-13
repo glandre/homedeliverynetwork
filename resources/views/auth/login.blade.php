@@ -65,27 +65,27 @@
                             </div>
                         </div>
 
-                        <div class="form-group row m-t-30 m-b-0">
-                            <div class="col-sm-12 text-xs-center">
-                                <h5 class="text-muted"><b>Sign in with</b></h5>
-                            </div>
-                        </div>
+                        {{--<div class="form-group row m-t-30 m-b-0">--}}
+                            {{--<div class="col-sm-12 text-xs-center">--}}
+                                {{--<h5 class="text-muted"><b>Sign in with</b></h5>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
-                        <div class="form-group row m-b-0 text-xs-center">
-                            <div class="col-sm-12">
-                                <button type="button" class="btn btn-facebook waves-effect waves-light m-t-20">
-                                    <i class="fa fa-facebook m-r-5"></i> Facebook
-                                </button>
+                        {{--<div class="form-group row m-b-0 text-xs-center">--}}
+                            {{--<div class="col-sm-12">--}}
+                                {{--<button type="button" class="btn btn-facebook waves-effect waves-light m-t-20">--}}
+                                    {{--<i class="fa fa-facebook m-r-5"></i> Facebook--}}
+                                {{--</button>--}}
 
-                                <button type="button" class="btn btn-twitter waves-effect waves-light m-t-20">
-                                    <i class="fa fa-twitter m-r-5"></i> Twitter
-                                </button>
+                                {{--<button type="button" class="btn btn-twitter waves-effect waves-light m-t-20">--}}
+                                    {{--<i class="fa fa-twitter m-r-5"></i> Twitter--}}
+                                {{--</button>--}}
 
-                                <button type="button" class="btn btn-googleplus waves-effect waves-light m-t-20">
-                                    <i class="fa fa-google-plus m-r-5"></i> Google+
-                                </button>
-                            </div>
-                        </div>
+                                {{--<button type="button" class="btn btn-googleplus waves-effect waves-light m-t-20">--}}
+                                    {{--<i class="fa fa-google-plus m-r-5"></i> Google+--}}
+                                {{--</button>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
                     </form>
 
@@ -96,14 +96,14 @@
         </div>
         <!-- end card-box-->
 
-        <div class="m-t-20">
-            <div class="text-xs-center">
-                <p class="text-white">
-                    Don't have an account? <a href="{{url('/register')}}" class="text-white m-l-5">
-                    <b>Sign Up</b></a>
-                </p>
-            </div>
-        </div>
+        {{--<div class="m-t-20">--}}
+            {{--<div class="text-xs-center">--}}
+                {{--<p class="text-white">--}}
+                    {{--Don't have an account? <a href="{{url('/register')}}" class="text-white m-l-5">--}}
+                    {{--<b>Sign Up</b></a>--}}
+                {{--</p>--}}
+            {{--</div>--}}
+        {{--</div>--}}
     </div>
     <!-- end wrapper page -->
 @endsection

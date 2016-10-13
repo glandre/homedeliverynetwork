@@ -27,7 +27,20 @@ Route::get('/dev/info', function () {
     phpinfo();
 });
 
-Auth::routes();
+// Authentication Routes...
+$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
+$this->post('login', 'Auth\LoginController@login');
+$this->post('logout', 'Auth\LoginController@logout');
+
+// Registration Routes...
+//$this->get('register', 'Auth\RegisterController@showRegistrationForm');
+//$this->post('register', 'Auth\RegisterController@register');
+
+// Password Reset Routes...
+$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+$this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/index', 'HomeController@index');
@@ -38,6 +51,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('users/search', 'UserManagementController@index');
     Route::post('users/search', 'UserManagementController@search');
     Route::resource('users', 'UserManagementController');
+
+    // User Profile and Settings
+    Route::get('user/profile', 'UserProfileController@profile');
+    Route::get('user/settings', 'UserProfileController@settings');
 
     // Product Management
 
