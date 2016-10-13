@@ -19,7 +19,7 @@ abstract class CRUDController extends Controller
             return !empty($field);
         });
 
-        $this->session = Session();
+        $this->session = session();
     }
 
     protected abstract function listView();

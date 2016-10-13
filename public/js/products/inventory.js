@@ -46,8 +46,8 @@ function update (productId) {
 }
 
 function edit(productId) {
-    $('#quantity_label_' + productId).attr('style' , 'visibility: hidden');
-    $('#edit_button_' + productId).attr('style' , 'visibility: hidden');
+    $('#quantity_label_' + productId).attr('style' , 'display: none');
+    $('#edit_button_' + productId).attr('style' , 'display: none');
     $('#quantity_input_' + productId).attr('style' , '');
     $('#quantity_input_' + productId).val($('#quantity_label_' + productId).html().trim()).focus();
     $('#update_button_' + productId).attr('style' , '');
@@ -57,7 +57,7 @@ function edit(productId) {
 function omitEdition(productId) {
     $('#quantity_label_' + productId).attr('style' , '');
     $('#edit_button_' + productId).attr('style' , '');
-    $('#quantity_input_' + productId).attr('style' , 'visibility: hidden');
-    $('#update_button_' + productId).attr('style' , 'visibility: hidden');
-    $('#cancel_button_' + productId).attr('style' , 'visibility: hidden');
+    $('#quantity_input_' + productId).attr('style' , 'display: none');
+    $('#update_button_' + productId).attr('style' , 'display: none');
+    $('#cancel_button_' + productId).attr('style' , 'display: none');
 }

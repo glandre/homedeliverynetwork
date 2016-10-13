@@ -36,12 +36,12 @@
 @endsection
 
 @section('content')
+
     <div class="col-sm-6 col-xs-12 m-t-20">
         <h4 class="header-title m-t-0">{{{ $title }}} User</h4>
         <p class="text-muted font-13 m-b-10">
             Here you can view user information. Click on edit to enable updates.
         </p>
-
         <div class="p-20">
             {{Form::open([
                 'url' => $url,
@@ -116,8 +116,8 @@
                 @endif
             {{Form::close()}}
         </div>
-
     </div>
+
 @endsection
 
 @section('page-js')

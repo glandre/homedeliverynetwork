@@ -153,13 +153,13 @@
                                 </div>
 
                                 <!-- item-->
-                                <a href="{{ url('/users/' . Auth::user()->id . '/edit') }}"
+                                <a href="{{ url('/user/profile') }}"
                                    class="dropdown-item notify-item">
                                     <i class="zmdi zmdi-account-circle"></i> <span>Profile</span>
                                 </a>
 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="{{ url('/user/settings') }}" class="dropdown-item notify-item">
                                     <i class="zmdi zmdi-settings"></i> <span>Settings</span>
                                 </a>
 
@@ -192,7 +192,7 @@
         <!-- end topbar-main -->
 
 
-        @include('layouts.navbar');
+        @include('layouts.navbar')
     </header>
     <!-- End Navigation Bar-->
 

@@ -52,4 +52,12 @@ class User extends Authenticatable
 
         return Storage::url('avatar.png');
     }
+
+    public function settings() {
+        return $this->hasOne(UserSettings::class);
+    }
+
+    public function profile() {
+        return ($this->is_super) ? 'Super' : 'User';
+    }
 }

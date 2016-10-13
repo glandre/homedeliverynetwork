@@ -53,8 +53,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', 'UserManagementController');
 
     // User Profile and Settings
-    Route::get('user/profile', 'UserProfileController@profile');
-    Route::get('user/settings', 'UserProfileController@settings');
+    Route::get('user/profile', 'UserController@profile');
+    Route::post('user/profile', 'UserController@updateProfile');
+    Route::get('user/settings', 'UserController@settings');
+    Route::post('user/settings', 'UserController@updateSettings');
 
     // Product Management
 

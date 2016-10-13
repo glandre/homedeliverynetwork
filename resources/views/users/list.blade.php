@@ -13,6 +13,7 @@
 @section('settings-menu')
     <div class="dropdown-menu">
         <a class="dropdown-item" href="{{ url('/users/create') }}">Create a New User</a>
+        <a class="dropdown-item" href="JavaScript:switchView()" id="showMenuItem">Show Users Table</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="{{ url('/home') }}">Back to Dashboard</a>
     </div>
@@ -24,7 +25,9 @@
 
 @section('content')
 
-    <div class="row">
+    <input hidden id="activeView" value="users_widget" />
+
+    <div class="row" id="users_table" style="display: none;">
         <div class="col-sm-12">
             <div class="card-box table-responsive">
                 <h4 class="m-t-0 header-title"><b>Managing users:</b></h4>
@@ -78,7 +81,7 @@
                                     </td>
                                     <td>{{{ $user->email }}}</td>
                                     <td>Profile</td>
-                                    <td>{{{ ($user->is_super)? 'Super' : 'Normal' }}}</td>
+                                    <td>{{{ $user->profile() }}}</td>
                                 </tr>
                                 @endforeach
                                 </tbody>
@@ -89,6 +92,29 @@
             </div>
         </div>
     </div> <!-- end row -->
+
+    <div class="row" id="users_widget" style="display: none;">
+        @foreach($users as $user)
+        <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card-box widget-user">
+                <div>
+                    <img src="{{{ $user->pictureUrl() }}}" class="img-responsive img-circle" alt="user">
+                    <div class="wid-u-info">
+                        <h5 class="m-t-20 m-b-5">
+                            <a href="{{ url("/users/{$user->id}") }}">
+                                {{{ $user->name }}}
+                            </a>
+                        </h5>
+                        <p class="text-muted m-b-0 font-13">{{{ $user->email }}}</p>
+                        <div class="user-position">
+                            <span class="profile text-warning font-weight-bold">{{{ $user->profile() }}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
 
 @endsection
 
@@ -110,7 +136,25 @@
     <script src="/js/dataTables.responsive.min.js"></script>
     <script src="/js/responsive.bootstrap4.min.js"></script>
 
+    <script src="/js/user/profile.js"></script>
+
     <script type="text/javascript">
+
+        function switchView() {
+            $('#users_table').attr('style', 'display: none');
+            $('#users_widget').attr('style', 'display: none');
+            $('#' + $('#activeView').val()).attr('style', 'display: inline');
+
+            if($('#activeView').val() == 'users_table') {
+                $('#activeView').val('users_widget');
+                $('#showMenuItem').html('Show Users Widgets');
+            }
+            else {
+                $('#activeView').val('users_table');
+                $('#showMenuItem').html('Show Users Table');
+            }
+        }
+
         $(document).ready(function() {
             $('#datatable').DataTable();
 
@@ -122,6 +166,9 @@
 
             table.buttons().container()
                     .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+
+            switchView();
+            textFromProfile();
         } );
 
     </script>
