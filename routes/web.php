@@ -33,8 +33,8 @@ $this->post('login', 'Auth\LoginController@login');
 $this->post('logout', 'Auth\LoginController@logout');
 
 // Registration Routes...
-//$this->get('register', 'Auth\RegisterController@showRegistrationForm');
-//$this->post('register', 'Auth\RegisterController@register');
+$this->get('register', 'Auth\RegisterController@showRegistrationForm');
+$this->post('register', 'Auth\RegisterController@register');
 
 // Password Reset Routes...
 $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');

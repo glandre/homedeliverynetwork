@@ -19,6 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'password',
         'is_super',
         'picture'
@@ -40,6 +41,7 @@ class User extends Authenticatable
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users,email' . $id,
+            'phone' => 'required|regex:[\(\d{3}\)\s*\d{3}\-\d{4}]',
             'password' => 'min:6' . $passwordConfirmed,
             'picture' => 'max:511'
         ]);

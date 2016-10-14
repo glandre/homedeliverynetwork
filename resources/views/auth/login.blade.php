@@ -96,14 +96,14 @@
         </div>
         <!-- end card-box-->
 
-        {{--<div class="m-t-20">--}}
-            {{--<div class="text-xs-center">--}}
-                {{--<p class="text-white">--}}
-                    {{--Don't have an account? <a href="{{url('/register')}}" class="text-white m-l-5">--}}
-                    {{--<b>Sign Up</b></a>--}}
-                {{--</p>--}}
-            {{--</div>--}}
-        {{--</div>--}}
+        <div class="m-t-20">
+            <div class="text-xs-center">
+                <p class="text-white">
+                    Don't have an account? <a href="{{url('/register')}}" class="text-white m-l-5">
+                    <b>Sign Up</b></a>
+                </p>
+            </div>
+        </div>
     </div>
     <!-- end wrapper page -->
 @endsection

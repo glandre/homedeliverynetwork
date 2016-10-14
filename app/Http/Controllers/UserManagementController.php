@@ -47,12 +47,18 @@ class UserManagementController extends CRUDController
     public function store()
     {
         $this->validateRequest();
-        User::create([
+        $user = new User([
             'name' => $this->request->input('name'),
             'email' => $this->request->input('email'),
             'password' => $this->request->input('password'),
             'is_super' => $this->request->input('is_super') == true
         ]);
+
+        if($this->request->file('picture')) {
+            $user->picture = $this->request->file('picture')->store('public');
+        }
+
+        $user->save();
 
         $this->session->flash('message_success', trans('strings.saveSuccess'));
 
