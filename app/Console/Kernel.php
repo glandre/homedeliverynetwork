@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\Crypt::class,
-        Commands\MysqlBackup::class
+        Commands\MysqlBackup::class,
+        Commands\MysqlRestore::class
     ];
 
     /**

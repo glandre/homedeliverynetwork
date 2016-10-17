@@ -2,26 +2,23 @@
 
 namespace App\Console\Commands;
 
-use Faker\Provider\cs_CZ\DateTime;
 use Illuminate\Console\Command;
-use Symfony\Component\Process\Process;
 
-class MysqlBackup extends Command
+class MysqlRestore extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'mysql:backup 
-                            {output? : Output file. Default is the current timestamp (YYMMDD.sql)}';
+    protected $signature = 'mysql:restore {input: Input MySQL Dump file to restore}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Generates a Dump from the MySQL Database based on .env credentials';
+    protected $description = 'Restores datas from a dump file to the current database based on .env credentials.';
 
     /**
      * Create a new command instance.
@@ -42,9 +39,9 @@ class MysqlBackup extends Command
         $user = config('database.connections.mysql.username');
         $password = config('database.connections.mysql.password');
         $database = config('database.connections.mysql.database');
-        $output = $this->argument('output') ?? $this->outputDefaultPath();
+        $input = $this->argument('input');
 
-        $command = "mysqldump --user=$user --password=\"$password\" --result-file=$output $database";
+        $command = "mysql --user=$user --password=$password $database < $input";
 
         if($this->option('verbose')) {
             $this->info($command);
@@ -53,25 +50,10 @@ class MysqlBackup extends Command
         try {
             $process = new Process($command);
             $process->run();
-            $this->info("Backup successfully performed - Output file: $output");
+            $this->info("Backup successfully restored from: $input");
         }
         catch(\Exception $exception) {
             $this->error("Error while executing the command: {$exception->getMessage()}");
         }
-    }
-
-    /**
-     *
-     * @return string
-     */
-    private function outputDefaultPath()
-    {
-        $i = 0;
-        do {
-            $i++;
-            $output =  sprintf('%s%02d_%s_backup.sql', date('ymd'), $i, config('database.connections.mysql.database'));
-        }
-        while(file_exists($output) && $i < 99);
-        return $output;
     }
 }
