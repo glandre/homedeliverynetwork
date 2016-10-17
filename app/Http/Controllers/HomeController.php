@@ -23,7 +23,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return $this->home();
+    }
+
+    public function home() {
+        if(\Auth::user()->isCustomer()) {
+            return $this->store();
+        }
+        return $this->dashboard();
+    }
+
+    public function admin() {
+        return $this->dashboard();
     }
 
     /**
@@ -33,7 +44,10 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
-//        return view('dashboard');
         return view('dashboard');
+    }
+
+    public function store() {
+        return view('store.home');
     }
 }

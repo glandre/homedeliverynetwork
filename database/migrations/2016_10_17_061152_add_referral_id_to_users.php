@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPhoneToUsers extends Migration
+class AddReferralIdToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddPhoneToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('phone', 31)->nullable();
+            $table->string('referral_code', 32)->unique()->nullable();
+            $table->integer('referrer_id')->unsigned()->nullable()->comment('Reference to the user who owns the code');
+            $table->foreign('referrer_id')->references('id')->on('users');
         });
     }
 
@@ -26,7 +28,8 @@ class AddPhoneToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('phone');
+            $table->dropColumn('referral_code');
+            $table->dropColumn('referrer_id');
         });
     }
 }

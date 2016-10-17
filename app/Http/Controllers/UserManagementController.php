@@ -49,9 +49,12 @@ class UserManagementController extends CRUDController
         $this->validateRequest();
         $user = new User([
             'name' => $this->request->input('name'),
+            'last_name' => $this->request->input('last_name'),
             'email' => $this->request->input('email'),
+            'phone' => $this->request->input('phone'),
             'password' => $this->request->input('password'),
-            'is_super' => $this->request->input('is_super') == true
+            'role_id' => $this->request->input('role_id'),
+            'registration_status' => $this->request->input('registration_status')
         ]);
 
         if($this->request->file('picture')) {
@@ -60,7 +63,7 @@ class UserManagementController extends CRUDController
 
         $user->save();
 
-        $this->session->flash('message_success', trans('strings.saveSuccess'));
+        $this->request->session()->flash('message_success', trans('strings.saveSuccess'));
 
         return $this->index();
     }
@@ -71,8 +74,11 @@ class UserManagementController extends CRUDController
         $this->model = $this->model->find($id);
 
         $this->model->name = $this->request->name ?? $this->model->name;
+        $this->model->last_name = $this->request->last_name ?? $this->model->last_name;
         $this->model->email = $this->request->email ?? $this->model->email;
-        $this->model->is_super = ($this->request->is_super ?? false) == true;
+        $this->model->phone = $this->request->phone ?? $this->model->phone;
+        $this->model->role_id = $this->request->role_id ?? $this->model->role_id;
+        $this->model->registration_status = $this->request->registration_status ?? $this->model->registration_status;
 
         if($this->request->file('picture')) {
             $this->model->picture = $this->request->file('picture')->store('public');
@@ -85,28 +91,28 @@ class UserManagementController extends CRUDController
         $updated = $this->model->update();
 
         if($updated) {
-            $this->session->flash('message_success', trans('strings.updatedSuccess'));
+            $this->request->session()->flash('message_success', trans('strings.updatedSuccess'));
         }
         else {
-            $this->session->flash('message_danger', trans('strings.updatedSuccess'));
+            $this->request->session()->flash('message_danger', trans('strings.updatedSuccess'));
         }
 
         return $this->index();
     }
 
-    public function search() {
-
+    public function search()
+    {
         $users = $this->model
             ->where('name', 'LIKE', '%' . $this->request->input('search') . '%')
             ->orWhere('email', 'LIKE', '%' . $this->request->input('search') . '%')
             ->get();
         if($users->isEmpty()) {
-            $this->session->flash('message_info', trans('strings.noItemsFound'));
+            $this->request->session()->flash('message_info', trans('strings.noItemsFound'));
         }
 
-        $this->session->flash('search', '');
+        $this->request->session()->flash('search', '');
         if(mb_strlen($this->request->input('search')) > 0) {
-            $this->session->flash('search', $this->request->input('search'));
+            $this->request->session()->flash('search', $this->request->input('search'));
         }
 
 
@@ -125,12 +131,12 @@ class UserManagementController extends CRUDController
         $model = $this->model->find($id);
 
         if($model->isAdmin) {
-            $this->session->flash('message_danger', trans('strings.impossibleToDeleteAnAdmin'));
+            $this->request->session()->flash('message_danger', trans('strings.impossibleToDeleteAnAdmin'));
             return $this->index();
         }
 
         $model->delete();
-        $this->session->flash('message_success', trans('strings.deletedSuccess'));
+        $this->request->session()->flash('message_success', trans('strings.deletedSuccess'));
         return $this->index();
     }
 }

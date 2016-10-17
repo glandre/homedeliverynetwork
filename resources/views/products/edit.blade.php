@@ -64,6 +64,14 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="name">Price</label>
+                    <input type="text" class="form-control" id="incoming" name="incoming"
+                           {{ $readonly }} data-parsley-id="34"
+                           value="{{{ (empty(old('incoming'))) ? $model->incoming : old('incoming') }}}"
+                    >
+                </div>
+
+                <div class="form-group">
                     <label for="name">Quantity Incoming</label>
                     <input type="text" class="form-control" id="incoming" name="incoming"
                            {{ $readonly }} data-parsley-id="34"
@@ -92,8 +100,9 @@
                     {{Form::label('vendor_id', 'Vendor:')}}
 
                     {{Form::select('vendor_id', (new App\Vendor())->pluckNames(), null, [
+                        'class' => 'form-control',
                         $readonly,
-                        'class' => 'form-control'
+                        $disabled
                     ])}}
                 </div>
 

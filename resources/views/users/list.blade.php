@@ -46,7 +46,7 @@
                                     <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
                                         colspan="1" aria-sort="ascending"
                                         aria-label="Name: activate to sort column descending"
-                                        style="width: 279.5px;">Name
+                                        style="width: 279.5px;">Full Name
                                     </th>
                                     <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
                                         colspan="1" aria-sort="ascending"
@@ -55,13 +55,23 @@
                                     </th>
                                     <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
                                         colspan="1" aria-sort="ascending"
-                                        aria-label="Profile: activate to sort column descending"
-                                        style="width: 279.5px;">Profile
+                                        aria-label="Role: activate to sort column descending"
+                                        style="width: 279.5px;">Role
                                     </th>
                                     <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
                                         colspan="1" aria-sort="ascending"
                                         aria-label="Type: activate to sort column descending"
-                                        style="width: 279.5px;">Type
+                                        style="width: 279.5px;">Status
+                                    </th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Type: activate to sort column descending"
+                                        style="width: 279.5px;">Referrals
+                                    </th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Type: activate to sort column descending"
+                                        style="width: 279.5px;">Referrer
                                     </th>
                                 </tr>
                                 </thead>
@@ -71,17 +81,16 @@
 
                                 @foreach($users as $user)
                                 <tr role="row" class="odd">
-                                    <td class="sorting_
-                                    <td>33</td>
-                                    <td>2008/11/28</td>
-                                    <td>$162,700</td>1">
-                                        <a href="{{ url("/users/{$user->id}") }}">
-                                            {{{ $user->name }}}
-                                        </a>
+                                    <td class="sorting_asc">
+                                        {{{ $user->name }}} {{{ $user->last_name }}}
                                     </td>
-                                    <td>{{{ $user->email }}}</td>
-                                    <td>Profile</td>
-                                    <td>{{{ $user->profile() }}}</td>
+                                    <td>
+                                        <a href="{{ url("/users/{$user->id}") }}">{{{ $user->email }}}</a>
+                                    </td>
+                                    <td>{{{ $user->role->name }}}</td>
+                                    <td>{{{ $user->registration_status }}}</td>
+                                    <td>{{{ $user->referrals->count() }}}</td>
+                                    <td>{{{ $user->referrer->email ?? '' }}}</td>
                                 </tr>
                                 @endforeach
                                 </tbody>
@@ -104,10 +113,14 @@
                             <a href="{{ url("/users/{$user->id}") }}">
                                 {{{ $user->name }}}
                             </a>
+                            <span style="font-size: small; color: #f00;"
+                                  title="This user requires approval due to recent registration">
+                                {{ $user->registration_status == 'New' ? '(Pending Approval)' : '' }}
+                            </span>
                         </h5>
                         <p class="text-muted m-b-0 font-13">{{{ $user->email }}}</p>
                         <div class="user-position">
-                            <span class="profile text-warning font-weight-bold">{{{ $user->profile() }}}</span>
+                            <span class="role text-warning font-weight-bold">{{{ $user->role->name }}}</span>
                         </div>
                     </div>
                 </div>
@@ -168,7 +181,7 @@
                     .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
 
             switchView();
-            textFromProfile();
+            textFromRole();
         } );
 
     </script>

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('store.home');
 });
 
 Route::get('/store', 'StoreController@index');
@@ -34,6 +34,7 @@ $this->post('logout', 'Auth\LoginController@logout');
 
 // Registration Routes...
 $this->get('register', 'Auth\RegisterController@showRegistrationForm');
+$this->get('register/referral/{code}', 'Auth\RegisterController@showRegistrationFormWithReferralCode');
 $this->post('register', 'Auth\RegisterController@register');
 
 // Password Reset Routes...
@@ -44,7 +45,8 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/index', 'HomeController@index');
-    Route::get('/home', 'HomeController@dashboard');
+    Route::get('/home', 'HomeController@home');
+    Route::get('/admin', 'HomeController@admin');
     Route::get('/dashboard', 'HomeController@dashboard');
 
     // User Management
@@ -57,6 +59,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('user/profile', 'UserController@updateProfile');
     Route::get('user/settings', 'UserController@settings');
     Route::post('user/settings', 'UserController@updateSettings');
+
+    // User Referral Code
+    Route::get('user/referral', 'UserController@getReferralCode');
 
     // Product Management
 

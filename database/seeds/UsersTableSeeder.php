@@ -12,18 +12,24 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name' => 'Geraldo',
-            'email' => 'geraldo.landre@gmail.com',
-            'password' => bcrypt('123456'),
-            'is_super' => true
-        ]);
+        if(!User::where('email', 'geraldo.landre@gmail.com')->first()) {
+            User::create([
+                'name' => 'Geraldo',
+                'last_name' => 'B. Landre',
+                'email' => 'geraldo.landre@gmail.com',
+                'password' => bcrypt(config('app.key')),
+                'profile_id' => 1 // super
+            ]);
+        }
 
-        User::create([
-            'name' => 'Mike',
-            'email' => 'mike.g.moll@gmail.com',
-            'password' => bcrypt('123456'),
-            'is_super' => false
-        ]);
+        if(!User::where('email', 'geraldo.landre@homedeliverynetwork.ca')->first()) {
+            User::create([
+                'name' => 'Geraldo',
+                'last_name' => 'B. Landre',
+                'email' => 'geraldo.landre@homedeliverynetwork.ca',
+                'password' => bcrypt(config('app.key')),
+                'profile_id' => 2 // webmaster
+            ]);
+        }
     }
 }

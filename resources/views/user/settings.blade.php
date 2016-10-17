@@ -92,7 +92,7 @@
     }
 
     $(document).ready(function () {
-        textFromProfile();
+        textFromRole();
     });
 </script>
 @endsection

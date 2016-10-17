@@ -18,8 +18,6 @@ abstract class CRUDController extends Controller
         $this->requestFilteredData = array_filter($this->request->all(), function($field){
             return !empty($field);
         });
-
-        $this->session = session();
     }
 
     protected abstract function listView();
@@ -131,7 +129,7 @@ abstract class CRUDController extends Controller
     {
         $model = $this->model->find($id);
         $model->delete();
-        $this->session->flash('message_success', trans('strings.deletedSuccess'));
+        $this->request->session()->flash('message_success', trans('strings.deletedSuccess'));
         return $this->index();
     }
 }

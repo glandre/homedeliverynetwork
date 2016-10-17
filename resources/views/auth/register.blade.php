@@ -33,13 +33,12 @@
                         <div class="form-group row">
                             <div class="col-xs-12">
                                 <input class="form-control" required autofocus
-                                       placeholder="E-mail Address" value="{{ old('email') }}"
-                                       id="email" type="email" name="email">
-
-                                @if ($errors->has('email'))
+                                       placeholder="First Name*" value="{{ old('name') }}"
+                                       id="name" type="text" name="name">
+                                @if ($errors->has('name'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
                                 @endif
                             </div>
                         </div>
@@ -47,11 +46,25 @@
                         <div class="form-group row">
                             <div class="col-xs-12">
                                 <input class="form-control" required autofocus
-                                       placeholder="User name" value="{{ old('name') }}"
-                                       id="name" type="text" name="name">
-                                @if ($errors->has('name'))
+                                       placeholder="Last Name*" value="{{ old('last_name') }}"
+                                       id="last_name" type="text" name="last_name">
+                                @if ($errors->has('last_name'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                            <strong>{{ $errors->first('last_name') }}</strong>
+                                        </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <input class="form-control" required autofocus
+                                       placeholder="E-mail Address*" value="{{ old('email') }}"
+                                       id="email" type="email" name="email">
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -71,6 +84,20 @@
                                 'class' => 'form-control',
                                 'placeholder' => 'Photo ID'
                             ])}}
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <input class="form-control"
+                                       placeholder="Refer a Friend Code"
+                                       title="Did a friend Refer you? Enter your friend's code here"
+                                       id="referral_code" type="text" name="referral_code" value="{{{ $code ?? '' }}}">
+                                @if ($errors->has('referral_code'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('referral_code') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
 
                         <div class="form-group row">

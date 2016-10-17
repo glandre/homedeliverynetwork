@@ -46,7 +46,7 @@
                             </h4>
                             <p class="text-muted m-b-0 font-13">{{{ Auth::user()->email }}}</p>
                             <div class="user-position">
-                                <span class="profile text-info font-weight-bold">{{{ Auth::user()->profile() }}}</span>
+                                <span class="role text-info font-weight-bold">{{{ Auth::user()->role->name }}}</span>
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
     }
 
     $(document).ready(function () {
-        textFromProfile();
+        textFromRole();
     });
 </script>
 @endsection

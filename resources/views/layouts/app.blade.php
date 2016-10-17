@@ -164,8 +164,8 @@
                                 </a>
 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="zmdi zmdi-lock-open"></i> <span>Lock Screen</span>
+                                <a href="{{ url('/user/referral') }}" class="dropdown-item notify-item">
+                                    <i class="zmdi zmdi-lock-open"></i> <span>My Referral Code</span>
                                 </a>
 
                                 <!-- item-->

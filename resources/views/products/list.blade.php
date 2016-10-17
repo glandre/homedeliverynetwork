@@ -53,6 +53,11 @@
                                     <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
                                         colspan="1" aria-sort="ascending"
                                         aria-label="Name: activate to sort column descending"
+                                        style="width: 279.5px;">Price
+                                    </th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Name: activate to sort column descending"
                                         style="width: 279.5px;">Type
                                     </th>
                                     <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
@@ -75,6 +80,9 @@
                                     </td>
                                     <td class="sorting_asc">
                                         {{{ ($product->quantity > 0) ? $product->quantity : 'N/A' }}}
+                                    </td>
+                                    <td class="sorting_asc">
+                                        {{{ $product->price }}}
                                     </td>
                                     <td class="sorting_asc">
                                         {{{ $product->type->name }}}

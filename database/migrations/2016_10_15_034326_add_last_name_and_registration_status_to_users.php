@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPhoneToUsers extends Migration
+class AddLastNameAndRegistrationStatusToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,11 @@ class AddPhoneToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('phone', 31)->nullable();
+            $table->string('last_name');
+            $table->string('registration_status', 15)->default('New');
         });
+
+        DB::table('users')->where('is_super', true)->update(['registration_status' => 'Accepted']);
     }
 
     /**
@@ -26,7 +29,8 @@ class AddPhoneToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('phone');
+            $table->dropColumn('last_name');
+            $table->dropColumn('registration_status');
         });
     }
 }

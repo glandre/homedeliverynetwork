@@ -62,9 +62,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">First Name</label>
                     <input type="text" class="form-control" required id="name" name="name"
                            {{ $readonly }} data-parsley-id="34" value="{{{ $model->name }}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" class="form-control" required id="last_name" name="last_name"
+                           {{ $readonly }} data-parsley-id="34" value="{{{ $model->last_name }}}">
                 </div>
 
                 <div class="form-group">
@@ -72,6 +78,17 @@
                     <div>
                         <input type="email" name="email" id="email" class="form-control" required="" {{ $readonly }}
                                parsley-type="email" data-parsley-id="40" value="{{{ $model->email }}}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <div>
+                        <input class="form-control" required autofocus
+                               data-mask="(999) 999-9999"
+                               {{ $readonly }}
+                               placeholder="Phone Number" value="{{ $model->phone }}"
+                               id="phone" type="text" name="phone">
                     </div>
                 </div>
 
@@ -89,20 +106,51 @@
                                placeholder="Re-Type Password" data-parsley-id="38">
                     </div>
                 </div>
-
+            @if($saveEnabled && !$model->isSuper())
                 <div class="form-group">
-                    @if($saveEnabled)
-                        {{Form::checkbox('is_super', 1, $model->is_super)}}
-                        {{Form::label('is_super', 'Super User')}}
-                    @else
-                        {{Form::label(
-                            'isSuper',
-                            'Super? ' . ($model->is_super ? trans('strings.yes') : trans('strings.no')) . '.'
-                        )}}
-                    @endif
+
+                    {{Form::label('registration_status', 'Registration Status:')}}
+
+                    {{Form::select('registration_status', $model->pluckRegistrationStatus(), $model->registration_status, [
+                        $readonly,
+                        $disabled,
+                        'class' => 'form-control'
+                    ])}}
                 </div>
 
-                @if($saveEnabled)
+                <div class="form-group">
+
+                        {{Form::label('role_id', 'Role:')}}
+
+                        {{Form::select('role_id', (new App\Role())->pluckNames(), $model->role->id ?? null, [
+                            $readonly,
+                            'class' => 'form-control'
+                        ])}}
+
+                </div>
+
+                <div class="form-group">
+                    {{Form::label(
+                        'referrer',
+                        'Referrer: ' . ($model->referrer->name ?? '-')
+                    )}}
+                </div>
+            @else
+                <div class="form-group">
+                    {{Form::label(
+                        'role',
+                        'Role: ' . $model->role->name
+                    )}}
+                    ({{Form::label('registration_status', 'Registration Status: ' . $model->registration_status)}})
+                    -
+                    {{Form::label(
+                        'referrer',
+                        'Referrer: ' . ($model->referrer->name ?? '-')
+                    )}}
+                </div>
+            @endif
+
+            @if($saveEnabled)
                 <div class="form-group">
                     <div>
                         <button type="submit" class="btn btn-primary waves-effect waves-light">
@@ -113,7 +161,7 @@
                         </button>
                     </div>
                 </div>
-                @endif
+            @endif
             {{Form::close()}}
         </div>
     </div>
@@ -121,5 +169,5 @@
 @endsection
 
 @section('page-js')
-
+    <script src="/js/bootstrap-inputmask.min.js"></script>
 @endsection

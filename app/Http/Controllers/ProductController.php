@@ -59,6 +59,7 @@ class ProductController extends CRUDController
             'name' => $this->request->input('name'),
             'description' => $this->request->input('description'),
             'quantity' => $this->request->input('quantity'),
+            'price' => $this->request->input('price'),
             'incoming' => $this->request->input('incoming'),
             'continue_selling' => $this->request->input('continue_selling') == 'Continue selling',
             'type_id' => $this->request->input('type_id'),
@@ -71,7 +72,7 @@ class ProductController extends CRUDController
 
         Product::create($values);
 
-        $this->session->flash('message_success', trans('strings.saveSuccess'));
+        $this->request->session()->flash('message_success', trans('strings.saveSuccess'));
 
         return $this->index();
     }
@@ -85,6 +86,7 @@ class ProductController extends CRUDController
             'name' => $this->request->input('name'),
             'description' => $this->request->input('description'),
             'quantity' => $this->request->input('quantity'),
+            'price' => $this->request->input('price'),
             'incoming' => $this->request->input('incoming'),
             'continue_selling' => $this->request->input('continue_selling') == 'Continue selling',
             'type_id' => $this->request->input('type_id'),
@@ -98,10 +100,10 @@ class ProductController extends CRUDController
         $updated = $this->model->update($values);
 
         if($updated) {
-            $this->session->flash('message_success', trans('strings.updatedSuccess'));
+            $this->request->session()->flash('message_success', trans('strings.updatedSuccess'));
         }
         else {
-            $this->session->flash('message_danger', trans('strings.updatedSuccess'));
+            $this->request->session()->flash('message_danger', trans('strings.updatedSuccess'));
         }
 
         return $this->index();

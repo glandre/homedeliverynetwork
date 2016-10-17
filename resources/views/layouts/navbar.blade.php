@@ -6,7 +6,7 @@
                 <li class="active">
                     <a href="{{ url('/dashboard') }}"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                 </li>
-                @if(Auth::user()->is_super)
+                @if(Auth::user()->isSuper())
                     <li class="has-submenu last-elements">
                         <a href="{{ url('/users') }}">
                             <i class="zmdi zmdi-collection-item"></i> <span> Users </span>

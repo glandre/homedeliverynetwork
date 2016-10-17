@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Contracts\Support\MessageBag;
+use Illuminate\Contracts\Support\MessageProvider;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -27,16 +32,19 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
+
+    protected $request;
 
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @param Request $request
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
         $this->middleware('guest');
+        $this->request = $request;
     }
 
     /**
@@ -49,6 +57,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
+            'last_name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'phone' => 'required|regex:[\(\d{3}\)\s*\d{3}\-\d{4}]',
             'password' => 'required|min:6|confirmed',
@@ -63,12 +72,47 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $referrer_id = null;
+        if($data['referral_code']) {
+            $referrer_id = User::where('referral_code', $data['referral_code'])->firstOrFail()->id;
+        }
+
+        $user = User::create([
             'name' => $data['name'],
+            'last_name' => $data['last_name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'picture' => $data['picture']->store('public'),
             'password' => bcrypt($data['password']),
+            'referrer_id' => $referrer_id
         ]);
+
+        if($user) {
+            $this->request->session()
+                 ->flash('message_success', 'Thanks for your registration, we will contact you soon.');
+
+            // send email
+        }
+
+        return $user;
+    }
+
+    public function showRegistrationFormWithReferralCode($code) {
+        return view('auth.register', ['code' => $code]);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        return redirect($this->redirectPath());
     }
 }

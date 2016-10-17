@@ -10,12 +10,12 @@ use App\Http\Requests;
 class UserController extends Controller
 {
     protected $request;
-    protected $session;
+    protected $user;
 
     public function __construct(Request $request)
     {
         $this->request = $request;
-        $this->session = session();
+        $this->user = \Auth::user();
     }
 
     public function profile() {
@@ -31,6 +31,7 @@ class UserController extends Controller
         $this->validateProfile();
 
         \Auth::user()->name = $this->request->name;
+        \Auth::user()->last_name = $this->request->last_name;
 
 
         if($this->request->file('picture')) {
@@ -43,7 +44,7 @@ class UserController extends Controller
 
         \Auth::user()->update();
 
-        $this->session->flash('message_success', trans('strings.saveSuccess'));
+        $this->request->session()->flash('message_success', trans('strings.saveSuccess'));
 
         return $this->profile();
     }
@@ -58,9 +59,24 @@ class UserController extends Controller
         return $this->settings();
     }
 
+    public function getReferralCode() {
+
+        if(! (\Auth::user()->referral_code)) {
+            \Auth::user()->referral_code = md5(date('YmdHisu'));
+            \Auth::user()->saveOrFail();
+        }
+        $this->request
+             ->session()
+             ->flash('message_success',
+                     'Your referral code is: (' . \Auth::user()->referral_code . ')' .
+                     ' - Direct Link: ' . url('/register/referral/' . \Auth::user()->referral_code));
+        return back();
+    }
+
     private function validateProfile() {
         Validator::make($this->request->all(), [
             'name' => 'required|max:255',
+            'last_name'  => 'required|max:255',
             'password' => 'min:6|confirmed',
             'picture' => 'max:511'
         ])->validate();

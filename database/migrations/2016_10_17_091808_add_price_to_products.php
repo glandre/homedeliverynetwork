@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPhoneToUsers extends Migration
+class AddPriceToProducts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddPhoneToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('phone', 31)->nullable();
+        Schema::table('products', function (Blueprint $table) {
+            $table->decimal('price')->default(0);
         });
     }
 
@@ -25,8 +25,8 @@ class AddPhoneToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('phone');
+        Schema::table('products', function (Blueprint $table) {
+            //
         });
     }
 }
