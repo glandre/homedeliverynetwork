@@ -44,8 +44,12 @@ class MysqlBackup extends Command
         $database = config('database.connections.mysql.database');
         $output = $this->argument('output') ?? $this->outputDefaultPath();
 
-        $command = "mysqldump --user=$user --password=$password --result-file=$output $database";
-        $this->info($command);
+        $command = "mysqldump --user=$user --password=\"$password\" --result-file=$output $database";
+        
+        if($this->option('verbose')) {
+            $this->info($command);
+        }
+
         try {
             $process = new Process($command);
             $process->run();
