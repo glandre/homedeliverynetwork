@@ -67,9 +67,9 @@ class User extends Authenticatable
     }
 
     public function pictureUrl() {
-        if($this->picture) {
-            return Storage::url($this->picture);
-        }
+//        if($this->picture) {
+//            return Storage::url($this->picture);
+//        }
 
         return Storage::url('avatar.png');
     }

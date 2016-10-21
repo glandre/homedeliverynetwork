@@ -50,18 +50,18 @@ class Product extends Model
     }
 
     public function pictureUrl() {
-        if($this->picture) {
-            return Storage::url($this->picture);
-        }
+//        if($this->picture) {
+//            return Storage::url($this->picture);
+//        }
+//
+//        if($this->type->picture) {
+//            return Storage::url($this->type->picture);
+//        }
+//
+//        if($this->vendor->picture) {
+//            return Storage::url($this->vendor->picture);
+//        }
 
-        if($this->type->picture) {
-            return Storage::url($this->type->picture);
-        }
-
-        if($this->vendor->picture) {
-            return Storage::url($this->vendor->picture);
-        }
-
-        return '';
+        return Storage::url('gift-box-freedigital.jpg');
     }
 }
