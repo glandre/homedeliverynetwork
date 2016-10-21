@@ -68,7 +68,7 @@ class UserController extends Controller
         session()->flash('message_success',
                      'Your referral code is: (' . \Auth::user()->referral_code . ')' .
                      ' - Direct Link: ' . url('/register/referral/' . \Auth::user()->referral_code));
-        session()->save();
+
         return back();
     }
 

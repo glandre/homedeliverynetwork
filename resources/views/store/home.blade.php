@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <!-- saved from url=(0031) -->
-<html lang="en"
+<html lang="{{App::getLocale()}}"
       class=" js canvas no-touch rgba multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations cssgradients csstransforms csstransforms3d csstransitions fontface generatedcontent video audio svg svgclippaths">
 <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>M-Store | Modern E-Commerce Template</title>
+    <title>Public Store | Home Delivery Network</title>
 
     <!--SEO Meta Tags-->
-    <meta name="description" content="M-Store - Modern E-Commerce Template">
+    <meta name="description" content="Public Store - Home Delivery Network">
     <meta name="keywords"
           content="shop, e-commerce, modern, minimalist style, responsive, online store, business, mobile, blog, bootstrap, html5, css3, jquery, js, gallery, slider, touch, creative, clean">
     <meta name="author" content="Rokaux">
@@ -18,8 +18,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!--Favicon-->
-    <link rel="shortcut icon" href="/images/store/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/images/store/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 
     <!-- Google Material Icons -->
     <link href="/css/store/material-icons.min.css" rel="stylesheet" media="screen">
@@ -60,7 +60,7 @@
 
         <!-- Site Logo -->
         <a href="{{url('/store')}}" class="site-logo visible-desktop">
-            <span>[</span> M
+            <span>[</span> HDN
             <span class="text-gray">/</span>
             STORE <span>]</span>
         </a><!-- site-logo.visible-desktop -->
@@ -105,9 +105,9 @@
                         <li class="menu-item-has-children current-menu-item">
                             <a href="#">Home</a>
                             <ul class="sub-menu">
-                                <li class="current-menu-item"><a href="{{url('/store')}}">Home Version 1</a></li>
-                                <li><a href="{{url('/store/home-v2')}}">Home Version 2</a></li>
-                                <li><a href="{{url('/store/home-v3')}}">Home Version 3</a></li>
+                                <li class="current-menu-item"><a href="{{url('/store')}}">Home</a></li>
+                                {{--<li><a href="{{url('/store/home-v2')}}">Home Version 2</a></li>--}}
+                                {{--<li><a href="{{url('/store/home-v3')}}">Home Version 3</a></li>--}}
                             </ul>
                         </li>
                         <li class="menu-item-has-children">
@@ -139,7 +139,7 @@
                         </li>
                         <li>
                             <i class="material-icons email"></i>
-                            <a href="mailto:info@m-store.com">info@m-store.com</a>
+                            <a href="mailto:info@homedeliverynetwork.ca">info@homedeliverynetwork.ca</a>
                         </li>
                         <li>
                             <i class="socicon-skype"></i>
@@ -240,51 +240,58 @@
             <!-- Cart -->
             <div class="toolbar-section" id="cart">
                 <div class="shopping-cart">
-                    <!-- Item -->
-                    <div class="item">
-                        <a href="shop-single.html" class="item-thumb">
-                            <img src="/images/store/item01.jpg" alt="Item">
-                        </a>
-                        <div class="item-details">
-                            <h3 class="item-title"><a href="shop-single.html">Concrete Lamp</a></h3>
-                            <h4 class="item-price">$85.90</h4>
-                            <div class="count-input">
-                                <a class="incr-btn" data-action="decrease" href="#">–</a>
-                                <input class="quantity" type="text" value="1">
-                                <a class="incr-btn" data-action="increase" href="#">+</a>
+                    @if($order && count($order->products) > 0)
+                        @foreach($order->products as $product)
+                        <!-- Item -->
+                        <div class="item">
+                            <a href="shop-single.html" class="item-thumb">
+                                <img src="{{{ $product->pictureUrl() }}}" alt="{{{ $product->name }}}">
+                            </a>
+                            <div class="item-details">
+                                <h3 class="item-title"><a href="shop-single.html">{{{ $product->name }}}</a></h3>
+                                <h4 class="item-price">${{{ $product->price }}}</h4>
+                                <div class="count-input">
+                                    <a class="incr-btn" data-action="decrease" href="#">–</a>
+                                    <input class="quantity" type="text" value="1">
+                                    <a class="incr-btn" data-action="increase" href="#">+</a>
+                                </div>
                             </div>
+                            <a href="#" class="item-remove" data-toggle="tooltip" data-placement="top" title=""
+                               data-original-title="Remove">
+                                <i class="material-icons remove_shopping_cart"></i>
+                            </a>
                         </div>
-                        <a href="#" class="item-remove" data-toggle="tooltip" data-placement="top" title=""
-                           data-original-title="Remove">
-                            <i class="material-icons remove_shopping_cart"></i>
-                        </a>
-                    </div><!-- .item -->
-                    <!-- Item -->
-                    <div class="item">
-                        <a href="shop-single.html" class="item-thumb">
-                            <img src="/images/store/item02.jpg" alt="Item">
-                        </a>
-                        <div class="item-details">
-                            <h3 class="item-title"><a href="shop-single.html">Resin Storage Box</a></h3>
-                            <h4 class="item-price">$38.00</h4>
-                            <div class="count-input">
-                                <a class="incr-btn" data-action="decrease" href="#">–</a>
-                                <input class="quantity" type="text" value="2">
-                                <a class="incr-btn" data-action="increase" href="#">+</a>
-                            </div>
-                        </div>
-                        <a href="#" class="item-remove" data-toggle="tooltip" data-placement="top" title=""
-                           data-original-title="Remove">
-                            <i class="material-icons remove_shopping_cart"></i>
-                        </a>
-                    </div><!-- .item -->
+                        <!-- .item -->
+                        @endforeach
+                    @else
+                        Add a product to your shopping cart!
+                    @endif
+                    {{--<!-- Item -->--}}
+                    {{--<div class="item">--}}
+                        {{--<a href="shop-single.html" class="item-thumb">--}}
+                            {{--<img src="/images/store/item02.jpg" alt="Item">--}}
+                        {{--</a>--}}
+                        {{--<div class="item-details">--}}
+                            {{--<h3 class="item-title"><a href="shop-single.html">Resin Storage Box</a></h3>--}}
+                            {{--<h4 class="item-price">$38.00</h4>--}}
+                            {{--<div class="count-input">--}}
+                                {{--<a class="incr-btn" data-action="decrease" href="#">–</a>--}}
+                                {{--<input class="quantity" type="text" value="2">--}}
+                                {{--<a class="incr-btn" data-action="increase" href="#">+</a>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<a href="#" class="item-remove" data-toggle="tooltip" data-placement="top" title=""--}}
+                           {{--data-original-title="Remove">--}}
+                            {{--<i class="material-icons remove_shopping_cart"></i>--}}
+                        {{--</a>--}}
+                    {{--</div><!-- .item -->--}}
                     <!-- Subtotal -->
                     <div class="cart-subtotal space-bottom">
                         <div class="column">
                             <h3 class="toolbar-title">Subtotal:</h3>
                         </div>
                         <div class="column">
-                            <h3 class="amount">$161.90</h3>
+                            <h3 class="amount">${{ $order->total() }}</h3>
                         </div>
                     </div><!-- .subtotal -->
                     <!-- Buttons -->

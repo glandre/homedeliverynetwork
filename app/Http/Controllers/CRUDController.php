@@ -129,7 +129,6 @@ abstract class CRUDController extends Controller
         $model = $this->model->find($id);
         $model->delete();
         session()->flash('message_success', trans('strings.deletedSuccess'));
-        session()->save();
         return $this->index();
     }
 }

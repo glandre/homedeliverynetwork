@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('store.home');
-});
+Route::get('/', 'StoreController@index');
 
 Route::get('/store', 'StoreController@index');
 Route::get('/store/home-v2', 'StoreController@home_v2');
@@ -74,4 +72,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('products/inventory', 'ProductController@showInventory');
     Route::post('products/update-quantity', 'ProductController@updateQuantity');
     Route::resource('products', 'ProductController');
+
+    // Store
+    Route::post('store/cart/add/{productId}/{quantity}', 'StoreController@addToCart');
+    Route::post('store/cart/update/{productId}/{quantity}', 'StoreController@updateQuantity');
+    Route::post('store/cart/remove/{productId}', 'StoreController@removeFromCart');
+    Route::get('store/cart/review', 'StoreController@showReviewOrder');
+
+    // Order Management
+    Route::get('orders', 'OrderController@index');
+    Route::get('orders/{orderId}', 'OrderController@show');
+    Route::post('orders/{orderId}/new', 'StoreController@submitOrder');
+    Route::get('orders/{orderId}/paid', 'OrderController@changeOrderStatusToPaid');
+    Route::get('orders/{orderId}/complete', 'OrderController@changeOrderStatusToComplete');
 });
