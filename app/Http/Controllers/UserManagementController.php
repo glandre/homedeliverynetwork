@@ -63,7 +63,7 @@ class UserManagementController extends CRUDController
 
         $user->save();
 
-        $this->request->session()->flash('message_success', trans('strings.saveSuccess'));
+        session()->flash('message_success', trans('strings.saveSuccess'));
 
         return $this->index();
     }
@@ -91,10 +91,10 @@ class UserManagementController extends CRUDController
         $updated = $this->model->update();
 
         if($updated) {
-            $this->request->session()->flash('message_success', trans('strings.updatedSuccess'));
+            session()->flash('message_success', trans('strings.updatedSuccess'));
         }
         else {
-            $this->request->session()->flash('message_danger', trans('strings.updatedSuccess'));
+            session()->flash('message_danger', trans('strings.updatedSuccess'));
         }
 
         return $this->index();
@@ -107,12 +107,12 @@ class UserManagementController extends CRUDController
             ->orWhere('email', 'LIKE', '%' . $this->request->input('search') . '%')
             ->get();
         if($users->isEmpty()) {
-            $this->request->session()->flash('message_info', trans('strings.noItemsFound'));
+            session()->flash('message_info', trans('strings.noItemsFound'));
         }
 
-        $this->request->session()->flash('search', '');
+        session()->flash('search', '');
         if(mb_strlen($this->request->input('search')) > 0) {
-            $this->request->session()->flash('search', $this->request->input('search'));
+            session()->flash('search', $this->request->input('search'));
         }
 
 
@@ -131,12 +131,12 @@ class UserManagementController extends CRUDController
         $model = $this->model->find($id);
 
         if($model->isAdmin) {
-            $this->request->session()->flash('message_danger', trans('strings.impossibleToDeleteAnAdmin'));
+            session()->flash('message_danger', trans('strings.impossibleToDeleteAnAdmin'));
             return $this->index();
         }
 
         $model->delete();
-        $this->request->session()->flash('message_success', trans('strings.deletedSuccess'));
+        session()->flash('message_success', trans('strings.deletedSuccess'));
         return $this->index();
     }
 }

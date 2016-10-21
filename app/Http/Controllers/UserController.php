@@ -44,7 +44,7 @@ class UserController extends Controller
 
         \Auth::user()->update();
 
-        $this->request->session()->flash('message_success', trans('strings.saveSuccess'));
+        session()->flash('message_success', trans('strings.saveSuccess'));
 
         return $this->profile();
     }
@@ -65,9 +65,7 @@ class UserController extends Controller
             \Auth::user()->referral_code = md5(date('YmdHisu'));
             \Auth::user()->saveOrFail();
         }
-        $this->request
-             ->session()
-             ->flash('message_success',
+        session()->flash('message_success',
                      'Your referral code is: (' . \Auth::user()->referral_code . ')' .
                      ' - Direct Link: ' . url('/register/referral/' . \Auth::user()->referral_code));
         return back();

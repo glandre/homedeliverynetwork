@@ -9,7 +9,6 @@ abstract class CRUDController extends Controller
     protected $request;
     protected $requestFilteredData;
     protected $model;
-    protected $session;
 
     public function __construct(Request $request)
     {
@@ -129,7 +128,7 @@ abstract class CRUDController extends Controller
     {
         $model = $this->model->find($id);
         $model->delete();
-        $this->request->session()->flash('message_success', trans('strings.deletedSuccess'));
+        session()->flash('message_success', trans('strings.deletedSuccess'));
         return $this->index();
     }
 }

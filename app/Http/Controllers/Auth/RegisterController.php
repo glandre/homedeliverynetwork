@@ -95,8 +95,7 @@ class RegisterController extends Controller
         ]);
 
         if($user) {
-            $this->request->session()
-                 ->flash('message_success', 'Thanks for your registration, we will contact you soon.');
+            session()->flash('message_success', 'Thanks for your registration, we will contact you soon.');
 
             // send email
         }
