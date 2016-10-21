@@ -23,6 +23,7 @@ Route::get('/dev/info', function () {
     if(!config('app.debug')) {
         abort(403, 'Access denied');
     }
+    dump(config('session.driver'));
     dump(config('database'));
     phpinfo();
 });

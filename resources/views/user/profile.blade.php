@@ -40,8 +40,12 @@
                         <div class="wid-u-info">
                             <h4 class="col-lg-10 col-md-10 col-sm-10 m-t-20 m-b-5">
                                 <div class="form-group">
+                                    <small>Name:</small>
                                     <input type="text" class="form-control" required id="name" name="name"
                                            data-parsley-id="34" value="{{{ Auth::user()->name }}}">
+                                    <small>Last Name:</small>
+                                    <input type="text" class="form-control" required id="last_name" name="last_name"
+                                           data-parsley-id="34" value="{{{ Auth::user()->last_name }}}">
                                 </div>
                             </h4>
                             <p class="text-muted m-b-0 font-13">{{{ Auth::user()->email }}}</p>

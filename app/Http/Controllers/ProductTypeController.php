@@ -70,7 +70,7 @@ class ProductTypeController extends CRUDController
         ProductType::create($values);
 
         session()->flash('message_success', trans('strings.saveSuccess'));
-
+        session()->save();
         return $this->index();
     }
 
@@ -94,6 +94,7 @@ class ProductTypeController extends CRUDController
         else {
             session()->flash('message_danger', trans('strings.updatedSuccess'));
         }
+        session()->save();
 
         return $this->index();
     }

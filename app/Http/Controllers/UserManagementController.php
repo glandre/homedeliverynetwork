@@ -64,7 +64,7 @@ class UserManagementController extends CRUDController
         $user->save();
 
         session()->flash('message_success', trans('strings.saveSuccess'));
-
+        session()->save();
         return $this->index();
     }
 
@@ -96,6 +96,7 @@ class UserManagementController extends CRUDController
         else {
             session()->flash('message_danger', trans('strings.updatedSuccess'));
         }
+        session()->save();
 
         return $this->index();
     }
@@ -115,7 +116,7 @@ class UserManagementController extends CRUDController
             session()->flash('search', $this->request->input('search'));
         }
 
-
+        session()->save();
 
         return $this->index($users);
     }
