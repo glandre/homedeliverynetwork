@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <div>
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                    Submit
+                                    Mark as Paid
                                 </button>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                         <div class="form-group">
                             <div>
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                    Submit
+                                    Mark as Complete
                                 </button>
                             </div>
                         </div>

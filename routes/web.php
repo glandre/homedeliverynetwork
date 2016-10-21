@@ -83,6 +83,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('orders', 'OrderController@index');
     Route::get('orders/{orderId}', 'OrderController@show');
     Route::post('orders/{orderId}/new', 'StoreController@submitOrder');
-    Route::get('orders/{orderId}/paid', 'OrderController@changeOrderStatusToPaid');
-    Route::get('orders/{orderId}/complete', 'OrderController@changeOrderStatusToComplete');
+    Route::post('orders/{orderId}/paid', 'OrderController@changeOrderStatusToPaid');
+    Route::post('orders/{orderId}/complete', 'OrderController@changeOrderStatusToComplete');
+
+    Route::get('orders-new', 'OrderController@showNewOrders');
+    Route::get('orders-paid', 'OrderController@showPaidOrders');
+    Route::get('orders-complete', 'OrderController@showCompletedOrders');
 });

@@ -38,6 +38,24 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="has-submenu last-elements">
+                        <a href="{{ url('/orders') }}">
+                            <i class="zmdi zmdi-shopping-basket"></i> <span> Orders </span>
+                        </a>
+                        <ul class="submenu megamenu">
+                            <li>
+                                <ul>
+                                    <li><a href="{{ url('/orders-new') }}">New Orders</a></li>
+                                </ul>
+                                <ul>
+                                    <li><a href="{{ url('/orders-paid') }}">Paid Orders</a></li>
+                                </ul>
+                                <ul>
+                                    <li><a href="{{ url('/orders-completed') }}">Completed Orders</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                     @endif
                 @endif
 

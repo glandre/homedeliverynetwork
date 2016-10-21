@@ -59,7 +59,7 @@
                                 <tr role="row" class="odd">
                                     <td class="sorting_asc">
                                         <a href="{{ url("/orders/{$order->id}") }}">
-                                            {{{ $order->user()->email }}}
+                                            {{{ $order->user->email }}}
                                         </a>
                                     </td>
                                     <td class="sorting_asc">

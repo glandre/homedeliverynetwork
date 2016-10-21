@@ -8,7 +8,23 @@ class OrderController extends Controller
 {
     public function index()
     {
-        return view('orders.list', ['orders' => Order::all()]);
+        return $this->showOrders(Order::where('status', '<>', 'Cart')->get());
+    }
+
+    public function showNewOrders() {
+        return $this->showOrders(Order::where('status', 'New')->get());
+    }
+
+    public function showPaidOrders() {
+        return $this->showOrders(Order::where('status', 'Paid')->get());
+    }
+
+    public function showCompletedOrders() {
+        return $this->showOrders(Order::where('status', 'Complete')->get());
+    }
+
+    private function showOrders($orders) {
+        return view('orders.list', ['orders' => $orders]);
     }
 
     public function show($orderId)
@@ -25,7 +41,7 @@ class OrderController extends Controller
         $order->save();
 
         session()->flash('message_success', 'Order successfully updated!');
-        return view('orders.list', ['orders' => Order::all()]);
+        return $this->index();
     }
 
     public function changeOrderStatusToComplete($orderId) {
@@ -37,6 +53,6 @@ class OrderController extends Controller
         $order->save();
 
         session()->flash('message_success', 'Order successfully updated!');
-        return view('orders.list', ['orders' => Order::all()]);
+        return $this->index();
     }
 }

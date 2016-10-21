@@ -77,6 +77,6 @@ class StoreController extends Controller
         $this->getOrder()->save();
 
         session()->flash('message_success', "Order successfully submitted!");
-        return view('store.review');
+        return view('store.review', ['order' => $this->getOrder()]);
     }
 }
