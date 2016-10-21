@@ -60,7 +60,9 @@ class RegisterController extends Controller
             'last_name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'phone' => 'required|regex:[\(\d{3}\)\s*\d{3}\-\d{4}]',
+            'picture' => 'required',
             'password' => 'required|min:6|confirmed',
+            'referrer_id' => 'exists:users'
         ]);
     }
 
@@ -72,17 +74,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $referrer_id = null;
-        if($data['referral_code']) {
-            $referrer_id = User::where('referral_code', $data['referral_code'])->firstOrFail()->id;
-        }
+        $referrer_id = User::where('referral_code', $data['referral_code'])->first()->id ?? null;
 
         $user = User::create([
             'name' => $data['name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'picture' => $data['picture']->store('public'),
+            'picture' => $data['picture']->store('public') ?? null,
             'password' => bcrypt($data['password']),
             'referrer_id' => $referrer_id
         ]);
