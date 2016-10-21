@@ -33,7 +33,7 @@ class Product extends Model
             'description' => 'required|max:255',
             'quantity' => 'integer|min:0',
             'incoming' => 'integer|min:0',
-            'price' => 'decimal|min:0',
+            'price' => 'numeric|min:0',
             'continue_selling' => 'boolean',
             'type_id' => 'required',
             'vendor_id' => 'required',

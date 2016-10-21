@@ -65,10 +65,9 @@
 
                 <div class="form-group">
                     <label for="name">Price</label>
-                    <input type="text" class="form-control" id="incoming" name="incoming"
+                    <input type="text" class="form-control" required id="price" name="price"
                            {{ $readonly }} data-parsley-id="34"
-                           value="{{{ (empty(old('incoming'))) ? $model->incoming : old('incoming') }}}"
-                    >
+                           value="{{{ (empty(old('price'))) ? $model->price : old('price') }}}">
                 </div>
 
                 <div class="form-group">

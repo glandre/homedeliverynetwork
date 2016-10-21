@@ -3,10 +3,11 @@
         <div id="navigation" class="active">
             <!-- Navigation Menu-->
             <ul class="navigation-menu">
-                <li class="active">
-                    <a href="{{ url('/dashboard') }}"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
-                </li>
-                @if(Auth::user()->isSuper())
+                @if(!Auth::user()->isCustomer())
+                    <li class="active">
+                        <a href="{{ url('/dashboard') }}"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                    </li>
+                    @if(Auth::user()->isSuper())
                     <li class="has-submenu last-elements">
                         <a href="{{ url('/users') }}">
                             <i class="zmdi zmdi-collection-item"></i> <span> Users </span>
@@ -37,6 +38,7 @@
                             </li>
                         </ul>
                     </li>
+                    @endif
                 @endif
 
             </ul>

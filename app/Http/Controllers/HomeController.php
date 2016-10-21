@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -48,6 +49,6 @@ class HomeController extends Controller
     }
 
     public function store() {
-        return view('store.home');
+        return view('store.home', ['order' => new Order()]);
     }
 }

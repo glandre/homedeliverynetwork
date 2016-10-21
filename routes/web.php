@@ -11,11 +11,8 @@
 |
 */
 
-Route::get('/', 'StoreController@index');
-
-Route::get('/store', 'StoreController@index');
-Route::get('/store/home-v2', 'StoreController@home_v2');
-Route::get('/store/home-v3', 'StoreController@home_v3');
+//Route::get('/store/home-v2', 'StoreController@home_v2');
+//Route::get('/store/home-v3', 'StoreController@home_v3');
 
 Route::get('/dev/info', function () {
     if(!config('app.debug')) {
@@ -43,6 +40,7 @@ $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::group(['middleware' => 'auth'], function () {
+
     Route::get('/index', 'HomeController@index');
     Route::get('/home', 'HomeController@home');
     Route::get('/admin', 'HomeController@admin');
@@ -74,7 +72,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('products', 'ProductController');
 
     // Store
-    Route::post('store/cart/add/{productId}/{quantity}', 'StoreController@addToCart');
+    Route::get('/', 'StoreController@index');
+    Route::get('/store', 'StoreController@index');
+    Route::get('store/cart/add/{productId}/{quantity}', 'StoreController@addToCart');
     Route::post('store/cart/update/{productId}/{quantity}', 'StoreController@updateQuantity');
     Route::post('store/cart/remove/{productId}', 'StoreController@removeFromCart');
     Route::get('store/cart/review', 'StoreController@showReviewOrder');

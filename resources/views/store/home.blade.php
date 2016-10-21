@@ -89,7 +89,9 @@
                 <a href="#cart" class="toolbar-toggle">
                     <i>
                         <span class="material-icons shopping_basket"></span>
-                        <span class="count">2</span>
+                        @if($order && count($order->products) > 0)
+                            <span class="count">{{{ count($order->products) }}}</span>
+                        @endif
                     </i>
                 </a>
             </div>
@@ -171,6 +173,9 @@
 
             <!-- Account (Login) -->
             <div class="toolbar-section" id="account">
+                @if(Auth::user())
+                <h3 class="toolbar-title space-bottom">Welcome {{{ Auth::user()->name }}}.</h3>
+                @else
                 <h3 class="toolbar-title space-bottom">You are not logged in.</h3>
                 <div class="inner">
                     <form method="post" class="login-form" role="form" method="POST" action="{{ url('/login') }}">
@@ -197,44 +202,10 @@
                             </div>
                         </div>
                     </form><!-- .login-form -->
-                    <p class="text-sm space-top">Don’t have an account? <a href="#signup" class="toggle-section">Signup
-                            here</a> or with social account:</p>
-                    <a href="#" class="social-signup-btn ssb-facebook">
-                        <i class="socicon-facebook"></i>
-                        <span>Signup with Facebook</span>
-                    </a>
-                    <a href="#" class="social-signup-btn ssb-google">
-                        <i class="socicon-googleplus"></i>
-                        <span>Signup with Google+</span>
-                    </a>
-                    <a href="#" class="social-signup-btn ssb-twitter">
-                        <i class="socicon-twitter"></i>
-                        <span>Signup with Twitter</span>
-                    </a>
+                    <p class="text-sm space-top">Don’t have an account? <a href="{{ url('/register') }}" class="toggle-section">Signup
+                            here</a></p>
                 </div><!-- .inner -->
-            </div><!-- .toolbar-section#account -->
-
-            <!-- Account (Sign Up) -->
-            <div class="toolbar-section" id="signup">
-                <h3 class="toolbar-title space-bottom">Sign up, it's free</h3>
-                <div class="inner">
-                    <form method="post" class="login-form">
-                        <input type="email" class="form-control" placeholder="E-mail" required="">
-                        <input type="password" class="form-control" placeholder="Password" required="">
-                        <input type="password" class="form-control" placeholder="Repeat password" required="">
-                        <div class="form-footer">
-                            <div class="rememberme"></div>
-                            <div class="form-submit">
-                                <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">Sign
-                                    up
-                                </button>
-                            </div>
-                        </div>
-                    </form><!-- .login-form -->
-                    <p class="text-sm space-top">Already have an account? Than <a href="#account"
-                                                                                  class="toggle-section">Login here</a>
-                    </p>
-                </div><!-- .inner -->
+                @endif
             </div><!-- .toolbar-section#account -->
 
             <!-- Cart -->
@@ -297,7 +268,7 @@
                     <!-- Buttons -->
                     <div class="text-right">
                         <a href="#" class="btn btn-default btn-ghost close-dropdown">Continue Shopping</a>
-                        <a href="#checkout" class="btn btn-primary waves-effect waves-light toggle-section">Proceed to
+                        <a href="{{ url('store/cart/review') }}" class="btn btn-primary waves-effect waves-light toggle-section">Proceed to
                             Checkout</a>
                     </div>
                 </div><!-- .shopping-cart -->
@@ -414,197 +385,199 @@
             <div class="owl-stage-outer">
                 <div class="owl-stage"
                      style="transform: translate3d(-7620px, 0px, 0px); transition: 0.45s; width: 13335px;">
+                    @foreach(\App\Product::all() as $product)
                     <div class="owl-item cloned" style="width: 1905px; margin-right: 0px;">
                         <div class="slide" style="background-image: url(/images/store/hero-slider/02.jpg);">
                             <div class="container text-center padding-top-3x">
-                                <span class="h1 from-bottom">Stylish Chair</span><br>
+                                <span class="h1 from-bottom">{{{ $product->name }}}</span><br>
                                 <span class="h2 from-bottom"><span
                                             class="text-thin">Special offer: </span> <strong>-25%</strong></span><br>
-                                <a href="#"
+                                <a href="{{{ url("/store/cart/add/{$product->id}/1") }}}"
                                    class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
-                                    View Offer
+                                    Add to Cart
                                     <i class="material-icons arrow_forward"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <div class="owl-item cloned" style="width: 1905px; margin-right: 0px;">
-                        <div class="slide" style="background-image: url(/images/store//hero-slider/03.jpg);">
-                            <div class="container padding-top-3x">
-                                <span class="h1 space-top from-left">Dior Sunglasses</span><br>
-                                <span class="h2 from-right"><span class="text-thin">Only <span
-                                                class="hidden-xs">today</span></span> <strong>-30%</strong></span><br>
-                                <a href="#"
-                                   class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
-                                    View Offer
-                                    <i class="material-icons arrow_forward"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item" style="width: 1905px; margin-right: 0px;">
-                        <div class="slide" style="background-image: url(/images/store/hero-slider/01.jpg);">
-                            <div class="container">
-                                <div class="absolute from-top" style="top: 13%;">
-                                    <span class="h1 hidden-xs">New SPA<br>Cosmetics</span>
-                                </div>
-                                <div class="absolute text-right from-bottom" style="bottom: 13%; right: 15px;">
-                                    <span class="h2"><span
-                                                class="text-thin">Only</span><br><strong>$127.99</strong></span><br>
-                                    <a href="#"
-                                       class="btn btn-primary btn-with-icon-right waves-effect waves-light space-top-none">
-                                        View Offer
-                                        <i class="material-icons arrow_forward"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item" style="width: 1905px; margin-right: 0px;">
-                        <div class="slide" style="background-image: url(/images/store/hero-slider/02.jpg);">
-                            <div class="container text-center padding-top-3x">
-                                <span class="h1 from-bottom">Stylish Chair</span><br>
-                                <span class="h2 from-bottom"><span
-                                            class="text-thin">Special offer: </span> <strong>-25%</strong></span><br>
-                                <a href="#"
-                                   class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
-                                    View Offer
-                                    <i class="material-icons arrow_forward"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item active" style="width: 1905px; margin-right: 0px;">
-                        <div class="slide" style="background-image: url(/images/store/hero-slider/03.jpg);">
-                            <div class="container padding-top-3x">
-                                <span class="h1 space-top from-left">Dior Sunglasses</span><br>
-                                <span class="h2 from-right"><span class="text-thin">Only <span
-                                                class="hidden-xs">today</span></span> <strong>-30%</strong></span><br>
-                                <a href="#"
-                                   class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
-                                    View Offer
-                                    <i class="material-icons arrow_forward"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item cloned" style="width: 1905px; margin-right: 0px;">
-                        <div class="slide" style="background-image: url(/images/store/hero-slider/01.jpg);">
-                            <div class="container">
-                                <div class="absolute from-top" style="top: 13%;">
-                                    <span class="h1 hidden-xs">New SPA<br>Cosmetics</span>
-                                </div>
-                                <div class="absolute text-right from-bottom" style="bottom: 13%; right: 15px;">
-                                    <span class="h2"><span
-                                                class="text-thin">Only</span><br><strong>$127.99</strong></span><br>
-                                    <a href="#"
-                                       class="btn btn-primary btn-with-icon-right waves-effect waves-light space-top-none">
-                                        View Offer
-                                        <i class="material-icons arrow_forward"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item cloned" style="width: 1905px; margin-right: 0px;">
-                        <div class="slide" style="background-image: url(/images/store/hero-slider/02.jpg);">
-                            <div class="container text-center padding-top-3x">
-                                <span class="h1 from-bottom">Stylish Chair</span><br>
-                                <span class="h2 from-bottom"><span
-                                            class="text-thin">Special offer: </span> <strong>-25%</strong></span><br>
-                                <a href="#"
-                                   class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
-                                    View Offer
-                                    <i class="material-icons arrow_forward"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+                    {{--<div class="owl-item cloned" style="width: 1905px; margin-right: 0px;">--}}
+                        {{--<div class="slide" style="background-image: url(/images/store//hero-slider/03.jpg);">--}}
+                            {{--<div class="container padding-top-3x">--}}
+                                {{--<span class="h1 space-top from-left">Dior Sunglasses</span><br>--}}
+                                {{--<span class="h2 from-right"><span class="text-thin">Only <span--}}
+                                                {{--class="hidden-xs">today</span></span> <strong>-30%</strong></span><br>--}}
+                                {{--<a href="#"--}}
+                                   {{--class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">--}}
+                                    {{--View Offer--}}
+                                    {{--<i class="material-icons arrow_forward"></i>--}}
+                                {{--</a>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="owl-item" style="width: 1905px; margin-right: 0px;">--}}
+                        {{--<div class="slide" style="background-image: url(/images/store/hero-slider/01.jpg);">--}}
+                            {{--<div class="container">--}}
+                                {{--<div class="absolute from-top" style="top: 13%;">--}}
+                                    {{--<span class="h1 hidden-xs">New SPA<br>Cosmetics</span>--}}
+                                {{--</div>--}}
+                                {{--<div class="absolute text-right from-bottom" style="bottom: 13%; right: 15px;">--}}
+                                    {{--<span class="h2"><span--}}
+                                                {{--class="text-thin">Only</span><br><strong>$127.99</strong></span><br>--}}
+                                    {{--<a href="#"--}}
+                                       {{--class="btn btn-primary btn-with-icon-right waves-effect waves-light space-top-none">--}}
+                                        {{--View Offer--}}
+                                        {{--<i class="material-icons arrow_forward"></i>--}}
+                                    {{--</a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="owl-item" style="width: 1905px; margin-right: 0px;">--}}
+                        {{--<div class="slide" style="background-image: url(/images/store/hero-slider/02.jpg);">--}}
+                            {{--<div class="container text-center padding-top-3x">--}}
+                                {{--<span class="h1 from-bottom">Stylish Chair</span><br>--}}
+                                {{--<span class="h2 from-bottom"><span--}}
+                                            {{--class="text-thin">Special offer: </span> <strong>-25%</strong></span><br>--}}
+                                {{--<a href="#"--}}
+                                   {{--class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">--}}
+                                    {{--View Offer--}}
+                                    {{--<i class="material-icons arrow_forward"></i>--}}
+                                {{--</a>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="owl-item active" style="width: 1905px; margin-right: 0px;">--}}
+                        {{--<div class="slide" style="background-image: url(/images/store/hero-slider/03.jpg);">--}}
+                            {{--<div class="container padding-top-3x">--}}
+                                {{--<span class="h1 space-top from-left">Dior Sunglasses</span><br>--}}
+                                {{--<span class="h2 from-right"><span class="text-thin">Only <span--}}
+                                                {{--class="hidden-xs">today</span></span> <strong>-30%</strong></span><br>--}}
+                                {{--<a href="#"--}}
+                                   {{--class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">--}}
+                                    {{--View Offer--}}
+                                    {{--<i class="material-icons arrow_forward"></i>--}}
+                                {{--</a>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="owl-item cloned" style="width: 1905px; margin-right: 0px;">--}}
+                        {{--<div class="slide" style="background-image: url(/images/store/hero-slider/01.jpg);">--}}
+                            {{--<div class="container">--}}
+                                {{--<div class="absolute from-top" style="top: 13%;">--}}
+                                    {{--<span class="h1 hidden-xs">New SPA<br>Cosmetics</span>--}}
+                                {{--</div>--}}
+                                {{--<div class="absolute text-right from-bottom" style="bottom: 13%; right: 15px;">--}}
+                                    {{--<span class="h2"><span--}}
+                                                {{--class="text-thin">Only</span><br><strong>$127.99</strong></span><br>--}}
+                                    {{--<a href="#"--}}
+                                       {{--class="btn btn-primary btn-with-icon-right waves-effect waves-light space-top-none">--}}
+                                        {{--View Offer--}}
+                                        {{--<i class="material-icons arrow_forward"></i>--}}
+                                    {{--</a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="owl-item cloned" style="width: 1905px; margin-right: 0px;">--}}
+                        {{--<div class="slide" style="background-image: url(/images/store/hero-slider/02.jpg);">--}}
+                            {{--<div class="container text-center padding-top-3x">--}}
+                                {{--<span class="h1 from-bottom">Stylish Chair</span><br>--}}
+                                {{--<span class="h2 from-bottom"><span--}}
+                                            {{--class="text-thin">Special offer: </span> <strong>-25%</strong></span><br>--}}
+                                {{--<a href="#"--}}
+                                   {{--class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">--}}
+                                    {{--View Offer--}}
+                                    {{--<i class="material-icons arrow_forward"></i>--}}
+                                {{--</a>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
             </div>
-            <div class="owl-controls">
-                <div class="owl-nav">
-                    <div class="owl-prev" style=""></div>
-                    <div class="owl-next" style=""></div>
-                </div>
-                <div class="owl-dots" style="">
-                    <div class="owl-dot"><span></span></div>
-                    <div class="owl-dot"><span></span></div>
-                    <div class="owl-dot active"><span></span></div>
-                </div>
-            </div>
+            {{--<div class="owl-controls">--}}
+                {{--<div class="owl-nav">--}}
+                    {{--<div class="owl-prev" style=""></div>--}}
+                    {{--<div class="owl-next" style=""></div>--}}
+                {{--</div>--}}
+                {{--<div class="owl-dots" style="">--}}
+                    {{--<div class="owl-dot"><span></span></div>--}}
+                    {{--<div class="owl-dot"><span></span></div>--}}
+                    {{--<div class="owl-dot active"><span></span></div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
         </div><!-- .inner -->
     </section><!-- .hero-slider -->
 
     <!-- Content Wide -->
     <section class="container-fluid padding-top-3x">
 
-        <!-- Featured Categories -->
-        <h3 class="text-center padding-top">Categories</h3>
-        <div class="row padding-top padding-bottom-3x">
-            <div class="col-sm-3 col-xs-6">
-                <a href="#" class="category-link">
-                    <img src="/images/store/cat01.jpg" alt="Category">
-                    Clocks
-                </a><!-- .category-link -->
-            </div><!-- .col-sm-4 -->
-            <div class="col-sm-3 col-xs-6">
-                <a href="#" class="category-link">
-                    <img src="/images/store/cat02.jpg" alt="Category">
-                    Furniture
-                </a><!-- .category-link -->
-            </div><!-- .col-sm-4 -->
-            <div class="col-sm-3 col-xs-6">
-                <a href="#" class="category-link">
-                    <img src="/images/store/cat03.jpg" alt="Category">
-                    Lightning
-                </a><!-- .category-link -->
-            </div><!-- .col-sm-4 -->
-            <div class="col-sm-3 col-xs-6">
-                <a href="#" class="category-link">
-                    <img src="/images/store/cat04.jpg" alt="Category">
-                    Bags
-                </a><!-- .category-link -->
-            </div><!-- .col-sm-4 -->
-        </div><!-- .row -->
+        {{--<!-- Featured Categories -->--}}
+        {{--<h3 class="text-center padding-top">Categories</h3>--}}
+        {{--<div class="row padding-top padding-bottom-3x">--}}
+            {{--<div class="col-sm-3 col-xs-6">--}}
+                {{--<a href="#" class="category-link">--}}
+                    {{--<img src="/images/store/cat01.jpg" alt="Category">--}}
+                    {{--Clocks--}}
+                {{--</a><!-- .category-link -->--}}
+            {{--</div><!-- .col-sm-4 -->--}}
+            {{--<div class="col-sm-3 col-xs-6">--}}
+                {{--<a href="#" class="category-link">--}}
+                    {{--<img src="/images/store/cat02.jpg" alt="Category">--}}
+                    {{--Furniture--}}
+                {{--</a><!-- .category-link -->--}}
+            {{--</div><!-- .col-sm-4 -->--}}
+            {{--<div class="col-sm-3 col-xs-6">--}}
+                {{--<a href="#" class="category-link">--}}
+                    {{--<img src="/images/store/cat03.jpg" alt="Category">--}}
+                    {{--Lightning--}}
+                {{--</a><!-- .category-link -->--}}
+            {{--</div><!-- .col-sm-4 -->--}}
+            {{--<div class="col-sm-3 col-xs-6">--}}
+                {{--<a href="#" class="category-link">--}}
+                    {{--<img src="/images/store/cat04.jpg" alt="Category">--}}
+                    {{--Bags--}}
+                {{--</a><!-- .category-link -->--}}
+            {{--</div><!-- .col-sm-4 -->--}}
+        {{--</div><!-- .row -->--}}
 
         <div class="row padding-top">
 
-            <!-- Special Offer -->
-            <div class="col-lg-3 col-md-4">
-                <div class="info-box text-center">
-                    <h2>Special Offer<br><span class="text-danger">-30%</span></h2>
-                    <a href="shop-single.html" class="inline">
-                        <img src="/images/store/special-offer.jpg" alt="Special Offer">
-                    </a>
-                    <h3 class="lead text-normal space-bottom-half"><a href="shop-single.html" class="link-title">FLOS
-                            Outdoor Lightning</a></h3>
-                    <span class="lead text-normal text-gray text-crossed">$800.00</span>
-                    <span class="h4 text-normal text-danger">$560.00</span>
+            {{--<!-- Special Offer -->--}}
+            {{--<div class="col-lg-3 col-md-4">--}}
+                {{--<div class="info-box text-center">--}}
+                    {{--<h2>Special Offer<br><span class="text-danger">-30%</span></h2>--}}
+                    {{--<a href="shop-single.html" class="inline">--}}
+                        {{--<img src="/images/store/special-offer.jpg" alt="Special Offer">--}}
+                    {{--</a>--}}
+                    {{--<h3 class="lead text-normal space-bottom-half"><a href="shop-single.html" class="link-title">FLOS--}}
+                            {{--Outdoor Lightning</a></h3>--}}
+                    {{--<span class="lead text-normal text-gray text-crossed">$800.00</span>--}}
+                    {{--<span class="h4 text-normal text-danger">$560.00</span>--}}
 
-                    <!-- Countdown -->
-                    <!-- Date Format: month/day/year. "date-time" data attribute is required. -->
-                    <div class="countdown space-top-half padding-top" data-date-time="07/30/2017 12:00:00">
-                        <div class="item">
-                            <div class="days">299</div>
-                            <span class="days_ref">Days</span>
-                        </div>
-                        <div class="item">
-                            <div class="hours">20</div>
-                            <span class="hours_ref">Hours</span>
-                        </div>
-                        <div class="item">
-                            <div class="minutes">47</div>
-                            <span class="minutes_ref">Mins</span>
-                        </div>
-                        <div class="item">
-                            <div class="seconds">44</div>
-                            <span class="seconds_ref">Secs</span>
-                        </div>
-                    </div><!-- .counter -->
-                </div><!-- .info-box -->
-                <div class="padding-bottom-2x visible-xs"></div>
-            </div><!-- .col-lg-3.col-md-4 -->
+                    {{--<!-- Countdown -->--}}
+                    {{--<!-- Date Format: month/day/year. "date-time" data attribute is required. -->--}}
+                    {{--<div class="countdown space-top-half padding-top" data-date-time="07/30/2017 12:00:00">--}}
+                        {{--<div class="item">--}}
+                            {{--<div class="days">299</div>--}}
+                            {{--<span class="days_ref">Days</span>--}}
+                        {{--</div>--}}
+                        {{--<div class="item">--}}
+                            {{--<div class="hours">20</div>--}}
+                            {{--<span class="hours_ref">Hours</span>--}}
+                        {{--</div>--}}
+                        {{--<div class="item">--}}
+                            {{--<div class="minutes">47</div>--}}
+                            {{--<span class="minutes_ref">Mins</span>--}}
+                        {{--</div>--}}
+                        {{--<div class="item">--}}
+                            {{--<div class="seconds">44</div>--}}
+                            {{--<span class="seconds_ref">Secs</span>--}}
+                        {{--</div>--}}
+                    {{--</div><!-- .counter -->--}}
+                {{--</div><!-- .info-box -->--}}
+                {{--<div class="padding-bottom-2x visible-xs"></div>--}}
+            {{--</div><!-- .col-lg-3.col-md-4 -->--}}
 
             <!-- Products -->
             <div class="col-lg-9 col-md-8">
@@ -621,18 +594,49 @@
                     <!-- #newcomers -->
                     <div role="tabpanel" class="tab-pane transition fade scale in active" id="newcomers">
                         <div class="row space-top-half">
+                            {{--<div class="col-lg-3 col-sm-6">--}}
+                                {{--<div class="shop-item">--}}
+                                    {{--<div class="shop-thumbnail">--}}
+                                        {{--<span class="shop-label text-danger">Sale</span>--}}
+                                        {{--<a href="shop-single.html" class="item-link"></a>--}}
+                                        {{--<img src="/images/store/th01.jpg" alt="Shop item">--}}
+                                        {{--<div class="shop-item-tools">--}}
+                                            {{--<a href="#" class="add-to-whishlist" data-toggle="tooltip"--}}
+                                               {{--data-placement="top" title="" data-original-title="Wishlist">--}}
+                                                {{--<i class="material-icons favorite_border"></i>--}}
+                                            {{--</a>--}}
+                                            {{--<a href="{{{ url('/store/cart/add/1/1 }}}" class="add-to-cart">--}}
+                                                {{--<em>Add to Cart</em>--}}
+                                                {{--<svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">--}}
+                                                    {{--<path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79"--}}
+                                                          {{--fill="none" stroke="#FFFFFF" stroke-width="2"--}}
+                                                          {{--stroke-linecap="square" stroke-miterlimit="10"--}}
+                                                          {{--d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>--}}
+                                                {{--</svg>--}}
+                                            {{--</a>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="shop-item-details">--}}
+                                        {{--<h3 class="shop-item-title"><a href="shop-single.html">Storage Box</a></h3>--}}
+                                        {{--<span class="shop-item-price">--}}
+                                        {{--<span class="old-price">$49.00</span>--}}
+                                        {{--$38.00--}}
+                                        {{--</span>--}}
+                                    {{--</div>--}}
+                                {{--</div><!-- .shop-item -->--}}
+                            {{--</div><!-- .col-lg-3.col-sm-6 -->--}}
+                            @foreach(\App\Product::all() as $product)
                             <div class="col-lg-3 col-sm-6">
                                 <div class="shop-item">
                                     <div class="shop-thumbnail">
-                                        <span class="shop-label text-danger">Sale</span>
                                         <a href="shop-single.html" class="item-link"></a>
-                                        <img src="/images/store/th01.jpg" alt="Shop item">
+                                        <img src="{{{ $product->pictureUrl() }}}" alt="Shop item">
                                         <div class="shop-item-tools">
                                             <a href="#" class="add-to-whishlist" data-toggle="tooltip"
                                                data-placement="top" title="" data-original-title="Wishlist">
                                                 <i class="material-icons favorite_border"></i>
                                             </a>
-                                            <a href="#" class="add-to-cart">
+                                            <a href="JavaScript:addToChart({{{ $product->id }}})" class="add-to-cart">
                                                 <em>Add to Cart</em>
                                                 <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
                                                     <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79"
@@ -644,221 +648,192 @@
                                         </div>
                                     </div>
                                     <div class="shop-item-details">
-                                        <h3 class="shop-item-title"><a href="shop-single.html">Storage Box</a></h3>
+                                        <h3 class="shop-item-title"><a href="shop-single.html">{{{ $product->name }}}</a></h3>
                                         <span class="shop-item-price">
-                        <span class="old-price">$49.00</span>
-                        $38.00
-                      </span>
+                                            ${{{ $product->price }}}
+                                          </span>
                                     </div>
                                 </div><!-- .shop-item -->
                             </div><!-- .col-lg-3.col-sm-6 -->
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="shop-item">
-                                    <div class="shop-thumbnail">
-                                        <a href="shop-single.html" class="item-link"></a>
-                                        <img src="/images/store/th02.jpg" alt="Shop item">
-                                        <div class="shop-item-tools">
-                                            <a href="#" class="add-to-whishlist" data-toggle="tooltip"
-                                               data-placement="top" title="" data-original-title="Wishlist">
-                                                <i class="material-icons favorite_border"></i>
-                                            </a>
-                                            <a href="#" class="add-to-cart">
-                                                <em>Add to Cart</em>
-                                                <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                                    <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79"
-                                                          fill="none" stroke="#FFFFFF" stroke-width="2"
-                                                          stroke-linecap="square" stroke-miterlimit="10"
-                                                          d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="shop-item-details">
-                                        <h3 class="shop-item-title"><a href="shop-single.html">Shoulder Bag</a></h3>
-                                        <span class="shop-item-price">
-                        $125.00
-                      </span>
-                                    </div>
-                                </div><!-- .shop-item -->
-                            </div><!-- .col-lg-3.col-sm-6 -->
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="shop-item">
-                                    <div class="shop-thumbnail">
-                                        <a href="shop-single.html" class="item-link"></a>
-                                        <img src="/images/store/th03.jpg" alt="Shop item">
-                                        <div class="shop-item-tools">
-                                            <a href="#" class="add-to-whishlist" data-toggle="tooltip"
-                                               data-placement="top" title="" data-original-title="Wishlist">
-                                                <i class="material-icons favorite_border"></i>
-                                            </a>
-                                            <a href="#" class="add-to-cart">
-                                                <em>Add to Cart</em>
-                                                <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                                    <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79"
-                                                          fill="none" stroke="#FFFFFF" stroke-width="2"
-                                                          stroke-linecap="square" stroke-miterlimit="10"
-                                                          d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="shop-item-details">
-                                        <h3 class="shop-item-title"><a href="shop-single.html">Glass Vase</a></h3>
-                                        <span class="shop-item-price">
-                        $62.50
-                      </span>
-                                    </div>
-                                </div><!-- .shop-item -->
-                            </div><!-- .col-lg-3.col-sm-6 -->
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="shop-item">
-                                    <div class="shop-thumbnail">
-                                        <a href="shop-single.html" class="item-link"></a>
-                                        <img src="/images/store/th04.jpg" alt="Shop item">
-                                        <div class="shop-item-tools">
-                                            <a href="#" class="add-to-whishlist" data-toggle="tooltip"
-                                               data-placement="top" title="" data-original-title="Wishlist">
-                                                <i class="material-icons favorite_border"></i>
-                                            </a>
-                                            <a href="#" class="add-to-cart">
-                                                <em>Add to Cart</em>
-                                                <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                                    <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79"
-                                                          fill="none" stroke="#FFFFFF" stroke-width="2"
-                                                          stroke-linecap="square" stroke-miterlimit="10"
-                                                          d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="shop-item-details">
-                                        <h3 class="shop-item-title"><a href="shop-single.html">Alarm Clock</a></h3>
-                                        <span class="shop-item-price">
-                        $178.00
-                      </span>
-                                    </div>
-                                </div><!-- .shop-item -->
-                            </div><!-- .col-lg-3.col-sm-6 -->
+                            @endforeach
+                            {{--<div class="col-lg-3 col-sm-6">--}}
+                                {{--<div class="shop-item">--}}
+                                    {{--<div class="shop-thumbnail">--}}
+                                        {{--<a href="shop-single.html" class="item-link"></a>--}}
+                                        {{--<img src="/images/store/th03.jpg" alt="Shop item">--}}
+                                        {{--<div class="shop-item-tools">--}}
+                                            {{--<a href="#" class="add-to-whishlist" data-toggle="tooltip"--}}
+                                               {{--data-placement="top" title="" data-original-title="Wishlist">--}}
+                                                {{--<i class="material-icons favorite_border"></i>--}}
+                                            {{--</a>--}}
+                                            {{--<a href="#" class="add-to-cart">--}}
+                                                {{--<em>Add to Cart</em>--}}
+                                                {{--<svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">--}}
+                                                    {{--<path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79"--}}
+                                                          {{--fill="none" stroke="#FFFFFF" stroke-width="2"--}}
+                                                          {{--stroke-linecap="square" stroke-miterlimit="10"--}}
+                                                          {{--d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>--}}
+                                                {{--</svg>--}}
+                                            {{--</a>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="shop-item-details">--}}
+                                        {{--<h3 class="shop-item-title"><a href="shop-single.html">Glass Vase</a></h3>--}}
+                                        {{--<span class="shop-item-price">--}}
+                        {{--$62.50--}}
+                      {{--</span>--}}
+                                    {{--</div>--}}
+                                {{--</div><!-- .shop-item -->--}}
+                            {{--</div><!-- .col-lg-3.col-sm-6 -->--}}
+                            {{--<div class="col-lg-3 col-sm-6">--}}
+                                {{--<div class="shop-item">--}}
+                                    {{--<div class="shop-thumbnail">--}}
+                                        {{--<a href="shop-single.html" class="item-link"></a>--}}
+                                        {{--<img src="/images/store/th04.jpg" alt="Shop item">--}}
+                                        {{--<div class="shop-item-tools">--}}
+                                            {{--<a href="#" class="add-to-whishlist" data-toggle="tooltip"--}}
+                                               {{--data-placement="top" title="" data-original-title="Wishlist">--}}
+                                                {{--<i class="material-icons favorite_border"></i>--}}
+                                            {{--</a>--}}
+                                            {{--<a href="#" class="add-to-cart">--}}
+                                                {{--<em>Add to Cart</em>--}}
+                                                {{--<svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">--}}
+                                                    {{--<path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79"--}}
+                                                          {{--fill="none" stroke="#FFFFFF" stroke-width="2"--}}
+                                                          {{--stroke-linecap="square" stroke-miterlimit="10"--}}
+                                                          {{--d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>--}}
+                                                {{--</svg>--}}
+                                            {{--</a>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="shop-item-details">--}}
+                                        {{--<h3 class="shop-item-title"><a href="shop-single.html">Alarm Clock</a></h3>--}}
+                                        {{--<span class="shop-item-price">--}}
+                        {{--$178.00--}}
+                      {{--</span>--}}
+                                    {{--</div>--}}
+                                {{--</div><!-- .shop-item -->--}}
+                            {{--</div><!-- .col-lg-3.col-sm-6 -->--}}
                         </div><!-- .row -->
-                        <div class="row">
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="shop-item">
-                                    <div class="shop-thumbnail">
-                                        <a href="shop-single.html" class="item-link"></a>
-                                        <img src="/images/store/th05.jpg" alt="Shop item">
-                                        <div class="shop-item-tools">
-                                            <a href="#" class="add-to-whishlist" data-toggle="tooltip"
-                                               data-placement="top" title="" data-original-title="Wishlist">
-                                                <i class="material-icons favorite_border"></i>
-                                            </a>
-                                            <a href="#" class="add-to-cart">
-                                                <em>Add to Cart</em>
-                                                <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                                    <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79"
-                                                          fill="none" stroke="#FFFFFF" stroke-width="2"
-                                                          stroke-linecap="square" stroke-miterlimit="10"
-                                                          d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="shop-item-details">
-                                        <h3 class="shop-item-title"><a href="shop-single.html">Wall Clock</a></h3>
-                                        <span class="shop-item-price">
-                        $69.00
-                      </span>
-                                    </div>
-                                </div><!-- .shop-item -->
-                            </div><!-- .col-lg-3.col-sm-6 -->
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="shop-item">
-                                    <div class="shop-thumbnail">
-                                        <a href="shop-single.html" class="item-link"></a>
-                                        <img src="/images/store/th06.jpg" alt="Shop item">
-                                        <div class="shop-item-tools">
-                                            <a href="#" class="add-to-whishlist" data-toggle="tooltip"
-                                               data-placement="top" title="" data-original-title="Wishlist">
-                                                <i class="material-icons favorite_border"></i>
-                                            </a>
-                                            <a href="#" class="add-to-cart">
-                                                <em>Add to Cart</em>
-                                                <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                                    <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79"
-                                                          fill="none" stroke="#FFFFFF" stroke-width="2"
-                                                          stroke-linecap="square" stroke-miterlimit="10"
-                                                          d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="shop-item-details">
-                                        <h3 class="shop-item-title"><a href="shop-single.html">LED Lighting</a></h3>
-                                        <span class="shop-item-price">
-                        $130.00
-                      </span>
-                                    </div>
-                                </div><!-- .shop-item -->
-                            </div><!-- .col-lg-3.col-sm-6 -->
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="shop-item">
-                                    <div class="shop-thumbnail">
-                                        <span class="shop-label text-warning">Popular</span>
-                                        <a href="shop-single.html" class="item-link"></a>
-                                        <img src="/images/store/th07.jpg" alt="Shop item">
-                                        <div class="shop-item-tools">
-                                            <a href="#" class="add-to-whishlist" data-toggle="tooltip"
-                                               data-placement="top" title="" data-original-title="Wishlist">
-                                                <i class="material-icons favorite_border"></i>
-                                            </a>
-                                            <a href="#" class="add-to-cart">
-                                                <em>Add to Cart</em>
-                                                <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                                    <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79"
-                                                          fill="none" stroke="#FFFFFF" stroke-width="2"
-                                                          stroke-linecap="square" stroke-miterlimit="10"
-                                                          d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="shop-item-details">
-                                        <h3 class="shop-item-title"><a href="shop-single.html">Sunglasses</a></h3>
-                                        <span class="shop-item-price">
-                        $99.00
-                      </span>
-                                    </div>
-                                </div><!-- .shop-item -->
-                            </div><!-- .col-lg-3.col-sm-6 -->
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="shop-item">
-                                    <div class="shop-thumbnail">
-                                        <a href="shop-single.html" class="item-link"></a>
-                                        <img src="/images/store/th08.jpg" alt="Shop item">
-                                        <div class="shop-item-tools">
-                                            <a href="#" class="add-to-whishlist" data-toggle="tooltip"
-                                               data-placement="top" title="" data-original-title="Wishlist">
-                                                <i class="material-icons favorite_border"></i>
-                                            </a>
-                                            <a href="#" class="add-to-cart">
-                                                <em>Add to Cart</em>
-                                                <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                                    <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79"
-                                                          fill="none" stroke="#FFFFFF" stroke-width="2"
-                                                          stroke-linecap="square" stroke-miterlimit="10"
-                                                          d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="shop-item-details">
-                                        <h3 class="shop-item-title"><a href="shop-single.html">Hook Basket</a></h3>
-                                        <span class="shop-item-price">
-                        $112.35
-                      </span>
-                                    </div>
-                                </div><!-- .shop-item -->
-                            </div><!-- .col-lg-3.col-sm-6 -->
-                        </div><!-- .row -->
+                        {{--<div class="row">--}}
+                            {{--<div class="col-lg-3 col-sm-6">--}}
+                                {{--<div class="shop-item">--}}
+                                    {{--<div class="shop-thumbnail">--}}
+                                        {{--<a href="shop-single.html" class="item-link"></a>--}}
+                                        {{--<img src="/images/store/th05.jpg" alt="Shop item">--}}
+                                        {{--<div class="shop-item-tools">--}}
+                                            {{--<a href="#" class="add-to-whishlist" data-toggle="tooltip"--}}
+                                               {{--data-placement="top" title="" data-original-title="Wishlist">--}}
+                                                {{--<i class="material-icons favorite_border"></i>--}}
+                                            {{--</a>--}}
+                                            {{--<a href="#" class="add-to-cart">--}}
+                                                {{--<em>Add to Cart</em>--}}
+                                                {{--<svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">--}}
+                                                    {{--<path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79"--}}
+                                                          {{--fill="none" stroke="#FFFFFF" stroke-width="2"--}}
+                                                          {{--stroke-linecap="square" stroke-miterlimit="10"--}}
+                                                          {{--d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>--}}
+                                                {{--</svg>--}}
+                                            {{--</a>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="shop-item-details">--}}
+                                        {{--<h3 class="shop-item-title"><a href="shop-single.html">Wall Clock</a></h3>--}}
+                                        {{--<span class="shop-item-price">--}}
+                        {{--$69.00--}}
+                      {{--</span>--}}
+                                    {{--</div>--}}
+                                {{--</div><!-- .shop-item -->--}}
+                            {{--</div><!-- .col-lg-3.col-sm-6 -->--}}
+                            {{--<div class="col-lg-3 col-sm-6">--}}
+                                {{--<div class="shop-item">--}}
+                                    {{--<div class="shop-thumbnail">--}}
+                                        {{--<a href="shop-single.html" class="item-link"></a>--}}
+                                        {{--<img src="/images/store/th06.jpg" alt="Shop item">--}}
+                                        {{--<div class="shop-item-tools">--}}
+                                            {{--<a href="#" class="add-to-whishlist" data-toggle="tooltip"--}}
+                                               {{--data-placement="top" title="" data-original-title="Wishlist">--}}
+                                                {{--<i class="material-icons favorite_border"></i>--}}
+                                            {{--</a>--}}
+                                            {{--<a href="#" class="add-to-cart">--}}
+                                                {{--<em>Add to Cart</em>--}}
+                                                {{--<svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">--}}
+                                                    {{--<path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79"--}}
+                                                          {{--fill="none" stroke="#FFFFFF" stroke-width="2"--}}
+                                                          {{--stroke-linecap="square" stroke-miterlimit="10"--}}
+                                                          {{--d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>--}}
+                                                {{--</svg>--}}
+                                            {{--</a>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="shop-item-details">--}}
+                                        {{--<h3 class="shop-item-title"><a href="shop-single.html">LED Lighting</a></h3>--}}
+                                        {{--<span class="shop-item-price">--}}
+                        {{--$130.00--}}
+                      {{--</span>--}}
+                                    {{--</div>--}}
+                                {{--</div><!-- .shop-item -->--}}
+                            {{--</div><!-- .col-lg-3.col-sm-6 -->--}}
+                            {{--<div class="col-lg-3 col-sm-6">--}}
+                                {{--<div class="shop-item">--}}
+                                    {{--<div class="shop-thumbnail">--}}
+                                        {{--<span class="shop-label text-warning">Popular</span>--}}
+                                        {{--<a href="shop-single.html" class="item-link"></a>--}}
+                                        {{--<img src="/images/store/th07.jpg" alt="Shop item">--}}
+                                        {{--<div class="shop-item-tools">--}}
+                                            {{--<a href="#" class="add-to-whishlist" data-toggle="tooltip"--}}
+                                               {{--data-placement="top" title="" data-original-title="Wishlist">--}}
+                                                {{--<i class="material-icons favorite_border"></i>--}}
+                                            {{--</a>--}}
+                                            {{--<a href="#" class="add-to-cart">--}}
+                                                {{--<em>Add to Cart</em>--}}
+                                                {{--<svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">--}}
+                                                    {{--<path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79"--}}
+                                                          {{--fill="none" stroke="#FFFFFF" stroke-width="2"--}}
+                                                          {{--stroke-linecap="square" stroke-miterlimit="10"--}}
+                                                          {{--d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>--}}
+                                                {{--</svg>--}}
+                                            {{--</a>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="shop-item-details">--}}
+                                        {{--<h3 class="shop-item-title"><a href="shop-single.html">Sunglasses</a></h3>--}}
+                                        {{--<span class="shop-item-price">--}}
+                        {{--$99.00--}}
+                      {{--</span>--}}
+                                    {{--</div>--}}
+                                {{--</div><!-- .shop-item -->--}}
+                            {{--</div><!-- .col-lg-3.col-sm-6 -->--}}
+                            {{--<div class="col-lg-3 col-sm-6">--}}
+                                {{--<div class="shop-item">--}}
+                                    {{--<div class="shop-thumbnail">--}}
+                                        {{--<a href="shop-single.html" class="item-link"></a>--}}
+                                        {{--<img src="/images/store/th08.jpg" alt="Shop item">--}}
+                                        {{--<div class="shop-item-tools">--}}
+                                            {{--<a href="#" class="add-to-whishlist" data-toggle="tooltip"--}}
+                                               {{--data-placement="top" title="" data-original-title="Wishlist">--}}
+                                                {{--<i class="material-icons favorite_border"></i>--}}
+                                            {{--</a>--}}
+                                            {{--<a href="#" class="add-to-cart">--}}
+                                                {{--<em>Add to Cart</em>--}}
+                                                {{--<svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">--}}
+                                                    {{--<path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79"--}}
+                                                          {{--fill="none" stroke="#FFFFFF" stroke-width="2"--}}
+                                                          {{--stroke-linecap="square" stroke-miterlimit="10"--}}
+                                                          {{--d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>--}}
+                                                {{--</svg>--}}
+                                            {{--</a>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="shop-item-details">--}}
+                                        {{--<h3 class="shop-item-title"><a href="shop-single.html">Hook Basket</a></h3>--}}
+                                        {{--<span class="shop-item-price">--}}
+                        {{--$112.35--}}
+                      {{--</span>--}}
+                                    {{--</div>--}}
+                                {{--</div><!-- .shop-item -->--}}
+                            {{--</div><!-- .col-lg-3.col-sm-6 -->--}}
+                        {{--</div><!-- .row -->--}}
                     </div><!-- .tab-pane#newcomers -->
 
                     <!-- #toprated -->
@@ -1612,5 +1587,10 @@
 <script src="/js/store/magnific-popup.min.js"></script>
 <script src="/js/store/scripts.js"></script>
 
+<script>
+    function addToChart(productId) {
+        window.location.replace('{{ url('/store/cart/add') }}' + '/' + productId + '/1');
+    }
+</script>
 
 </body><!-- <body> --></html>
