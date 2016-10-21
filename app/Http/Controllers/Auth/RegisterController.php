@@ -74,7 +74,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $referrer_id = User::where('referral_code', $data['referral_code'])->first()->id ?? null;
+        $referrer_id = null;
+        if($data['referral_code']) {
+            $referrer_user = User::where('referral_code', $data['referral_code'])->first();
+            if(!$referrer_user) {
+                session()->flash('message_danger', 'Invalid referral code');
+                return back();
+            }
+            $referrer_id = $referrer_user->id;
+        }
 
         $user = User::create([
             'name' => $data['name'],
