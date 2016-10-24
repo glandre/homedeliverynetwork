@@ -4,6 +4,6 @@
  */
 
 function cart() {
-    return \App\Order::where('user_id', Auth::user()->id)
+    return \App\Order::where('user_id', Auth::user()->id ?? 0)
                      ->where('status', 'Cart')->first() ?? new \App\Order();
 }
