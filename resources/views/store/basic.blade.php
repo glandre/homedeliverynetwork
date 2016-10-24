@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0022)http://localhost:8000/ -->
+
 <html lang="{{App::getLocale()}}" class=" js canvas no-touch rgba multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations cssgradients csstransforms csstransforms3d csstransitions fontface generatedcontent video audio svg svgclippaths js canvas no-touch rgba multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations cssgradients csstransforms csstransforms3d csstransitions fontface generatedcontent video audio svg svgclippaths">
 
 <head>
@@ -90,8 +90,8 @@
                 <a href="#cart" class="toolbar-toggle">
                     <i>
                         <span class="material-icons shopping_basket"></span>
-                        @if(session('order') && count(session('order')->products) > 0)
-                            <span class="count">{{{ count(session('order')->products) }}}</span>
+                        @if(count(cart()->products) > 0)
+                            <span class="count">{{{ count(cart()->products) }}}</span>
                         @endif
                     </i>
                 </a>
@@ -106,30 +106,26 @@
                 <div class="inner">
                     <ul class="main-navigation space-bottom">
                         <li class="menu-item-has-children current-menu-item">
-                            <a href="#">Home</a>
-                            <ul class="sub-menu">
-                                <li class="current-menu-item"><a href="{{url('/store')}}">Home</a></li>
-                                {{--<li><a href="{{url('/store/home-v2')}}">Home Version 2</a></li>--}}
-                                {{--<li><a href="{{url('/store/home-v3')}}">Home Version 3</a></li>--}}
-                            </ul>
-                        </li>
-                        <li class="menu-item-has-children">
                             <a href="#">Shop</a>
                             <ul class="sub-menu">
-                                <li><a href="shop-fullwidth-sl.html">Full Width Sidebar Left</a></li>
-                                <li><a href="shop-fullwidth-sr.html">Full Width Sidebar Right</a></li>
-                                <li><a href="shop-fullwidth-ft.html">Full Width Filters Top</a></li>
-                                <li><a href="shop-boxed-sl.html">Boxed Sidebar Left</a></li>
-                                <li><a href="shop-boxed-sr.html">Boxed Sidebar Right</a></li>
-                                <li><a href="shop-boxed-ft.html">Boxed Filters Top</a></li>
-                                <li><a href="shop-single.html">Single Product</a></li>
+                                <li class="current-menu-item"><a href="{{url('/store')}}">Home</a></li>
+                                <li class="current-menu-item"><a href="{{url('/about')}}">About</a></li>
+                                <li class="current-menu-item"><a href="{{ url('/blog') }}">Blog</a></li>
+                                <li class="current-menu-item"><a href="{{ url('/faq') }}">FAQ</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{ url('/blog') }}">Blog</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contacts.html">Contacts</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="elements.html">Elements</a></li>
+                        {{--<li class="menu-item-has-children">--}}
+                            {{--<a href="#">Shop</a>--}}
+                            {{--<ul class="sub-menu">--}}
+                                {{--<li><a href="shop-fullwidth-sl.html">Full Width Sidebar Left</a></li>--}}
+                                {{--<li><a href="shop-fullwidth-sr.html">Full Width Sidebar Right</a></li>--}}
+                                {{--<li><a href="shop-fullwidth-ft.html">Full Width Filters Top</a></li>--}}
+                                {{--<li><a href="shop-boxed-sl.html">Boxed Sidebar Left</a></li>--}}
+                                {{--<li><a href="shop-boxed-sr.html">Boxed Sidebar Right</a></li>--}}
+                                {{--<li><a href="shop-boxed-ft.html">Boxed Filters Top</a></li>--}}
+                                {{--<li><a href="shop-single.html">Single Product</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
                     </ul><!-- .main-navigation -->
                     <ul class="list-icon text-sm">
                         <li>
@@ -142,7 +138,7 @@
                         </li>
                         <li>
                             <i class="material-icons email"></i>
-                            <a href="mailto:info@homedeliverynetwork.ca">info@homedeliverynetwork.ca</a>
+                            <a href="mailto:{{ config('app.email') }}">{{ config('app.email') }}</a>
                         </li>
                         <li>
                             <i class="socicon-skype"></i>
@@ -184,12 +180,35 @@
             <div class="toolbar-section" id="account">
                 @if(Auth::user())
                     <h3 class="toolbar-title space-bottom">Welcome {{{ Auth::user()->name }}} {{{ Auth::user()->last_name }}}.</h3>
-                    <p class="text-muted m-b-0 font-13">{{{ Auth::user()->email }}}</p>
+                    <p class="text-muted m-b-0 font-13">
+                        {{{ Auth::user()->email }}}
+                    </p>
+
                     <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                        <div class="card-box widget-user">
-                            <div>
-                                <img src="{{{ Auth::user()->pictureUrl() }}}" class="img-responsive img-circle" alt="user">
-                            </div>
+                        <div>
+                            <img src="{{{ Auth::user()->pictureUrl() }}}" class="img-responsive img-circle" alt="user">
+                        </div>
+                        <div>
+                            <a href="{{ url('/user/profile') }}">
+                                <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">
+                                    Profile
+                                </button>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="{{ url('/user/settings') }}">
+                                <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">
+                                    Settings
+                                </button>
+                            </a>
+                        </div>
+                        <div>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST">
+                                {{ csrf_field() }}
+                                <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">
+                                    Logout
+                                </button>
+                            </form>
                         </div>
                     </div>
                 @else
@@ -228,8 +247,8 @@
             <!-- Cart -->
             <div class="toolbar-section" id="cart">
                 <div class="shopping-cart">
-                @if(session('order') && count(session('order')->products) > 0)
-                    @foreach(session('order')->products as $product)
+                @if(count(cart()->products) > 0)
+                    @foreach(cart()->products as $product)
                         <!-- Item -->
                             <div class="item">
                                 <a href="shop-single.html" class="item-thumb">
@@ -239,15 +258,26 @@
                                     <h3 class="item-title"><a href="shop-single.html">{{{ $product->name }}}</a></h3>
                                     <h4 class="item-price">${{{ $product->price }}}</h4>
                                     <div class="count-input">
-                                        <a class="incr-btn" data-action="decrease" href="#">–</a>
-                                        <input class="quantity" type="text" value="1">
-                                        <a class="incr-btn" data-action="increase" href="#">+</a>
+                                        <a class="incr-btn" onclick="decreaseQuantity({{{ $product->id }}})"
+                                           data-action="decrease" href="#">–</a>
+                                        <input class="quantity" id="quantity_input_{{{ $product->id }}}"
+                                               type="text" value="{{{ $product->pivot->quantity }}}">
+                                        <a class="incr-btn" onclick="increaseQuantity({{{ $product->id }}})"
+                                           data-action="increase" href="#">+</a>
                                     </div>
                                 </div>
-                                <a href="#" class="item-remove" data-toggle="tooltip" data-placement="top" title=""
+                                {{Form::open([
+                                    'url' => "store/cart/remove/{$product->id}",
+                                    'method' => 'delete',
+                                    'id' => 'delete' . $product->id,
+                                    'name' => 'delete' . $product->id
+                                ])}}
+                                <a href="#" onclick="document.getElementById('delete{{{ $product->id }}}').submit()"
+                                   class="item-remove" data-toggle="tooltip" data-placement="top" title=""
                                    data-original-title="Remove">
                                     <i class="material-icons remove_shopping_cart"></i>
                                 </a>
+                                {{Form::close ()}}
                             </div>
                             <!-- .item -->
                         @endforeach
@@ -279,13 +309,13 @@
                             <h3 class="toolbar-title">Subtotal:</h3>
                         </div>
                         <div class="column">
-                            <h3 class="amount">${{ session('order') ? session('order')->total() : 0 }}</h3>
+                            <h3 class="amount" id="amount">${{ cart()->total() }}</h3>
                         </div>
                     </div><!-- .subtotal -->
                     <!-- Buttons -->
                     <div class="text-right">
                         <a href="#" class="btn btn-default btn-ghost close-dropdown">Continue Shopping</a>
-                        @if(session('order'))
+                        @if(cart())
                         <a href="{{ url('store/cart/review') }}" class="btn btn-primary waves-effect waves-light toggle-section">Proceed to
                             Checkout</a>
                         @endif
@@ -392,88 +422,6 @@
     @include('layouts.messages')
     @yield('content')
 
-    <!-- Brands -->
-    <section class="container padding-top-2x padding-bottom">
-        <hr>
-        <h3 class="text-center padding-top-2x">More brands</h3>
-        <div class="row padding-top">
-            @foreach(\App\Vendor::all() as $brand)
-            <!-- Brand -->
-            <div class="col-sm-4 col-xs-6">
-                <a href="#" class="brand">
-                    <div class="brand-logo opacity-75">
-                        <img src="{{{ $brand->pictureUrl() }}}" alt="{{{ $brand->name }}}">
-                    </div>
-                    <p class="brand-text">{{{ $brand->description }}}</p>
-                </a>
-            </div>
-            @endforeach
-        </div><!-- .row -->
-    </section><!-- .container -->
-
-    <!-- Video Popup -->
-    <div class="fw-section space-top-2x padding-top-3x padding-bottom-3x"
-         style="background-image: url(/images/store/video_bg.jpg);">
-        <div class="container padding-top-3x padding-bottom-3x text-center">
-            <div class="space-top-3x space-bottom">
-                <!-- Add ".light-skin" class to alter appearance. -->
-                <a href="https://player.vimeo.com/video/135832597?color=77cde3&amp;title=0&amp;byline=0&amp;portrait=0"
-                   class="video-popup-btn">
-                    <i class="material-icons play_arrow"></i>
-                </a>
-            </div>
-            <p class="space-bottom-2x">Home Delivery Network - your reliable partner.</p>
-        </div>
-    </div><!-- .fw-section -->
-
-    <!-- Features -->
-    <section class="container space-top space-bottom padding-top-3x padding-bottom-3x">
-        <div class="row">
-            <!-- Feature -->
-            <div class="col-md-3 col-sm-6">
-                <div class="feature text-center">
-                    <div class="feature-icon">
-                        <i class="material-icons location_on"></i>
-                    </div>
-                    <h4 class="feature-title">Free World-Wide Shipping</h4>
-                    <p class="feature-text">Free shipping on all orders over $100</p>
-                </div>
-            </div>
-            <!-- Feature -->
-            <div class="col-md-3 col-sm-6">
-                <div class="feature text-center">
-                    <div class="feature-icon">
-                        <i class="material-icons autorenew"></i>
-                    </div>
-                    <h4 class="feature-title">Money Back Guarantee</h4>
-                    <p class="feature-text">We return money within 30 days</p>
-                </div>
-            </div>
-            <!-- Feature -->
-            <div class="col-md-3 col-sm-6">
-                <div class="feature text-center">
-                    <div class="feature-icon">
-                        <i class="material-icons headset_mic"></i>
-                    </div>
-                    <h4 class="feature-title">24/7 Online Support</h4>
-                    <p class="feature-text">Friendly 24/7 customer support</p>
-                </div>
-            </div>
-            <!-- Feature -->
-            <div class="col-md-3 col-sm-6">
-                <div class="feature text-center">
-                    <div class="feature-icon">
-                        <i class="material-icons credit_card"></i>
-                    </div>
-                    <h4 class="feature-title">Interac e-Transfer</h4>
-                    <p class="feature-text">
-                        We are compatible with <a href="http://www.interac.ca/en/" target="_blank">Interac</a>
-                    </p>
-                </div>
-            </div>
-        </div><!-- .row -->
-    </section><!-- .container -->
-
     <!-- Footer -->
     <footer class="footer">
         <div class="column">
@@ -544,8 +492,56 @@
 <script src="/js/store/scripts.js"></script>
 
 <script>
-    function addToChart(productId) {
-        window.location.replace('{{ url('/store/cart/add') }}' + '/' + productId + '/1');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+
+    function addToCart(productId) {
+        window.location.replace('{{ url('/store/cart/add') }}' + '/' + productId);
+    }
+
+    function increaseQuantity (productId) {
+        var newQuantity = $('#quantity_input_' + productId).val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/store/cart/increase/' + productId,
+            data: {
+                productId: productId
+            },
+            success: function (data) {
+                console.log(data);
+                $('#amount').html('$' + data.data['total']);
+            },
+            error: function (data) {
+                console.log('Error:', data);
+                // if something wrong decrease again
+                $('#quantity_input_' + productId).val(newQuantity);
+            }
+        });
+    }
+
+    function decreaseQuantity (productId) {
+        var newQuantity = $('#quantity_input_' + productId).val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/store/cart/decrease/' + productId,
+            data: {
+                productId: productId
+            },
+            success: function (data) {
+                console.log(data);
+                $('#amount').html('$' + data.data['total']);
+            },
+            error: function (data) {
+                console.log('Error:', data);
+                // if something wrong increase again
+                $('#quantity_input_' + productId).val(newQuantity);
+            }
+        });
     }
 </script>
 
