@@ -4,7 +4,7 @@
             <!-- Navigation Menu-->
             <ul class="navigation-menu">
                 @if(!Auth::user()->isCustomer())
-                    <li class="active has-submenu last-elements">
+                    <li class="has-submenu last-elements">
                         <a href="{{ url('/dashboard') }}">
                             <i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span>
                         </a>
@@ -63,7 +63,7 @@
                                     <li><a href="{{ url('/orders-paid') }}">Paid Orders</a></li>
                                 </ul>
                                 <ul>
-                                    <li><a href="{{ url('/orders-completed') }}">Completed Orders</a></li>
+                                    <li><a href="{{ url('/orders-complete') }}">Completed Orders</a></li>
                                 </ul>
                             </li>
                         </ul>
