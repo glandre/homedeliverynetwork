@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Validator;
 
 class Vendor extends Model
@@ -34,5 +35,13 @@ class Vendor extends Model
 
     public function pluckNames($orderBy = 'name') {
         return $this->orderBy('name')->pluck('name', 'id');
+    }
+
+    public function pictureUrl() {
+//        if($this->picture) {
+//            return Storage::url($this->picture);
+//        }
+
+        return Storage::url('gift-box-freedigital.jpg');
     }
 }

@@ -11,9 +11,15 @@
 |
 */
 
-//Route::get('/store/home-v2', 'StoreController@home_v2');
-//Route::get('/store/home-v3', 'StoreController@home_v3');
+// Index Pages
+Route::get('/', 'PublicController@index');
+Route::get('/index', 'PublicController@index');
 
+// Public Routes
+Route::get('/blog', 'PublicController@blog');
+Route::post('store/subscribe', 'PublicController@subscribe');
+
+// Dev Route
 Route::get('/dev/info', function () {
     if(!config('app.debug')) {
         abort(403, 'Access denied');
@@ -39,9 +45,9 @@ $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
+// Back-end
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/index', 'HomeController@index');
     Route::get('/home', 'HomeController@home');
     Route::get('/admin', 'HomeController@admin');
     Route::get('/dashboard', 'HomeController@dashboard');
@@ -60,6 +66,9 @@ Route::group(['middleware' => 'auth'], function () {
     // User Referral Code
     Route::get('user/referral', 'UserController@getReferralCode');
 
+    // Subscriptions
+    Route::get('subscriptions', 'SubscriptionController@index');
+
     // Product Management
 
     // Product Types
@@ -72,7 +81,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('products', 'ProductController');
 
     // Store
-    Route::get('/', 'StoreController@index');
     Route::get('/store', 'StoreController@index');
     Route::get('store/cart/add/{productId}/{quantity}', 'StoreController@addToCart');
     Route::post('store/cart/update/{productId}/{quantity}', 'StoreController@updateQuantity');

@@ -36,13 +36,13 @@
                         <li class="nav-item hidden-sm-down">
                             <form role="search" class="navbar-left app-search pull-left hidden-xs">
                                 <input type="text" placeholder="Search..." class="form-control">
-                                <a href="http://alpha.homedeliverynetwork.net/index.html"><i class="fa fa-search"></i></a>
+                                <a href="{{{ url('/') }}}"><i class="fa fa-search"></i></a>
                             </form>
                         </li>
 
                         <li class="nav-item dropdown notification-list">
                             <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown"
-                               href="http://alpha.homedeliverynetwork.net/index.html#" role="button" aria-haspopup="false" aria-expanded="false">
+                               href="{{{ url('/') }}}#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <i class="zmdi zmdi-notifications-none noti-icon"></i>
                                 <span class="noti-icon-badge"></span>
                             </a>
@@ -80,7 +80,7 @@
 
                         {{--<li class="nav-item dropdown notification-list">--}}
                             {{--<a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown"--}}
-                               {{--href="http://alpha.homedeliverynetwork.net/index.html#" role="button" aria-haspopup="false" aria-expanded="false">--}}
+                               {{--href="{{{ url('/ }}}#" role="button" aria-haspopup="false" aria-expanded="false">--}}
                                 {{--<i class="zmdi zmdi-email noti-icon"></i>--}}
                                 {{--<span class="noti-icon-badge"></span>--}}
                             {{--</a>--}}
@@ -143,7 +143,7 @@
 
                         <li class="nav-item dropdown notification-list">
                             <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light nav-user" data-toggle="dropdown"
-                               href="http://alpha.homedeliverynetwork.net/index.html#" role="button" aria-haspopup="false" aria-expanded="false">
+                               href="{{{ url('/') }}}#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <img src="{{{ Auth::user()->pictureUrl() }}}" alt="user" class="img-circle">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-arrow profile-dropdown " aria-labelledby="Preview">
@@ -244,12 +244,12 @@
             <div class="nicescroll" tabindex="5001" style="overflow: hidden; outline: none;">
                 <ul class="nav nav-tabs text-xs-center">
                     <li class="nav-item">
-                        <a href="http://alpha.homedeliverynetwork.net/index.html#home-2" class="nav-link active" data-toggle="tab" aria-expanded="false">
+                        <a href="{{{ url('/') }}}#home-2" class="nav-link active" data-toggle="tab" aria-expanded="false">
                             Activity
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="http://alpha.homedeliverynetwork.net/index.html#messages-2" class="nav-link" data-toggle="tab" aria-expanded="true">
+                        <a href="{{{ url('/') }}}#messages-2" class="nav-link" data-toggle="tab" aria-expanded="true">
                             Settings
                         </a>
                     </li>
@@ -261,14 +261,14 @@
                             <div class="time-item">
                                 <div class="item-info">
                                     <small class="text-muted">5 minutes ago</small>
-                                    <p><strong><a href="http://alpha.homedeliverynetwork.net/index.html#" class="text-info">John Doe</a></strong> Uploaded a photo <strong>"DSC000586.jpg"</strong></p>
+                                    <p><strong><a href="{{{ url('/') }}}#" class="text-info">John Doe</a></strong> Uploaded a photo <strong>"DSC000586.jpg"</strong></p>
                                 </div>
                             </div>
 
                             <div class="time-item">
                                 <div class="item-info">
                                     <small class="text-muted">30 minutes ago</small>
-                                    <p><a href="http://alpha.homedeliverynetwork.net/index.html" class="text-info">Lorem</a> commented your post.</p>
+                                    <p><a href="{{{ url('/') }}}" class="text-info">Lorem</a> commented your post.</p>
                                     <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam laoreet tellus ut tincidunt euismod. "</em></p>
                                 </div>
                             </div>
@@ -276,7 +276,7 @@
                             <div class="time-item">
                                 <div class="item-info">
                                     <small class="text-muted">59 minutes ago</small>
-                                    <p><a href="http://alpha.homedeliverynetwork.net/index.html" class="text-info">Jessi</a> attended a meeting with<a href="http://alpha.homedeliverynetwork.net/index.html#" class="text-success">John Doe</a>.</p>
+                                    <p><a href="{{{ url('/') }}}" class="text-info">Jessi</a> attended a meeting with<a href="{{{ url('/') }}}#" class="text-success">John Doe</a>.</p>
                                     <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam laoreet tellus ut tincidunt euismod. "</em></p>
                                 </div>
                             </div>
@@ -284,14 +284,14 @@
                             <div class="time-item">
                                 <div class="item-info">
                                     <small class="text-muted">1 hour ago</small>
-                                    <p><strong><a href="http://alpha.homedeliverynetwork.net/index.html#" class="text-info">John Doe</a></strong>Uploaded 2 new photos</p>
+                                    <p><strong><a href="{{{ url('/') }}}#" class="text-info">John Doe</a></strong>Uploaded 2 new photos</p>
                                 </div>
                             </div>
 
                             <div class="time-item">
                                 <div class="item-info">
                                     <small class="text-muted">3 hours ago</small>
-                                    <p><a href="http://alpha.homedeliverynetwork.net/index.html" class="text-info">Lorem</a> commented your post.</p>
+                                    <p><a href="{{{ url('/') }}}" class="text-info">Lorem</a> commented your post.</p>
                                     <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam laoreet tellus ut tincidunt euismod. "</em></p>
                                 </div>
                             </div>
@@ -299,7 +299,7 @@
                             <div class="time-item">
                                 <div class="item-info">
                                     <small class="text-muted">5 hours ago</small>
-                                    <p><a href="http://alpha.homedeliverynetwork.net/index.html" class="text-info">Jessi</a> attended a meeting with<a href="http://alpha.homedeliverynetwork.net/index.html#" class="text-success">John Doe</a>.</p>
+                                    <p><a href="{{{ url('/') }}}" class="text-info">Jessi</a> attended a meeting with<a href="{{{ url('/') }}}#" class="text-success">John Doe</a>.</p>
                                     <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam laoreet tellus ut tincidunt euismod. "</em></p>
                                 </div>
                             </div>

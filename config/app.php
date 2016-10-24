@@ -13,7 +13,15 @@ return [
     */
 
     'name' => 'Home Delivery Network',
-    'email' => 'geraldo.landre@gmail.com',
+    'email' => env('HDN_EMAIL'),
+    'address' => env('HDN_ADDR_MAIN', 'No address set.'),
+    'address_complement' => env('HDN_ADDR_COMPL'),
+    'phone' => env('HDN_PHONE'),
+    'skype_id' => env('HDN_SKYPE_ID'),
+    'facebook' => env('HDN_FACEBOOK'),
+    'gplus' => env('HDN_GPLUS'),
+    'twitter' => env('HDN_TWITTER'),
+    'instagram' => env('HDN_INSTAGRAM'),
 
     /*
     |--------------------------------------------------------------------------

@@ -2,26 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
-use Illuminate\Http\Request;
-
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return $this->home();
@@ -38,17 +20,8 @@ class HomeController extends Controller
         return $this->dashboard();
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function dashboard()
     {
         return view('dashboard');
-    }
-
-    public function store() {
-        return view('store.home', ['order' => new Order()]);
     }
 }
