@@ -16,8 +16,10 @@
                             <li>
                                 <ul>
                                     <li><a href="{{ url('/users') }}">Manage Users</a></li>
+                                    <li><a href="{{ url('/subscriptions') }}">Subscriptions</a></li>
                                 </ul>
                             </li>
+
                         </ul>
                     </li>
                     <li class="has-submenu last-elements">
