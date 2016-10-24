@@ -4,8 +4,18 @@
             <!-- Navigation Menu-->
             <ul class="navigation-menu">
                 @if(!Auth::user()->isCustomer())
-                    <li class="active">
-                        <a href="{{ url('/dashboard') }}"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                    <li class="active has-submenu last-elements">
+                        <a href="{{ url('/dashboard') }}">
+                            <i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span>
+                        </a>
+                        <ul class="submenu megamenu">
+                            <li>
+                                <ul>
+                                    <li><a href="{{ url('/store') }}">Store</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
                     </li>
                     @if(Auth::user()->isSuper())
                     <li class="has-submenu last-elements">

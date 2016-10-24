@@ -27,8 +27,16 @@ class PublicController extends Controller
         return view('store.home', ['order' => new Order()]);
     }
 
+    public function about() {
+        return view('store.about');
+    }
+
     public function blog() {
         return view('store.blog');
+    }
+
+    public function faq() {
+        return view('store.faq');
     }
 
     public function subscribe() {
