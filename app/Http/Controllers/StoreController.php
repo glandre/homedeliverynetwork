@@ -39,20 +39,47 @@ class StoreController extends Controller
         return view('store.home', ['order' => $this->getOrder()]);
     }
 
-    public function addToCart($productId, $quantity)
+    public function addToCart($productId)
     {
-        $this->getOrder()->products()->attach($productId, ['quantity' => $quantity]);
+        $this->getOrder()->products()->attach($productId, ['quantity' => 1]);
         return $this->index();
     }
 
-    public function updateQuantity($productId, $quantity) {
-        $this->getOrder()->products()->updateExistingPivot($productId, ['quantity' => $quantity]);
-        return response()->json(['status' => 'success', 'data' => $this->getOrder()->products()]);
+    public function increaseQuantity($productId) {
+        $newQuantity = $this->getOrder()->product($productId)->pivot->quantity + 1;
+        $this->getOrder()->products()->updateExistingPivot($productId, ['quantity' => $newQuantity]);
+        return response()->json(
+            [
+                'status' => 'success',
+                'data' => [
+                    'products' => $this->getOrder()->products(),
+                    'total' => $this->getOrder()->total()
+                ]
+            ]);
+    }
+
+    public function decreaseQuantity($productId) {
+
+        $newQuantity = $this->getOrder()->product($productId)->pivot->quantity - 1;
+
+        if($newQuantity < 1) {
+            $newQuantity = 1;
+        }
+
+        $this->getOrder()->products()->updateExistingPivot($productId, ['quantity' => $newQuantity]);
+        return response()->json(
+            [
+                'status' => 'success',
+                'data' => [
+                    'products' => $this->getOrder()->products(),
+                    'total' => $this->getOrder()->total()
+                ]
+            ]);
     }
 
     public function removeFromCart($productId) {
         $this->getOrder()->products()->detach($productId);
-        return response()->json(['status' => 'success', 'data' => $this->getOrder()->products()]);
+        return $this->index();
     }
 
     public function showReviewOrder()

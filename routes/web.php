@@ -16,7 +16,9 @@ Route::get('/', 'PublicController@index');
 Route::get('/index', 'PublicController@index');
 
 // Public Routes
+Route::get('/about', 'PublicController@about');
 Route::get('/blog', 'PublicController@blog');
+Route::get('/faq', 'PublicController@faq');
 Route::post('store/subscribe', 'PublicController@subscribe');
 
 // Dev Route
@@ -82,9 +84,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Store
     Route::get('/store', 'StoreController@index');
-    Route::get('store/cart/add/{productId}/{quantity}', 'StoreController@addToCart');
-    Route::post('store/cart/update/{productId}/{quantity}', 'StoreController@updateQuantity');
-    Route::post('store/cart/remove/{productId}', 'StoreController@removeFromCart');
+    Route::get('store/cart/add/{productId}', 'StoreController@addToCart');
+    Route::post('store/cart/increase/{productId}', 'StoreController@increaseQuantity');
+    Route::post('store/cart/decrease/{productId}', 'StoreController@decreaseQuantity');
+    Route::delete('store/cart/remove/{productId}', 'StoreController@removeFromCart');
     Route::get('store/cart/review', 'StoreController@showReviewOrder');
 
     // Order Management

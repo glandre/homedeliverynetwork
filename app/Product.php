@@ -49,6 +49,19 @@ class Product extends Model
         return $this->belongsTo(Vendor::class);
     }
 
+    public function stars() {
+        $collection = collect([
+            0 => ['full' => 5, 'half' => 0, 'empty' => 0],
+            1 => ['full' => 4, 'half' => 1, 'empty' => 0],
+            2 => ['full' => 3, 'half' => 2, 'empty' => 0],
+            3 => ['full' => 2, 'half' => 2, 'empty' => 1],
+            4 => ['full' => 1, 'half' => 2, 'empty' => 2],
+            5 => ['full' => 0, 'half' => 1, 'empty' => 3],
+        ]);
+
+        return $collection->random();
+    }
+
     public function pictureUrl() {
 //        if($this->picture) {
 //            return Storage::url($this->picture);
@@ -63,5 +76,17 @@ class Product extends Model
 //        }
 
         return Storage::url('gift-box-freedigital.jpg');
+    }
+
+    public static function newArrivals() {
+        return self::all();
+    }
+
+    public static function sortedByRate($limit = null) {
+        return self::all();
+    }
+
+    public static function onSale() {
+        return self::all();
     }
 }

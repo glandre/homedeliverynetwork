@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Order extends Model
 {
@@ -24,15 +25,28 @@ class Order extends Model
         ]);
     }
 
+    public static function countNew() {
+        return self::where('status', 'New')->count();
+    }
+
     public function user() {
         return $this->belongsTo(User::class);
     }
 
     public function products() {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class)->withPivot('quantity');
+    }
+
+    public function product($productId) {
+        return $this->belongsToMany(Product::class)->wherePivot('product_id', $productId)->withPivot('quantity')->first();
     }
 
     public function total() {
-        return 0;
+        $total = 0;
+        foreach($this->products as $product) {
+            $total += $product->price * $product->pivot->quantity;
+        }
+
+        return $total;
     }
 }

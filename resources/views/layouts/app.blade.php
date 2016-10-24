@@ -44,7 +44,9 @@
                             <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown"
                                href="{{{ url('/') }}}#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <i class="zmdi zmdi-notifications-none noti-icon"></i>
-                                <span class="noti-icon-badge"></span>
+                                @if(\App\Order::countNew() > 0)
+                                    <span class="noti-icon-badge"></span>
+                                @endif
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-lg" aria-labelledby="Preview">
                                 <!-- item-->
