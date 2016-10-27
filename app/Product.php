@@ -62,23 +62,28 @@ class Product extends Model
         return $collection->random();
     }
 
-    public function pictureUrl() {
-//        if($this->picture) {
-//            return Storage::url($this->picture);
-//        }
-//
-//        if($this->type->picture) {
-//            return Storage::url($this->type->picture);
-//        }
-//
-//        if($this->vendor->picture) {
-//            return Storage::url($this->vendor->picture);
-//        }
+    public function pictureUrl()
+    {
+        if(!config('app.file_use_defaults')) {
+
+            if ($this->picture) {
+                return Storage::url($this->picture);
+            }
+
+            if ($this->type->picture) {
+                return Storage::url($this->type->picture);
+            }
+
+            if ($this->vendor->picture) {
+                return Storage::url($this->vendor->picture);
+            }
+        }
 
         return Storage::url('gift-box-freedigital.jpg');
     }
 
     public static function newArrivals() {
+        // "now() - created_at <= 30 days"
         return self::all();
     }
 

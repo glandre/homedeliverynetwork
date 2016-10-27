@@ -29,7 +29,7 @@
             <div class="card-box table-responsive">
                 <h4 class="m-t-0 header-title"><b>Order details:</b></h4>
                 <p class="text-muted font-13 m-b-30">
-                    Order Id.: #{{{ $order->id }}}
+                    Order Id.: #{{{ $order->id }}} ({{{ $order->status }}}) -
                     Customer: <a href="{{ url("/users/{$order->user->id}") }}">{{{ $order->user->email }}}</a>
                     @if($order->status == 'New')
 
@@ -51,7 +51,7 @@
 
                     @elseif($order->status == 'Paid')
                     {{Form::open([
-                        'url' => url("/orders/{$order->id}/complete"),
+                        'url' => url("/orders/{$order->id}/shipped"),
                         'method' => 'POST',
                         'class' => 'form-horizontal',
                     ])}}
@@ -59,15 +59,23 @@
                         <div class="form-group">
                             <div>
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                    Mark as Complete
+                                    Mark as Shipped
                                 </button>
                             </div>
                         </div>
 
                     {{Form::close()}}
 
+                    @else
+                    <div class="form-group">
+                        <div>
+                            <button type="submit" disabled class="btn btn-block waves-effect waves-light">
+                                Order is {{$order->status}}
+                            </button>
+                        </div>
+                    </div>
                     @endif
-                </p>
+
 
                 <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap4 no-footer">
                     <div class="row">
@@ -86,6 +94,11 @@
                                         aria-label="Name: activate to sort column descending"
                                         style="width: 279.5px;">Quantity
                                     </th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Name: activate to sort column descending"
+                                        style="width: 279.5px;">Inventory
+                                    </th>
                                 </tr>
                                 </thead>
 
@@ -101,6 +114,10 @@
                                     </td>
                                     <td class="sorting_asc">
                                         {{{ ($product->pivot->quantity > 0) ? $product->pivot->quantity : 'N/A' }}}
+                                        {{ ($product->pivot->quantity > $product->quantity) ? '(Not available in inventory)' : '' }}
+                                    </td>
+                                    <td class="sorting_asc">
+                                        {{{ ($product->quantity > 0) ? $product->quantity : 'N/A' }}}
                                     </td>
                                 </tr>
                                 @endforeach

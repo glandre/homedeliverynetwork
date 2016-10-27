@@ -79,11 +79,13 @@ class StoreController extends Controller
 
     public function removeFromCart($productId) {
         $this->getOrder()->products()->detach($productId);
-        return $this->index();
+        return back();
     }
 
     public function showReviewOrder()
     {
+        $messages = $this->getOrder()->validateProducts();
+        $this->flashMessagesToSession($messages, '', false);
         return view('store.review', ['order' => $this->getOrder()]);
     }
 
@@ -91,19 +93,42 @@ class StoreController extends Controller
     {
         if($this->getOrder()->status != 'Cart')
         {
-            session()->flash('message_danger', "Order status doesn't allow submission ({$this->getOrder()->status})");
+            session()->flash('message_danger', "You can't update from {$this->getOrder()->status} to New!");
             return view('store.review');
         }
 
-        if(count($this->getOrder()->products) == 0) {
+        if(count($this->getOrder()->products) == 0)
+        {
             session()->flash('message_danger', "Can't submit an empty order.");
             return view('store.review');
         }
 
-        $this->getOrder()->status = 'New';
-        $this->getOrder()->save();
+        $messages = $this->getOrder()->process('New');
 
-        session()->flash('message_success', "Order successfully submitted!");
+        $this->flashMessagesToSession($messages, 'Submission failed!');
+
         return view('store.review', ['order' => $this->getOrder()]);
+    }
+
+    private function flashMessagesToSession($messages, $errorMessagePrefix = '', $showSuccess = true)
+    {
+        $errors = Order::reduceValidationMessages(
+            "$errorMessagePrefix The following products are sold out:",
+            $messages,
+            'errors'
+        );
+
+        $warnings = Order::reduceValidationMessages(
+            "Because the following products are currently not available in the inventory, your order may take longer to be shipped:",
+            $messages,
+            'warnings'
+        );
+
+        session()->flash('message_danger', $errors);
+        session()->flash('message_warning', $warnings);
+
+        if($messages['errors']->isEmpty() && $showSuccess) {
+            session()->flash('message_success', "Order successfully submitted!");
+        }
     }
 }

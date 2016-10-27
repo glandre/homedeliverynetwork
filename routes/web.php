@@ -79,7 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('vendors', 'VendorController');
     // Product
     Route::get('products/inventory', 'ProductController@showInventory');
-    Route::post('products/update-quantity', 'ProductController@updateQuantity');
+    Route::post('products/inventory/update', 'ProductController@updateInventory');
     Route::resource('products', 'ProductController');
 
     // Store
@@ -95,9 +95,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('orders/{orderId}', 'OrderController@show');
     Route::post('orders/{orderId}/new', 'StoreController@submitOrder');
     Route::post('orders/{orderId}/paid', 'OrderController@changeOrderStatusToPaid');
-    Route::post('orders/{orderId}/complete', 'OrderController@changeOrderStatusToComplete');
+    Route::post('orders/{orderId}/shipped', 'OrderController@changeOrderStatusToShipped');
 
     Route::get('orders-new', 'OrderController@showNewOrders');
     Route::get('orders-paid', 'OrderController@showPaidOrders');
-    Route::get('orders-complete', 'OrderController@showCompletedOrders');
+    Route::get('orders-complete', 'OrderController@showShippedOrders');
 });

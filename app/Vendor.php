@@ -29,19 +29,23 @@ class Vendor extends Model
         ]);
     }
 
-    public function products() {
+    public function products()
+    {
         return $this->hasMany(Product::class);
     }
 
-    public function pluckNames($orderBy = 'name') {
+    public function pluckNames($orderBy = 'name')
+    {
         return $this->orderBy('name')->pluck('name', 'id');
     }
 
-    public function pictureUrl() {
-//        if($this->picture) {
-//            return Storage::url($this->picture);
-//        }
-
+    public function pictureUrl()
+    {
+        if(!config('app.file_use_defaults')) {
+            if($this->picture) {
+                return Storage::url($this->picture);
+            }
+        }
         return Storage::url('gift-box-freedigital.jpg');
     }
 }

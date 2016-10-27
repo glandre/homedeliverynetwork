@@ -14,7 +14,6 @@
                                     <li><a href="{{ url('/store') }}">Store</a></li>
                                 </ul>
                             </li>
-
                         </ul>
                     </li>
                     @if(Auth::user()->isSuper())

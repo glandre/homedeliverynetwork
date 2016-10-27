@@ -31,26 +31,35 @@
                 <p class="text-muted font-13 m-b-30">
                     These are the products in your shopping cart.
                     Click on submit to finish your order.
-                @if($order->status == 'Cart')
+                <div class="row">
+                    @if($order->status == 'Cart')
 
-                    {{Form::open([
-                        'url' => url("/orders/{$order->id}/new"),
-                        'method' => 'POST',
-                        'class' => 'form-horizontal',
-                    ])}}
+                        {{Form::open([
+                            'url' => url("/orders/{$order->id}/new"),
+                            'method' => 'POST',
+                            'class' => 'form-horizontal',
+                        ])}}
 
-                    <div class="form-group">
-                        <div>
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                Submit
-                            </button>
+                        <div class="form-group">
+                            <div>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                    Submit
+                                </button>
+                                <a href="{{ url('/store') }}">
+                                    <span class="btn btn-primary waves-effect waves-light">
+                                        Back to Store
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                    </div>
 
-                    {{Form::close()}}
+                        {{Form::close()}}
 
-                @endif
-                    </p>
+                    @endif
+                </div>
+
+
+
 
                 <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap4 no-footer">
                     <div class="row">
@@ -84,6 +93,9 @@
                                         aria-label="Name: activate to sort column descending"
                                         style="width: 279.5px;">Vendor
                                     </th>
+                                    @if($order->status == 'Cart')
+                                    <th></th>
+                                    @endif
                                 </tr>
                                 </thead>
 
@@ -97,6 +109,7 @@
                                     </td>
                                     <td class="sorting_asc">
                                         {{{ ($product->pivot->quantity > 0) ? $product->pivot->quantity : 'N/A' }}}
+                                        {{ ($product->pivot->quantity > $product->quantity) ? '(Not available in inventory)' : '' }}
                                     </td>
                                     <td class="sorting_asc">
                                         {{{ $product->price }}}
@@ -107,6 +120,18 @@
                                     <td class="sorting_asc">
                                         {{{ $product->vendor->name }}}
                                     </td>
+                                    @if($order->status == 'Cart')
+                                    <td>
+                                        {{Form::open([
+                                            'url' => "store/cart/remove/$product->id",
+                                            'method' => 'DELETE'
+                                        ])}}
+                                        <button type="submit" class="btn btn-danger waves-effect waves-light">
+                                            Remove
+                                        </button>
+                                        {{Form::close()}}
+                                    </td>
+                                    @endif
                                 </tr>
                                 @endforeach
                                 </tbody>

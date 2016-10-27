@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPriceToProducts extends Migration
+class UpdateCompleteToShippedOnOrders extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddPriceToProducts extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->decimal('price')->default(0);
-        });
+        DB::table('orders')
+            ->where('status', 'Complete')
+            ->update(['status' => 'Shipped']);
     }
 
     /**
@@ -25,8 +25,8 @@ class AddPriceToProducts extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('price');
-        });
+        DB::table('orders')
+            ->where('status', 'Shipped')
+            ->update(['status' => 'Complete']);
     }
 }

@@ -76,7 +76,21 @@
                                         </a>
                                     </td>
                                     <td class="sorting_asc">
-                                        {{{ ($product->continue_selling) ? 'Continue selling' : 'Stop selling' }}}
+                                        <span id="continue_selling_label_{{$product->id}}">
+                                            {{{ ($product->continue_selling) ? 'Continue selling' : 'Stop selling' }}}
+                                        </span>
+                                        {{Form::select(
+                                            'continue_selling_select_' . $product->id,
+                                            [
+                                                true => 'Continue selling',
+                                                false => 'Stop selling'
+                                            ],
+                                            ($product->continue_selling == true),
+                                            [
+                                                'style' => 'display: none',
+                                                'id' => 'continue_selling_select_'
+                                            ]
+                                        )}}
                                     </td>
                                     <td class="sorting_asc">
                                         {{{ $product->incoming }}}
@@ -90,7 +104,7 @@
                                         <input type="text" id="quantity_input_{{$product->id}}"
                                                name="quantity_input_{{$product->id}}"
                                                value="{{{ $product->quantity }}}"
-                                               style="visibility: hidden">
+                                               style="display: none;">
 
                                         <a id="edit_button_{{$product->id}}"
                                            name="edit_button_{{$product->id}}"

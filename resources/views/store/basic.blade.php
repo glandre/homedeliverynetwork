@@ -498,11 +498,13 @@
         }
     })
 
-    function addToCart(productId) {
+    function addToCart(productId)
+    {
         window.location.replace('{{ url('/store/cart/add') }}' + '/' + productId);
     }
 
-    function increaseQuantity (productId) {
+    function increaseQuantity (productId)
+    {
         var newQuantity = $('#quantity_input_' + productId).val();
 
         $.ajax({
@@ -523,7 +525,8 @@
         });
     }
 
-    function decreaseQuantity (productId) {
+    function decreaseQuantity (productId)
+    {
         var newQuantity = $('#quantity_input_' + productId).val();
 
         $.ajax({

@@ -119,12 +119,14 @@ class ProductController extends CRUDController
         return $this->showCollection($models, $this->listView());
     }
 
-    public function updateQuantity() {
+    public function updateInventory() {
         $productId = $this->request->input('productId');
         $newQuantity = $this->request->input('newQuantity');
+        $continueSelling = $this->request->input('continueSelling') == true;
 
         $product = Product::find($productId);
         $product->quantity = $newQuantity;
+        $product->continue_selling = $continueSelling;
 
         $this->validateRequest(true, $product);
 

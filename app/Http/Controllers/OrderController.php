@@ -19,8 +19,8 @@ class OrderController extends Controller
         return $this->showOrders(Order::where('status', 'Paid')->get());
     }
 
-    public function showCompletedOrders() {
-        return $this->showOrders(Order::where('status', 'Complete')->get());
+    public function showShippedOrders() {
+        return $this->showOrders(Order::where('status', 'Shipped')->get());
     }
 
     private function showOrders($orders) {
@@ -29,30 +29,72 @@ class OrderController extends Controller
 
     public function show($orderId)
     {
-        return view('orders.edit', ['order' => Order::findOrFail($orderId)]);
+        $order = Order::findOrFail($orderId);
+
+        if($order->status == 'Paid')
+        {
+            $messages = $order->validateProducts();
+            if(!$messages['errors']->isEmpty() || !$messages['warnings']->isEmpty())
+            {
+                $this->flashMessagesToSession($messages, 'Submission failed! The following products are sold out:');
+            }
+        }
+
+        return view('orders.edit', ['order' => $order]);
     }
 
-    public function changeOrderStatusToPaid($orderId) {
+    public function changeOrderStatusToPaid($orderId)
+    {
         if(! (\Auth::user()->isSuper()) ) {
             abort(403, 'Your are not allowed to perform this action!');
         }
+
         $order = Order::find($orderId);
+        if($order->status != 'New') {
+            session()->flash('message_danger', "You can't update from {$order->status} to Paid!");
+        }
+
         $order->status = 'Paid';
         $order->save();
 
         session()->flash('message_success', 'Order successfully updated!');
-        return $this->index();
+        return back();
     }
 
-    public function changeOrderStatusToComplete($orderId) {
-        if(! (\Auth::user()->isSuper()) ) {
+    public function changeOrderStatusToShipped($orderId)
+    {
+        if(! (\Auth::user()->isSuper()) )
+        {
             abort(403, 'Your are not allowed to perform this action!');
         }
-        $order = Order::find($orderId);
-        $order->status = 'Complete';
-        $order->save();
 
-        session()->flash('message_success', 'Order successfully updated!');
-        return $this->index();
+        $order = Order::find($orderId);
+        if($order->status != 'Paid')
+        {
+            session()->flash('message_danger', "You can't update from {$order->status} to Shipped!");
+            return back();
+        }
+
+        $messages = $order->process('Shipped', true);
+
+        if(!$messages['errors']->isEmpty() || !$messages['warnings']->isEmpty())
+        {
+            $this->flashMessagesToSession($messages, 'Submission failed! The following products are sold out:');
+        }
+        else {
+            session()->flash('message_success', "Order successfully submitted!");
+        }
+
+        return back();
+    }
+
+    private function flashMessagesToSession($messages, $errorMessagePrefix = '')
+    {
+        session()->flash(
+            'message_danger',
+            Order::reduceValidationMessages($errorMessagePrefix, $messages, 'errors') .
+            Order::reduceValidationMessages('', $messages, 'warnings') .
+            '.'
+        );
     }
 }

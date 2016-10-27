@@ -23,6 +23,8 @@ return [
     'twitter' => env('HDN_TWITTER'),
     'instagram' => env('HDN_INSTAGRAM'),
 
+    'file_use_defaults' => env('HDN_FILE_USE_DEFAULTS', false),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
