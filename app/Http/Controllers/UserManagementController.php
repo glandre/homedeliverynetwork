@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Mailable;
+use App\Mail\RegistrationApproved;
+use App\Mail\RegistrationRejected;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
@@ -139,5 +142,26 @@ class UserManagementController extends CRUDController
         $model->delete();
         session()->flash('message_success', trans('strings.deletedSuccess'));
         return $this->index();
+    }
+
+    public function approve()
+    {
+        $model = $this->model->find($this->request->input('id'));
+        $model->registration_status = 'Accepted';
+        $model->save();
+        \Mail::to($model)->send(new RegistrationApproved($model));
+        session()->flash('message_success', 'User Approved!');
+        return back();
+    }
+
+    public function reject() {
+        $model = $this->model->find($this->request->input('id'));
+        $reasons = $this->request->input('reasons');
+
+        $model->registration_status = 'Rejected';
+        $model->save();
+        \Mail::to($model)->send(new RegistrationRejected($model, $reasons));
+        session()->flash('message_success', 'User Rejected!');
+        return back();
     }
 }

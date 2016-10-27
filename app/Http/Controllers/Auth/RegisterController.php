@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\NewRegistrationNotification;
+use App\Mail\SuccessfullySignedUp;
 use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Support\MessageBag;
@@ -97,7 +99,8 @@ class RegisterController extends Controller
         if($user) {
             session()->flash('message_success', 'Thanks for your registration, we will contact you soon.');
 
-            // send email
+            \Mail::to($user)->send(new SuccessfullySignedUp());
+            \Mail::to(User::thatShouldBeNotifiedOnNewRegistration())->send(new NewRegistrationNotification());
         }
 
         return $user;

@@ -1,47 +1,54 @@
-@extends('layouts.laravel')
+@extends('layouts.basic')
 
 <!-- Main Content -->
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+@section('basic-content')
+<div class="account-pages"></div>
+<div class="clearfix"></div>
+<div class="wrapper-page">
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
-                        {{ csrf_field() }}
+@include('layouts.messages')
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+    <div class="account-bg">
+        <div class="card-box m-b-0">
+            <div class="text-xs-center m-t-20">
+                <a href="{{url('/')}}" class="logo">
+                    <i class="zmdi zmdi-group-work icon-c-logo"></i>
+                    <span>{{config('app.name')}}</span>
+                </a>
             </div>
+            <div class="m-t-10 p-20">
+                <div class="row">
+                    <div class="col-xs-12 text-xs-center">
+                        <h6 class="text-muted text-uppercase m-b-0 m-t-0">Sign In</h6>
+                    </div>
+                </div>
+                <form class="m-t-20" role="form" method="POST" action="{{ url('/password/email') }}">
+                    {{ csrf_field() }}
+
+                    <div class="form-group row">
+                        <div class="col-xs-12">
+                            <input class="form-control" required autofocus
+                                   placeholder="E-mail Address" value="{{ old('email') }}"
+                                   id="email" type="email" name="email">
+                        </div>
+                    </div>
+
+                    <div class="form-group text-center row m-t-10">
+                        <div class="col-xs-12">
+                            <button class="btn btn-success btn-block waves-effect waves-light" type="submit">
+                                Send Password Reset Link
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="clearfix"></div>
         </div>
     </div>
+    <!-- end card-box-->
+
 </div>
 @endsection

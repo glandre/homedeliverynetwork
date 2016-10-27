@@ -11,6 +11,9 @@ class User extends Authenticatable
 {
     const SUPER = 1;
     const WEBMASTER = 2;
+    const ADMIN = 3;
+    const FULLMENT = 4;
+    const MARKETING = 7;
     const COSTUMER = 8;
 
     use Notifiable;
@@ -102,5 +105,17 @@ class User extends Authenticatable
 
     public function isCustomer() {
         return $this->role_id == self::COSTUMER;
+    }
+
+    public static function thatShouldBeNotifiedOnNewRegistration() {
+        return self::whereIn(
+            'role_id',
+            [
+                self::SUPER,
+                self::ADMIN,
+                self::FULLMENT,
+                self::MARKETING
+            ]
+        )->get();
     }
 }

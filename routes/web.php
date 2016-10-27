@@ -55,8 +55,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', 'HomeController@dashboard');
 
     // User Management
-    Route::get('users/search', 'UserManagementController@index');
-    Route::post('users/search', 'UserManagementController@search');
+    Route::post('users/{id}/approve', 'UserManagementController@approve');
+    Route::post('users/{id}/reject', 'UserManagementController@reject');
     Route::resource('users', 'UserManagementController');
 
     // User Profile and Settings

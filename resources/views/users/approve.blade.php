@@ -42,41 +42,7 @@
         <p class="text-muted font-13 m-b-10">
             Here you can view user information. Click on edit to enable updates.
         </p>
-
         <div class="p-20">
-            @if($model->registration_status == 'New')
-                <div class="form-group row">
-                    <div class="column">
-                    {{Form::open([
-                        'url' => "users/{$model->id}/approve",
-                        'method' => 'POST'
-                    ])}}
-                        {{Form::hidden('id', $model->id)}}
-                        <button type="reset" class="btn btn-primary waves-effect m-l-5">
-                            Approve
-                        </button>
-                    {{Form::close()}}
-                    </div>
-                    <div class="column">
-                        {{Form::open([
-                            'url' => "users/{$model->id}/reject",
-                            'method' => 'POST'
-                        ])}}
-                        {{Form::hidden('id', $model->id)}}
-                        {{Form::textarea('reasons', '', [
-                            'style' => 'display: none',
-                            'id' => 'reasons'
-                        ])}}
-
-                        <button type="submit" class="btn btn-danger waves-effect waves-light"
-                                id="reject" onclick="enableReasons();">
-                            Reject
-                        </button>
-                        {{Form::close()}}
-                    </div>
-                </div>
-            @endif
-
             {{Form::open([
                 'url' => $url,
                 'method' => $method,
@@ -175,7 +141,7 @@
                         'role',
                         'Role: ' . $model->role->name
                     )}}
-
+                    ({{Form::label('registration_status', 'Registration Status: ' . $model->registration_status)}})
                     -
                     {{Form::label(
                         'referrer',
@@ -183,8 +149,6 @@
                     )}}
                 </div>
             @endif
-
-            ({{Form::label('registration_status', 'Registration Status: ' . $model->registration_status)}})
 
             @if($saveEnabled)
                 <div class="form-group">
@@ -206,12 +170,4 @@
 
 @section('page-js')
     <script src="/js/bootstrap-inputmask.min.js"></script>
-    <script>
-        function enableReasons() {
-            event.preventDefault();
-            $('#reasons').attr('style', 'diplay: inline').focus();
-            $('#reject').attr('onclick', '');
-            return false;
-        }
-    </script>
 @endsection
