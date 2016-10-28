@@ -47,31 +47,42 @@
             @if($model->registration_status == 'New')
                 <div class="form-group row">
                     <div class="column">
-                    {{Form::open([
-                        'url' => "users/{$model->id}/approve",
-                        'method' => 'POST'
-                    ])}}
-                        {{Form::hidden('id', $model->id)}}
-                        <button type="reset" class="btn btn-primary waves-effect m-l-5">
-                            Approve
+                        <button type="submit" id="btnApproveReject"
+                                class="btn btn-primary waves-effect waves-light"
+                                id="reject" onclick="enableReasons();">
+                            Approve/Reject
                         </button>
-                    {{Form::close()}}
-                    </div>
-                    <div class="column">
+                        {{Form::open([
+                            'url' => "users/{$model->id}/approve",
+                            'method' => 'POST',
+                            'id' => 'formApprove'
+                        ])}}
+                            {{Form::hidden('id', $model->id)}}
+                        {{Form::close()}}
+
+                        {{Form::close()}}
+
                         {{Form::open([
                             'url' => "users/{$model->id}/reject",
                             'method' => 'POST'
                         ])}}
                         {{Form::hidden('id', $model->id)}}
                         {{Form::textarea('reasons', '', [
+                            'class' => 'form-control',
                             'style' => 'display: none',
                             'id' => 'reasons'
                         ])}}
-
-                        <button type="submit" class="btn btn-danger waves-effect waves-light"
-                                id="reject" onclick="enableReasons();">
+                        <button type="reset" id="btnApprove" style="display:none"
+                                onclick="approve()"
+                                class="btn btn-primary waves-effect m-l-5">
+                            Approve
+                        </button>
+                        <button type="submit" id="btnReject" style="display:none"
+                                class="btn btn-danger waves-effect waves-light"
+                                id="reject">
                             Reject
                         </button>
+
                         {{Form::close()}}
                     </div>
                 </div>
@@ -210,8 +221,14 @@
         function enableReasons() {
             event.preventDefault();
             $('#reasons').attr('style', 'diplay: inline').focus();
-            $('#reject').attr('onclick', '');
+            $('#btnApprove').attr('style', 'display: inline');
+            $('#btnReject').attr('style', 'display: inline');
+            $('#btnApproveReject').attr('style', 'display: none');
             return false;
+        }
+        function approve() {
+            event.preventDefault();
+            document.getElementById('formApprove').submit();
         }
     </script>
 @endsection

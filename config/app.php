@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Home Delivery Network',
+    'name' => env('HDN_NAME'),
     'email' => env('HDN_EMAIL'),
     'address' => env('HDN_ADDR_MAIN', 'No address set.'),
     'address_complement' => env('HDN_ADDR_COMPL'),

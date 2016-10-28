@@ -15,6 +15,7 @@ class Mailable extends \Illuminate\Mail\Mailable
 {
     protected $text;
     protected $view;
+    protected $params = [];
 
     use Queueable, SerializesModels;
 
@@ -29,7 +30,7 @@ class Mailable extends \Illuminate\Mail\Mailable
             'address' => config('app.email'),
             'name' => config('app.name')
         ])
-            ->view($this->view)
-            ->text($this->text);
+            ->view($this->view, $this->params)
+            ->text($this->text, $this->params);
     }
 }

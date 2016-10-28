@@ -28,6 +28,7 @@ Route::get('/dev/info', function () {
     }
     dump(config('session.driver'));
     dump(config('database'));
+    dump(config('mail'));
     phpinfo();
 });
 
