@@ -6,7 +6,7 @@
                 @if(!Auth::user()->isCustomer())
                     <li class="has-submenu last-elements">
                         <a href="{{ url('/dashboard') }}">
-                            <i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span>
+                            <i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard One</span>
                         </a>
                         <ul class="submenu megamenu">
                             <li>
