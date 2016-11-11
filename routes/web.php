@@ -21,15 +21,18 @@ Route::get('/blog', 'PublicController@blog');
 Route::get('/faq', 'PublicController@faq');
 Route::post('store/subscribe', 'PublicController@subscribe');
 
-// Dev Route
-Route::get('/dev/info', function () {
-    if(!config('app.debug')) {
-        abort(403, 'Access denied');
-    }
-    dump(config('session.driver'));
-    dump(config('database'));
-    dump(config('mail'));
-    phpinfo();
+// Dev Routes
+Route::group(['middleware' => 'debug'], function () {
+    Route::get('/dev/info', function () {
+        dump(config('session.driver'));
+        dump(config('database'));
+        dump(config('mail'));
+        phpinfo();
+    });
+
+    Route::get('dev/oldhome', function() {
+        return view('store.home-v1', ['order' => new \App\Order()]);
+    });
 });
 
 // Authentication Routes...
