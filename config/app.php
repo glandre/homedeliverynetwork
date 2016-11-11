@@ -25,6 +25,8 @@ return [
 
     'file_use_defaults' => env('HDN_FILE_USE_DEFAULTS', false),
 
+    'store_title' => env('STORE_TITLE'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
