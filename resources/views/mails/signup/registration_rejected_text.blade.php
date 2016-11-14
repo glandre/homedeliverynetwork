@@ -1,4 +1,4 @@
-@extends('mails.template')
+@extends('mails.template_text')
 
 @section('title')
     Registration Rejected
