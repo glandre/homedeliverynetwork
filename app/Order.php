@@ -41,6 +41,9 @@ class Order extends Model
         return $this->belongsToMany(Product::class)->wherePivot('product_id', $productId)->withPivot('quantity')->first();
     }
 
+    /**
+     * @return double Total price of an order (sum of product price times quantity).
+     */
     public function total() {
         $total = 0;
         foreach($this->products as $product) {
@@ -50,6 +53,9 @@ class Order extends Model
         return $total;
     }
 
+    /**
+     * @return int Total quantity of products in an order (sum of product quantity).
+     */
     public function totalProducts() {
         $totalProducts = 0;
         foreach($this->products as $product) {
@@ -59,6 +65,9 @@ class Order extends Model
         return $totalProducts;
     }
 
+    /**
+     * @return int Total of all products quantity sold ever (sum of totalProducts for all shipped orders).
+     */
     public static function productSold() {
         $orders = self::where('status', 'Shipped')->get();
         $totalProductSold = 0;
@@ -68,10 +77,13 @@ class Order extends Model
         return $totalProductSold;
     }
 
-    public static function shippedCount() {
+    private static function shippedCount() {
         return self::where('status', 'Shipped')->count();
     }
 
+    /**
+     * @return double Total earned with all products sold ever (sum of total for all shipped orders).
+     */
     public static function revenue() {
         $orders = self::where('status', 'Shipped')->get();
         $revenue = 0;
@@ -151,5 +163,19 @@ class Order extends Model
             $collection[$key]->reduce(function ($carry, $item) {
                 return (empty($carry)) ? $item : $carry . "; " . $item;
             });
+    }
+
+    public function getInfo() {
+        $total = $this->total();
+        $info = 'Order Summary:<br /><ul>';
+
+        $i = 1;
+        foreach($this->products as $product) {
+            $partial = $product->price * $product->pivot->quantity;
+            $info .= "<li>#$i - {$product->name} - {$product->pivot->quantity} - \${$partial}</li>";
+        }
+        $info .= "</ul><p>Total: ${total}</p>";
+
+        return $info;
     }
 }

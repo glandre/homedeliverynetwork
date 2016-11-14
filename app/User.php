@@ -106,16 +106,4 @@ class User extends Authenticatable
     public function isCustomer() {
         return $this->role_id == self::COSTUMER;
     }
-
-    public static function thatShouldBeNotifiedOnNewRegistration() {
-        return self::whereIn(
-            'role_id',
-            [
-                self::SUPER,
-                self::ADMIN,
-                self::FULLMENT,
-                self::MARKETING
-            ]
-        )->get();
-    }
 }

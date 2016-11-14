@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderSuccessfullySubmitted;
 use App\Order;
+use App\User;
+use App\UserThatShouldBeNotified;
 
 class StoreController extends Controller
 {
@@ -107,6 +110,8 @@ class StoreController extends Controller
 
         $this->flashMessagesToSession($messages, 'Submission failed!');
 
+        $this->sendMails();
+
         return view('store.review', ['order' => $this->getOrder()]);
     }
 
@@ -131,4 +136,13 @@ class StoreController extends Controller
             session()->flash('message_success', "Order successfully submitted!");
         }
     }
+
+    private function sendMails() {
+
+        $orderInfo = $this->getOrder()->getInfo();
+
+        \Mail::to(\Auth::user())->send(new OrderSuccessfullySubmitted($orderInfo));
+        \Mail::to(UserThatShouldBeNotified::onOrderSubmitted())->send(new NotifyStaffOrderSuccessSubmitted($orderInfo));
+    }
+
 }

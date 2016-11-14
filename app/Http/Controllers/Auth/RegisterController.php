@@ -100,7 +100,7 @@ class RegisterController extends Controller
             session()->flash('message_success', 'Thanks for your registration, we will contact you soon.');
 
             \Mail::to($user)->send(new SuccessfullySignedUp());
-            \Mail::to(User::thatShouldBeNotifiedOnNewRegistration())->send(new NewRegistrationNotification());
+            \Mail::to(UserThatShouldBeNotified::onNewRegistration())->send(new NewRegistrationNotification());
         }
 
         return $user;

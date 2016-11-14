@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotifyPaymentReceived;
+use App\Mail\OrderSuccessfullySubmitted;
 use App\Order;
 
 class OrderController extends Controller
@@ -58,6 +60,7 @@ class OrderController extends Controller
         $order->save();
 
         session()->flash('message_success', 'Order successfully updated!');
+        $this->sendPaymentConfirmationMail($order);
         return back();
     }
 
@@ -83,6 +86,7 @@ class OrderController extends Controller
         }
         else {
             session()->flash('message_success', "Order successfully submitted!");
+            $this->sendShippedConfirmationMail($order);
         }
 
         return back();
@@ -96,5 +100,13 @@ class OrderController extends Controller
             Order::reduceValidationMessages('', $messages, 'warnings') .
             '.'
         );
+    }
+
+    private function sendPaymentConfirmationMail(Order $order) {
+        \Mail::to(User::find($order->user_id))->send(new NotifyPaymentReceived($order->getInfo()));
+    }
+
+    private function sendShippedConfirmationMail(Order $order) {
+        \Mail::to(User::find($order->user_id))->send(new OrderSuccessfullySubmitted($order->getInfo()));
     }
 }
