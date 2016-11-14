@@ -17,8 +17,9 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Geraldo',
                 'last_name' => 'B. Landre',
                 'email' => 'geraldo.landre@gmail.com',
-                'password' => bcrypt(config('app.key')),
-                'profile_id' => 1 // super
+                'password' => bcrypt('asdfasdf'),
+                'registration_status' => 'Accepted',
+                'role_id' => 1 // super
             ]);
         }
 
@@ -27,8 +28,9 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Geraldo',
                 'last_name' => 'B. Landre',
                 'email' => 'geraldo.landre@homedeliverynetwork.ca',
-                'password' => bcrypt(config('app.key')),
-                'profile_id' => 2 // webmaster
+                'password' => bcrypt('asdfasdf'),
+                'registration_status' => 'Accepted',
+                'role_id' => 2 // webmaster
             ]);
         }
     }
