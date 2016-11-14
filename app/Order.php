@@ -50,6 +50,42 @@ class Order extends Model
         return $total;
     }
 
+    public function totalProducts() {
+        $totalProducts = 0;
+        foreach($this->products as $product) {
+            $totalProducts += $product->pivot->quantity;
+        }
+
+        return $totalProducts;
+    }
+
+    public static function productSold() {
+        $orders = self::where('status', 'Shipped')->get();
+        $totalProductSold = 0;
+        foreach($orders as $order) {
+            $totalProductSold += $order->totalProducts();
+        }
+        return $totalProductSold;
+    }
+
+    public static function shippedCount() {
+        return self::where('status', 'Shipped')->count();
+    }
+
+    public static function revenue() {
+        $orders = self::where('status', 'Shipped')->get();
+        $revenue = 0;
+        foreach($orders as $order) {
+            $revenue += $order->total();
+        }
+        return $revenue;
+    }
+
+    public static function averagePrice() {
+        $shippedCount = self::shippedCount();
+        return $shippedCount == 0 ? 0 : self::revenue() / $shippedCount;
+    }
+
     public function process($status)
     {
         \DB::beginTransaction();
