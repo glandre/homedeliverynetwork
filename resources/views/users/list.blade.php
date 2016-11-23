@@ -104,28 +104,28 @@
 
     <div class="row" id="users_widget" style="display: none;">
         @foreach($users as $user)
-        <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-            <div class="card-box widget-user">
-                <div>
-                    <img src="{{{ $user->pictureUrl() }}}" class="img-responsive img-circle" alt="user">
-                    <div class="wid-u-info">
-                        <h5 class="m-t-20 m-b-5">
-                            <a href="{{ url("/users/{$user->id}") }}">
-                                {{{ $user->name }}}
-                            </a>
-                            <span style="font-size: small; color: #f00;"
-                                  title="This user requires approval due to recent registration">
-                                {{ $user->registration_status == 'New' ? '(Pending Approval)' : '' }}
-                            </span>
-                        </h5>
-                        <p class="text-muted m-b-0 font-13">{{{ $user->email }}}</p>
-                        <div class="user-position">
-                            <span class="role text-warning font-weight-bold">{{{ $user->role->name }}}</span>
+            <a href="{{ url("/users/{$user->id}") }}">
+                <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                    <div class="card-box widget-user">
+                        <div>
+                            <img src="{{{ $user->pictureUrl() }}}" class="img-responsive img-circle" alt="user">
+                            <div class="wid-u-info">
+                                <h5 class="m-t-20 m-b-5">
+                                    {{{ $user->name }}}
+                                    <span style="font-size: small; color: #f00;"
+                                          title="This user requires approval due to recent registration">
+                                        {{ $user->registration_status == 'New' ? '(Pending Approval)' : '' }}
+                                    </span>
+                                </h5>
+                                <p class="text-muted m-b-0 font-13">{{{ $user->email }}}</p>
+                                <div class="user-position">
+                                    <span class="role text-warning font-weight-bold">{{{ $user->role->name }}}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </a>
         @endforeach
     </div>
 
