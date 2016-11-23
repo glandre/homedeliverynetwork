@@ -10,7 +10,16 @@
 @endsection
 
 @section('settings-menu')
-   
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another
+            action</a>
+        <a class="dropdown-item" href="#">Something
+            else here</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Separated
+            link</a>
+    </div>
 @endsection
 
 @section('page-title')
@@ -23,41 +32,41 @@
 
                   <div class="row">
                             
-                            <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                               <a href="{{ url('/products/create') }}"> <div class="card-box tilebox-one">
-                                    <i class="zmdi zmdi-shopping-basket text-muted"></i>
+                            <div class=" col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                               <a href="{{ url('/products/create') }}"> <div class="bg-info card-box tilebox-one">
+                                    <i class="zmdi zmdi-shopping-basket "></i>
                            <br>   <br>
-                                    <h6 class="text-muted text-uppercase m-b-20">Add <br>New Product</h6>
+                                    <h6 class=" text-uppercase m-b-20">Add <br>New Product</h6>
                                    
                                     <span class=""> </span> <span class="text-muted"></span>
                                 </div></a>
                             </div>
 
                             <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                                 <a href="{{ url('/orders-new') }}"> <div class="card-box tilebox-one">
-                                    <i class="zmdi zmdi-local-shipping text-muted"></i>
+                                 <a href="{{ url('/orders-new') }}"> <div class=" bg-success card-box tilebox-one">
+                                    <i class="zmdi zmdi-local-shipping"></i>
                            <br>   <br>
-                                    <h6 class="text-muted text-uppercase m-b-20">View <br>Recent Orders</h6>
+                                    <h6 class=" text-uppercase m-b-20">View <br>Recent Orders</h6>
                                    
                                     <span class=""> </span> <span class="text-muted"></span>
                                 </div></a>
                             </div>
 
                             <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                                   <a href="{{ url('/users/create') }}"> <div class="card-box tilebox-one">
-                                    <i class="ion-person-add text-muted"></i>
+                                   <a href="{{ url('/users/create') }}"> <div class="bg-info card-box tilebox-one">
+                                    <i class="ion-person-add "></i>
                            <br>   <br>
-                                    <h6 class="text-muted text-uppercase m-b-20">Add <br>Staff Member</h6>
+                                    <h6 class=" text-uppercase m-b-20">Add <br>Staff Member</h6>
                                    
                                     <span class=""> </span> <span class="text-muted"></span>
                                 </div></a>
                             </div>
 
                             <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                                  <a href="{{url('/products/inventory')}}"> <div class="card-box tilebox-one">
-                                    <i class="zmdi zmdi-chart text-muted"></i>
+                                  <a href="{{url('/products/inventory')}}"> <div class="bg-success card-box tilebox-one">
+                                    <i class="zmdi zmdi-chart"></i>
                            <br>   <br>
-                                    <h6 class="text-muted text-uppercase m-b-20">Update <br>Inventory</h6>
+                                    <h6 class="text-uppercase m-b-20">Update <br>Inventory</h6>
                                    
                                     <span class=""> </span> <span class="text-muted"></span>
                                 </div></a>
@@ -111,7 +120,7 @@
         {{--@include('sales-statistics');--}}
 
 
-    
+       
         <!-- end row -->
 @endsection
 

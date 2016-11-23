@@ -25,6 +25,47 @@
 
 @section('content')
 
+<div class="row">
+                            
+                            <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                               <a href="{{ url('/users/create') }}"> <div class="card-box tilebox-one">
+                                    <i class="zmdi zmdi-shopping-basket text-muted"></i>
+                           <br>   <br>
+                                    <h6 class="text-muted text-uppercase m-b-20">Add <br>New User</h6>
+                                   
+                                    <span class=""> </span> <span class="text-muted"></span>
+                                </div></a>
+                            </div>
+                             <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                                  <a href="#"> <div class="card-box tilebox-one">
+                                    <i class="zmdi zmdi-chart text-muted"></i>
+                                    <br>   <br>
+                                    <h6 class="text-muted text-uppercase m-b-20">View <br>Pending Users</h6>
+                                   
+                                    <span class=""> </span> <span class="text-muted"></span>
+                                </div></a>
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                                  <a href="{{url('/products/inventory')}}"> <div class="card-box tilebox-one">
+                                    <i class="zmdi zmdi-chart text-muted"></i>
+                                    <br>   <br>
+                                    <h6 class="text-muted text-uppercase m-b-20">View <br>Staff</h6>
+                                   
+                                    <span class=""> </span> <span class="text-muted"></span>
+                                </div></a>
+                            </div>
+                              <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                                  <a href="{{url('/products/inventory')}}"> <div class="card-box tilebox-one">
+                                    <i class="zmdi zmdi-chart text-muted"></i>
+                           <br>   <br>
+                                    <h6 class="text-muted text-uppercase m-b-20">View <br>Customers</h6>
+                                   
+                                    <span class=""> </span> <span class="text-muted"></span>
+                                </div></a>
+                            </div>
+                        </div>
+                     
+
     <input hidden id="activeView" value="users_widget" />
 
     <div class="row" id="users_table" style="display: none;">
@@ -118,6 +159,7 @@
                                     </span>
                                 </h5>
                                 <p class="text-muted m-b-0 font-13">{{{ $user->email }}}</p>
+                                <p><a href="{{ url("/users/{$user->id}/edit") }}"" class="btn btn-primary">Edit User</a></p>
                                 <div class="user-position">
                                     <span class="role text-warning font-weight-bold">{{{ $user->role->name }}}</span>
                                 </div>

@@ -23,7 +23,7 @@
 @endsection
 
 @section('content')
-<div class="row">
+                    <div class="row">
                             
                             <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
                                <a href="{{ url('/products/create') }}"> <div class="card-box tilebox-one">
@@ -45,7 +45,7 @@
                                 </div></a>
                             </div>
                         </div>
-    <div class="row">
+                     <div class="row">
         <div class="col-sm-12">
             <div class="card-box table-responsive">
                 <h4 class="m-t-0 header-title"><b>Managing products:</b></h4>

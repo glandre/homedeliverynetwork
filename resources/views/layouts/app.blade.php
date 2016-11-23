@@ -4,8 +4,8 @@
 
     <!-- Navigation Bar-->
     <header id="topnav">
-        <div class="topbar-main">
-            <div class="container">
+        <div class="bg-info topbar-main">
+            <div class="bg-info container">
 
                 <!-- LOGO -->
                 <div class="topbar-left">
