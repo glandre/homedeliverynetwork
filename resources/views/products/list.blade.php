@@ -23,7 +23,28 @@
 @endsection
 
 @section('content')
+<div class="row">
+                            
+                            <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                               <a href="{{ url('/products/create') }}"> <div class="card-box tilebox-one">
+                                    <i class="zmdi zmdi-shopping-basket text-muted"></i>
+                           <br>   <br>
+                                    <h6 class="text-muted text-uppercase m-b-20">Add <br>New Product</h6>
+                                   
+                                    <span class=""> </span> <span class="text-muted"></span>
+                                </div></a>
+                            </div>
 
+                            <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                                  <a href="{{url('/products/inventory')}}"> <div class="card-box tilebox-one">
+                                    <i class="zmdi zmdi-chart text-muted"></i>
+                           <br>   <br>
+                                    <h6 class="text-muted text-uppercase m-b-20">Update <br>Inventory</h6>
+                                   
+                                    <span class=""> </span> <span class="text-muted"></span>
+                                </div></a>
+                            </div>
+                        </div>
     <div class="row">
         <div class="col-sm-12">
             <div class="card-box table-responsive">
@@ -33,67 +54,28 @@
                     Click on a product name to view its description and edit it.
                 </p>
 
-                <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap4 no-footer">
+                <div id="" class="">
                     <div class="row">
-                        <div class="col-md-12">
-                            <table id="datatable" class="table table-striped table-bordered dataTable no-footer"
-                                   role="grid" aria-describedby="datatable_info">
-                                <thead>
-                                <tr role="row">
-                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
-                                        colspan="1" aria-sort="ascending"
-                                        aria-label="Name: activate to sort column descending"
-                                        style="width: 279.5px;">Name
-                                    </th>
-                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
-                                        colspan="1" aria-sort="ascending"
-                                        aria-label="Name: activate to sort column descending"
-                                        style="width: 279.5px;">Inventory
-                                    </th>
-                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
-                                        colspan="1" aria-sort="ascending"
-                                        aria-label="Name: activate to sort column descending"
-                                        style="width: 279.5px;">Price
-                                    </th>
-                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
-                                        colspan="1" aria-sort="ascending"
-                                        aria-label="Name: activate to sort column descending"
-                                        style="width: 279.5px;">Type
-                                    </th>
-                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
-                                        colspan="1" aria-sort="ascending"
-                                        aria-label="Name: activate to sort column descending"
-                                        style="width: 279.5px;">Vendor
-                                    </th>
-                                </tr>
-                                </thead>
+                       @foreach($products as $product)
+                            <div class="col-sm-4 col-lg-3 col-xs-12">
 
+                                <!-- Simple card -->
+                                <div class="card">
+                                    <img class="card-img-top img-fluid" src="assets/images/gallery/9.jpg" alt="Card image cap">
+                                    <div class="card-block">
+                                        <h4 class="card-title"> {{ $product->name }}</h4>
+                                        <p class="card-text"> {{ $product->description }}</p>
+                                        <p class="card-text"> Inventory {{ $product->quantity }}</p>
+                                        <div class="btn btn-group"> 
+                                        <a href="{{ url("/products/{$product->id}/edit") }}"" class="btn btn-primary">Edit Product</a>
+                                         <a href="{{ url("/products/{$product->id}/edit") }}" class="btn btn-primary">Update inventory</a>
+                                         </div>
+                                    </div>
+                                </div>
 
-                                <tbody>
-
-                                @foreach($products as $product)
-                                <tr role="row" class="odd">
-                                    <td class="sorting_asc">
-                                        <a href="{{ url("/products/{$product->id}") }}">
-                                            {{{ $product->name }}}
-                                        </a>
-                                    </td>
-                                    <td class="sorting_asc">
-                                        {{{ ($product->quantity > 0) ? $product->quantity : 'N/A' }}}
-                                    </td>
-                                    <td class="sorting_asc">
-                                        {{{ $product->price }}}
-                                    </td>
-                                    <td class="sorting_asc">
-                                        {{{ $product->type->name }}}
-                                    </td>
-                                    <td class="sorting_asc">
-                                        {{{ $product->vendor->name }}}
-                                    </td>
-                                </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                            </div>
+                        @endforeach
+                           
                         </div>
                     </div>
                 </div>

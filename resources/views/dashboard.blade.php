@@ -10,16 +10,7 @@
 @endsection
 
 @section('settings-menu')
-    <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another
-            action</a>
-        <a class="dropdown-item" href="#">Something
-            else here</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Separated
-            link</a>
-    </div>
+   
 @endsection
 
 @section('page-title')
@@ -28,12 +19,57 @@
 
 @section('content')
 
+    <div class="left side-menu">
+
+                  <div class="row">
+                            
+                            <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                               <a href="{{ url('/products/create') }}"> <div class="card-box tilebox-one">
+                                    <i class="zmdi zmdi-shopping-basket text-muted"></i>
+                           <br>   <br>
+                                    <h6 class="text-muted text-uppercase m-b-20">Add <br>New Product</h6>
+                                   
+                                    <span class=""> </span> <span class="text-muted"></span>
+                                </div></a>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                                 <a href="{{ url('/orders-new') }}"> <div class="card-box tilebox-one">
+                                    <i class="zmdi zmdi-local-shipping text-muted"></i>
+                           <br>   <br>
+                                    <h6 class="text-muted text-uppercase m-b-20">View <br>Recent Orders</h6>
+                                   
+                                    <span class=""> </span> <span class="text-muted"></span>
+                                </div></a>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                                   <a href="{{ url('/users/create') }}"> <div class="card-box tilebox-one">
+                                    <i class="ion-person-add text-muted"></i>
+                           <br>   <br>
+                                    <h6 class="text-muted text-uppercase m-b-20">Add <br>Staff Member</h6>
+                                   
+                                    <span class=""> </span> <span class="text-muted"></span>
+                                </div></a>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                                  <a href="{{url('/products/inventory')}}"> <div class="card-box tilebox-one">
+                                    <i class="zmdi zmdi-chart text-muted"></i>
+                           <br>   <br>
+                                    <h6 class="text-muted text-uppercase m-b-20">Update <br>Inventory</h6>
+                                   
+                                    <span class=""> </span> <span class="text-muted"></span>
+                                </div></a>
+                            </div>
+                        </div>
+
         <div class="row">
             <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
                 <div class="card-box tilebox-one">
                     <i class="icon-layers pull-xs-right text-muted"></i>
                     <h6 class="text-muted text-uppercase m-b-20">Orders</h6>
-                    <h2 class="m-b-20" data-plugin="counterup">{{ \App\Order::shippedCount() }}</h2>
+                    <h2 class="m-b-20" data-plugin="counterup">25</h2>
                     {{--<span class="label label-success"> +11% </span> <span class="text-muted">From previous period</span>--}}
                 </div>
             </div>
@@ -75,103 +111,7 @@
         {{--@include('sales-statistics');--}}
 
 
-        <div class="row">
-            <div class="col-xs-12 col-lg-12 col-xl-7">
-                <div class="row">
-                    {{--@include('inbox')--}}
-
-                    <div class="col-xs-12 col-md-12">
-                        <div class="card-box">
-                            <h4 class="header-title m-t-0 m-b-20">Sales Statistics</h4>
-
-                            <p class="font-600 m-b-5">iMacs <span class="text-danger pull-right"><b>79%</b></span></p>
-                            <progress class="progress progress-striped progress-xs progress-danger m-b-0" value="79" max="100">79%
-                            </progress>
-                        </div>
-
-                        <div class="card-box">
-                            <h4 class="header-title m-t-0 m-b-20">Monthly Sales</h4>
-
-                            <p class="font-600 m-b-5">Macbooks <span class="text-success pull-right"><b>30%</b></span></p>
-                            <progress class="progress progress-striped progress-xs progress-success m-b-0" value="30" max="100">30%
-                            </progress>
-                        </div>
-
-                        <div class="card-box">
-                            <h4 class="header-title m-t-0 m-b-20">Daily Sales</h4>
-
-                            <p class="font-600 m-b-5">Mobiles <span class="text-warning pull-right"><b>50%</b></span></p>
-                            <progress class="progress progress-striped progress-xs progress-warning m-b-0" value="50" max="100">50%
-                            </progress>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div><!-- end col-->
-
-            <div class="col-xs-12 col-lg-12 col-xl-5">
-                <div class="card-box">
-
-                    <h4 class="header-title m-t-0 m-b-30">Top Contracts</h4>
-
-                    <div class="table-responsive">
-                        <table class="table table-bordered m-b-0">
-                            <thead>
-                            <tr>
-                                <th>Company</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                                <th>Status</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th class="text-muted">Apple Technology</th>
-                                <td>20/02/2014</td>
-                                <td>19/02/2020</td>
-                                <td><span class="label label-success">Paid</span></td>
-                            </tr>
-                            <tr>
-                                <th class="text-muted">Envato Pty Ltd.</th>
-                                <td>20/02/2014</td>
-                                <td>19/02/2020</td>
-                                <td><span class="label label-danger">Unpaid</span></td>
-                            </tr>
-                            <tr>
-                                <th class="text-muted">Dribbble LLC.</th>
-                                <td>20/02/2014</td>
-                                <td>19/02/2020</td>
-                                <td><span class="label label-success">Paid</span></td>
-                            </tr>
-                            <tr>
-                                <th class="text-muted">Adobe Family</th>
-                                <td>20/02/2014</td>
-                                <td>19/02/2020</td>
-                                <td><span class="label label-success">Paid</span></td>
-                            </tr>
-                            <tr>
-                                <th class="text-muted">Apple Technology</th>
-                                <td>20/02/2014</td>
-                                <td>19/02/2020</td>
-                                <td><span class="label label-danger">Unpaid</span></td>
-                            </tr>
-                            <tr>
-                                <th class="text-muted">Envato Pty Ltd.</th>
-                                <td>20/02/2014</td>
-                                <td>19/02/2020</td>
-                                <td><span class="label label-success">Paid</span></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-
-                </div>
-            </div><!-- end col-->
-
-
-        </div>
+    
         <!-- end row -->
 @endsection
 
