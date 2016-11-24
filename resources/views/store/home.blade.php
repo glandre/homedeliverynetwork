@@ -82,7 +82,7 @@ REGISTER NOW! (www.buyonlineweed.ca/how-to-buy-weed-online)
             <div class="col-sm-4 col-xs-6">
               <a href="#" class="brand">
                 <div class="brand-logo opacity-75">
-                  <img src="{{{ $brand->pictureUrl() }}}" alt="{{{ $brand->name }}}">
+                  <img src="{{{ $brand->picture }}}" alt="{{{ $brand->name }}}">
                 </div>
                 <p class="brand-text">{{{ $brand->name }}}, {{{ $brand->description }}}</p>
               </a>

@@ -9,11 +9,11 @@
         "laravel/framework": "5.3.*",
         "barryvdh/laravel-ide-helper": "v2.2.1",
         "laravelcollective/html": "5.3.x-dev",
-        "monolog/monolog": "^1.4",
         "twig/twig": "^1.8",
         "symfony/twig-bridge": "^2",
         "doctrine/dbal": "^2.5",
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^6.2",
+        "uploadcare/uploadcare-php": ">=v1.1.0,<2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

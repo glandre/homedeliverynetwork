@@ -80,10 +80,8 @@
                         </div>
 
                         <div class="form-group">
-                            {{Form::file('picture', [
-                                'class' => 'form-control',
-                                'placeholder' => 'Photo ID'
-                            ])}}
+                            <input type="hidden" role="uploadcare-uploader" name="picture">
+                            <input type="hidden" name="UPLOADCARE_STORE" value="1">
                         </div>
 
                         <div class="form-group row">

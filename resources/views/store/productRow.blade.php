@@ -10,7 +10,7 @@
                     <span class="shop-label text-danger">Sale</span>
                     @endif
                     <a href="shop-single.html" class="item-link"></a>
-                    <img src="{{{ $product->pictureUrl() }}}" alt="Shop item">
+                    <img src="{{{ $product->picture }}}" alt="Shop item">
                     <div class="shop-item-tools">
                         <a href="#" class="add-to-whishlist" data-toggle="tooltip"
                            data-placement="top" title="" data-original-title="Wishlist">
@@ -29,9 +29,7 @@
                 </div>
                 <div class="shop-item-details">
                     <h3 class="shop-item-title"><a href="shop-single.html">{{{ $product->name }}}</a></h3>
-                    <span class="shop-item-price">
-                                            ${{{ $product->price }}}
-                                          </span>
+                    <span class="shop-item-price">${{{ $product->price }}}</span>
                 </div>
             </div><!-- .shop-item -->
         </div><!-- .col-lg-3.col-sm-6 -->

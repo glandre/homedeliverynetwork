@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests;
 use App\Product;
 use Illuminate\Http\Request;
+use \Uploadcare;
 
-use App\Http\Requests;
+
 
 class ProductController extends CRUDController
 {
@@ -54,6 +56,7 @@ class ProductController extends CRUDController
     public function store()
     {
         $this->validateRequest();
+        $api = new Uploadcare\Api('cc79e063e30c7c41996d', 'e744f785ee9311d80ed6');
 
         $values = [
             'name' => $this->request->input('name'),
@@ -66,8 +69,8 @@ class ProductController extends CRUDController
             'vendor_id' => $this->request->input('vendor_id')
         ];
 
-        if($this->request->file('picture')) {
-            $values['picture'] = $this->request->file('picture')->store('public');
+        if($this->request['picture']) {
+            $values['picture'] = $this->request['picture'];
         }
 
         Product::create($values);

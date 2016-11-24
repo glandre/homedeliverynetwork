@@ -61,7 +61,7 @@
 
                                 <!-- Simple card -->
                                 <div class="card">
-                                    <img class="card-img-top img-fluid" src="assets/images/gallery/9.jpg" alt="Card image cap">
+                                    <img class="card-img-top img-fluid" src="{{ $product->picture }}" alt="Card image cap">
                                     <div class="card-block">
                                         <h4 class="card-title"> {{ $product->name }}</h4>
                                         <p class="card-text"> {{ $product->description }}</p>

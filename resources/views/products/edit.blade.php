@@ -32,7 +32,7 @@
 @endsection
 
 @section('page-title')
-{{{ $title }}} Product
+    {{{ $title }}} Product
 @endsection
 
 @section('content')
@@ -43,12 +43,12 @@
         </p>
 
         <div class="p-20">
-            {{Form::open([
-                'url' => $url,
-                'method' => $method,
-                'class' => 'form-horizontal',
-                'files' => true
-            ])}}
+                {{Form::open([
+                    'url' => $url,
+                    'method' => $method,
+                    'class' => 'form-horizontal',
+                    'files' => true
+                ])}}
                 {{Form::hidden('id', $model->id)}}
                 <div class="form-group">
                     <label for="name">Name</label>
@@ -106,12 +106,8 @@
                 </div>
 
                 <div class="form-group">
-                    {{Form::label('picture', 'Picture:')}}
-                    {{Form::file('picture', [
-                        'class' => 'form-control',
-                        $readonly,
-                        $disabled
-                    ])}}
+                    <input type="hidden" role="uploadcare-uploader" name="picture">
+                    <input type="hidden" name="UPLOADCARE_STORE" value="1">
                 </div>
 
                 @if($saveEnabled)
