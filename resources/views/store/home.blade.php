@@ -92,7 +92,7 @@ REGISTER NOW! (www.buyonlineweed.ca/how-to-buy-weed-online)
       </section><!-- .container -->
 
       <!-- Video Popup -->
-      @include('store.videopopup')
+  
 
       <!-- Features -->
       <section class="container space-top space-bottom padding-top-3x padding-bottom-3x">
