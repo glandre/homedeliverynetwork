@@ -36,6 +36,11 @@
     @yield('head-extensions')
 
     <script src="/js/modernizr.min.js"></script>
+    <script>UPLOADCARE_PUBLIC_KEY = "cc79e063e30c7c41996d";</script>
+    <script src="https://ucarecdn.com/widget/2.10.1/uploadcare/uploadcare.full.min.js" charset="utf-8"></script>
+
+    <!-- This is where the widget will be. Don't forget the name attribute! -->
+    <input type="hidden" role="uploadcare-uploader" name="my_file" />
 </head>
 <body>
 

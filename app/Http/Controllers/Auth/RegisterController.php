@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Mail\NewRegistrationNotification;
 use App\Mail\SuccessfullySignedUp;
 use App\User;
+use GuzzleHttp\Client;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Support\MessageBag;
 use Illuminate\Contracts\Support\MessageProvider;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use \Uploadcare;
 use Validator;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -76,6 +78,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $api = new Uploadcare\Api('cc79e063e30c7c41996d', 'e744f785ee9311d80ed6');
         $referrer_id = null;
         if($data['referral_code']) {
             $referrer_user = User::where('referral_code', $data['referral_code'])->first();
@@ -86,12 +89,14 @@ class RegisterController extends Controller
             $referrer_id = $referrer_user->id;
         }
 
+        
+
         $user = User::create([
             'name' => $data['name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'picture' => $data['picture']->store('public') ?? null,
+            'picture' => $data['picture'],
             'password' => bcrypt($data['password']),
             'referrer_id' => $referrer_id
         ]);
@@ -99,8 +104,17 @@ class RegisterController extends Controller
         if($user) {
             session()->flash('message_success', 'Thanks for your registration, we will contact you soon.');
 
-            \Mail::to($user)->send(new SuccessfullySignedUp());
-            \Mail::to(UserThatShouldBeNotified::onNewRegistration())->send(new NewRegistrationNotification());
+            // \Mail::to($user)->send(new SuccessfullySignedUp());
+            // \Mail::to(UserThatShouldBeNotified::onNewRegistration())->send(new NewRegistrationNotification());
+
+            $client = new Client();
+            $message = array(
+                'to' => $data['email'],
+                'from' => "BuyOnlineWeed <info@buyonlineweed.ca>",
+                'subject' => 'Registration Successful',
+                'html' => '<h1>Thanks for applying for an account</h1>'
+            );
+            $res = $client->request('POST', 'https://hdnemailserver.herokuapp.com/registrations', ['form_params' => $message]);
         }
 
         return $user;
