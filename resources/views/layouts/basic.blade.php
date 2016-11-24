@@ -40,7 +40,7 @@
     <script src="https://ucarecdn.com/widget/2.10.1/uploadcare/uploadcare.full.min.js" charset="utf-8"></script>
 
     <!-- This is where the widget will be. Don't forget the name attribute! -->
-    <input type="hidden" role="uploadcare-uploader" name="my_file" />
+    <!-- <input type="hidden" role="uploadcare-uploader" name="my_file" /> -->
 </head>
 <body>
 
