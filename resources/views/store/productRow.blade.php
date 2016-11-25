@@ -7,9 +7,9 @@
                         @include('store.stars', $product->stars())
                     @endif
                     @if($onSale)
-                    <span class="shop-label text-danger">Sale</span>
+                        <span class="shop-label text-danger">Sale</span>
                     @endif
-                    <a href="shop-single.html" class="item-link"></a>
+                    <a href="/store/{{ $product->id }}" class="item-link"></a>
                     <img src="{{{ $product->picture }}}" alt="Shop item">
                     <div class="shop-item-tools">
                         <a href="#" class="add-to-whishlist" data-toggle="tooltip"

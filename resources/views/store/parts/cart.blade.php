@@ -2,8 +2,8 @@
     @foreach(cart()->products as $product)
         <!-- Item -->
             <div class="item">
-                <a href="shop-single.html" class="item-thumb">
-                    <img src="{{{ $product->pictureUrl() }}}" alt="{{{ $product->name }}}">
+                <a href="/products/{{ $product->id }}" class="item-thumb">
+                    <img src="{{{ $product->picture }}}" alt="{{{ $product->name }}}">
                 </a>
                 <div class="item-details">
                     <h3 class="item-title"><a href="shop-single.html">{{{ $product->name }}}</a></h3>

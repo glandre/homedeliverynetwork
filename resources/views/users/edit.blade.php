@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('head-extensions')
-<script>
-    function deleteItem() {
-        if(confirm('Are you sure you want to delete {{ $model->name }}?')) {
-            document.getElementById('delete{{ $model->id }}').submit();
+    <script>
+        function deleteItem() {
+            if(confirm('Are you sure you want to delete {{ $model->name }}?')) {
+                document.getElementById('delete{{ $model->id }}').submit();
+            }
         }
-    }
-</script>
+    </script>
 @endsection
 
 @section('settings-menu')
@@ -42,6 +42,10 @@
         <p class="text-muted font-13 m-b-10">
             Here you can view user information. Click on edit to enable updates.
         </p>
+
+        <div class="">
+            <img src="{{ $model->picture }}" style="height:120px;width:auto;">
+        </div>
 
         <div class="p-20">
             @if($model->registration_status == 'New')
@@ -212,7 +216,6 @@
             {{Form::close()}}
         </div>
     </div>
-
 @endsection
 
 @section('page-js')

@@ -84,8 +84,7 @@
                     <i class="material-icons person"></i>
                 </a>
                 <div class="cart-btn">
-                    <a href="#" onclick="showCart()"
-                       class="toolbar-toggle">
+                    <a href="/store/cart/review" class="toolbar-toggle">
                         <i>
                             <span class="material-icons shopping_basket"></span>
                             @if(count(cart()->products) > 0)
