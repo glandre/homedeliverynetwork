@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('store.basic')
 
 @section('head-extensions')
 
@@ -23,8 +23,110 @@
 @endsection
 
 @section('content')
+    <!-- Container -->
+    <section class="container padding-top-3x padding-bottom">
 
-    <div class="row">
+        <h1 class="space-top-half">Shopping Cart</h1>
+        <div class="row padding-top">
+
+            <!-- Cart -->
+            <div class="col-sm-8 padding-bottom-2x">
+                <!-- <p class="text-sm">
+                    <span class="text-gray">Currently</span> 3 items
+                    <span class="text-gray"> in cart</span>
+                </p> -->
+                <div class="shopping-cart">
+                    @foreach($order->products as $product)
+                        <!-- Item -->
+                        <div class="item">
+                            <a href="/store/{{ $product->id }}" class="item-thumb">
+                                <img src="{{ $product->picture }}" alt="Item">
+                            </a>
+                            <div class="item-details">
+                                <h3 class="item-title">{{ $product->name }}</h3>
+                                <h4 class="item-price">${{ $product->price }}</h4>
+                                <div class="count-input">
+                                    <!-- <a class="incr-btn" data-action="decrease" href="#">–</a> -->
+                                    Quantity: {{{ ($product->pivot->quantity > 0) ? $product->pivot->quantity : 'N/A' }}}
+                                    {{ ($product->pivot->quantity > $product->quantity) ? '(Not available in inventory)' : '' }}
+                                    <!-- <input class="quantity" type="text" value="1"> -->
+                                    <!-- <a class="incr-btn" data-action="increase" href="#">+</a> -->
+                                </div>
+                            </div>
+                            @if($order->status == 'Cart')
+                            <div>
+                                {{Form::open([
+                                    'url' => "store/cart/remove/$product->id",
+                                    'method' => 'DELETE'
+                                ])}}
+                                {{ csrf_field() }}
+                                    <!-- <a href="JavaScript:removeFromCart({{{ $product->id }}})" class="item-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove">
+                                        <i class="material-icons remove_shopping_cart"></i>
+                                    </a> -->
+                                <button type="submit" class="btn btn-danger waves-effect waves-light">
+                                    Remove
+                                </button>
+                                {{Form::close()}}
+                            </div>
+                            @endif
+                        </div><!-- .item -->
+                    @endforeach
+              
+                </div><!-- .shopping-cart -->
+            
+                <!-- Coupon -->
+                <div class="">
+                    <p class="text-gray text-sm">Have discount coupon?</p>
+                    <form method="post" class="row">
+                        <div class="col-md-8 col-sm-7">
+                            <div class="form-element">
+                                <input type="text" class="form-control" placeholder="Enter coupon" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-5">
+                            <button type="submit" class="btn btn-default btn-ghost btn-block space-top-none space-bottom">Apply Coupon</button>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- .col-sm-8 -->
+
+            <!-- Sidebar -->
+            <div class="col-md-3 col-md-offset-1 col-sm-4 padding-bottom-2x">
+                <aside>
+                    <h3 class="toolbar-title">Cart subtotal:</h3>
+                    <h4 class="amount">${{ cart()->total() }}</h4>
+                    <p class="text-sm text-gray">* Note: This amount does not include costs for international shipping. You will be able to calculate shipping costs on checkout.</p>
+                    <!-- <a href="#" class="btn btn-default btn-block waves-effect waves-light">Update Cart</a> -->
+                    @if($order->status == 'Cart')
+
+                        {{Form::open([
+                            'url' => url("/orders/{$order->id}/new"),
+                            'method' => 'POST',
+                            'class' => 'form-horizontal',
+                        ])}}
+
+                        <div class="form-group">
+                            <div>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                    Submit
+                                </button>
+                                <a href="{{ url('/store') }}">
+                                    <span class="btn btn-primary waves-effect waves-light">
+                                        Back to Store
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+
+                        {{Form::close()}}
+
+                    @endif
+                </aside>
+            </div><!-- .col-md-3.col-sm-4 -->
+        </div><!-- .row -->
+    </section><!-- .container -->
+
+    <!-- <div class="row">
         <div class="col-sm-12">
             <div class="card-box table-responsive">
                 <h4 class="m-t-0 header-title"><b>Review Order:</b></h4>
@@ -56,12 +158,12 @@
                         {{Form::close()}}
 
                     @endif
-                </div>
+                </div> -->
 
 
 
 
-                <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap4 no-footer">
+                <!-- <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap4 no-footer">
                     <div class="row">
                         <div class="col-md-12">
                             <table id="datatable" class="table table-striped table-bordered dataTable no-footer"
@@ -141,7 +243,7 @@
                 </div>
             </div>
         </div>
-    </div> <!-- end row -->
+    </div> --> <!-- end row -->
 
 @endsection
 
