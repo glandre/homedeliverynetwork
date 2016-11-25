@@ -10,8 +10,8 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <a href="{{ url('/home') }}" class="logo">
-                        <i class="zmdi zmdi-group-work icon-c-logo"></i>
-                        <span>{{ config('app.name') }}</span>
+                        <img src="/images/dashboardicon.png" style="max-height: 40px;">
+                        <span>Buy Online Weed | HQ</span>
                     </a>
                 </div>
                 <!-- End Logo container-->
@@ -146,7 +146,7 @@
                         <li class="nav-item dropdown notification-list">
                             <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light nav-user" data-toggle="dropdown"
                                href="{{{ url('/') }}}#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <img src="{{{ Auth::user()->pictureUrl() }}}" alt="user" class="img-circle">
+                                <img src="{{{ Auth::user()->picture }}}" alt="user" class="img-circle">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-arrow profile-dropdown " aria-labelledby="Preview">
                                 <!-- item-->
