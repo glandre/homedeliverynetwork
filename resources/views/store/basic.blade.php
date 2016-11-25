@@ -107,7 +107,6 @@
                     <li class=""><a href="{{url('/store')}}">Home</a></li>
                        <li><a href="{{url('/catalog')}}">Shop</a></li>
                     <li class="">
-
                     </li>
                     <li><a href="{{url('/about')}}">About</a></li>
                     <li><a href="{{url('/faq')}}">FAQ</a></li>
