@@ -11,15 +11,18 @@
        -->
       <section class="hero-slider" data-loop="true" data-autoplay="true" data-interval="7000">
         <div class="inner">
-          <div class="slide" style="background-image: url(images/featured/blog.jpg);">
+          <div class="slide" style="background-image: url(/images/featured/blog.jpg);">
+          <br>
+          <br>                    
+          <br>
             <div class="container text-center padding-top-3x">
-              <span class="h1 from-bottom hh">Buy weed online.</span><br>
-              <span class="h2 from-bottom"><span class="text-thin">Get it delivered anywhere in Canada.<br>
+              <span class="h1 from-bottom" style="color: #fff; font-weight: 600; font-size: 4em;">Buy weed online.</span><br>
+              <span class="h2 from-bottom" style="color: #fff; font-weight: 600; font-size: 2em;><span class="text-thin">Get it delivered anywhere in Canada.<br>
               <a href="{{url('/faq')}}" class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
                How it works
                 <i class="material-icons arrow_forward"></i>
               </a>
-               <a href="#products" class="btn btn-success btn-with-icon-right waves-effect waves-light scale-up">
+               <a href="/catalog" class="btn btn-success btn-with-icon-right waves-effect waves-light scale-up">
               View Products
                 <i class="material-icons arrow_forward"></i>
               </a>

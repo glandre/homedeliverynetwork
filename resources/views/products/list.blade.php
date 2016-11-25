@@ -61,14 +61,14 @@
 
                                 <!-- Simple card -->
                                 <div class="card">
-                                    <img class="card-img-top img-fluid" src="{{ $product->picture }}" alt="Card image cap">
+                                    <img class="card-img-top img-fluid" src="{{ $product->picture }}" alt="Card image cap" style="height: 200px; width: auto; margin-left: auto; margin-right: auto; margin-top: 10px;">
                                     <div class="card-block">
                                         <h4 class="card-title"> {{ $product->name }}</h4>
                                         <p class="card-text"> {{ $product->description }}</p>
                                         <p class="card-text"> Inventory {{ $product->quantity }}</p>
                                         <div class="btn btn-group"> 
-                                        <a href="{{ url("/products/{$product->id}/edit") }}"" class="btn btn-primary">Edit Product</a>
-                                         <a href="{{ url("/products/{$product->id}/edit") }}" class="btn btn-primary">Update inventory</a>
+                                        <a href="{{ url("/products/{$product->id}/edit") }}"" class="btn btn-success">Edit Product</a>
+                                         <!-- <a href="{{ url("/products/{$product->id}/edit") }}" class="btn btn-primary">Update inventory</a> -->
                                          </div>
                                     </div>
                                 </div>
