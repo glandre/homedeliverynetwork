@@ -73,7 +73,7 @@
 					<h3>Cart total:</h3>
 					<h4>${{ cart()->total() }}</h4>
 					<p class="text-sm text-gray">* Note: This amount includes costs for shipping to address you provided.</p>
-					<a href="shopping-cart.html" class="btn btn-default btn-ghost icon-left btn-block">
+					<a href="/store/cart/review" class="btn btn-default btn-ghost icon-left btn-block">
 	                	<i class="material-icons arrow_back"></i>
 	                	Back To Cart
               		</a>
