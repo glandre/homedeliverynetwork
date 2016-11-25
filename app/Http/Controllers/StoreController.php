@@ -164,13 +164,14 @@ class StoreController extends Controller
             'to' => $user['email'],
             'from' => "BuyOnlineWeed <info@buyonlineweed.ca>",
             'subject' => 'Order Successfully Submitted',
-            'html' => '<p>Here are the details of your order:</p><p>{{ $orderInfo }}</p><p>Cheers!</p>'
+            'html' => '<p>We received your order!</p><p>Payment can be sent via Interac E-transfer, 
+                        and will be set for shipment within 24 hours</p><p>Cheers!</p>'
         );
         $staff_message = array(
             'to' => 'mike.g.moll@gmail.com',
             'from' => "BuyOnlineWeed <info@buyonlineweed.ca>",
             'subject' => 'Order Successfully Submitted',
-            'html' => '<p>A new Oder was submitted:</p><p>{{ $orderInfo }}</p><p>Cheers!</p>'
+            'html' => '<p>A new Order was submitted:</p><p>Cheers!</p>'
         );
         $customer_res = $client->request('POST', 'https://hdnemailserver.herokuapp.com/registrations', ['form_params' => $customer_message]);
         $staff_res = $client->request('POST', 'https://hdnemailserver.herokuapp.com/registrations', ['form_params' => $staff_message]);
