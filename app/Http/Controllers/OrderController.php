@@ -61,7 +61,7 @@ class OrderController extends Controller
 
         session()->flash('message_success', 'Order successfully updated!');
         $this->sendPaymentConfirmationMail($order);
-        return back();
+        return redirect('orders');
     }
 
     public function changeOrderStatusToShipped($orderId)

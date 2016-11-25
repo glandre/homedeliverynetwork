@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "61059c1d87fa5b36bffa3ffa35223078",
-    "content-hash": "1c0e7fef4970d409764b22e8aad5afc0",
+    "hash": "c93c914aac620d694f1084982a598884",
+    "content-hash": "b3ef05e21cc017bfd2ccb6937376b6c0",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -1067,6 +1067,7 @@
                 "tightenco/collect": "self.version"
             },
             "require-dev": {
+                "aws/aws-sdk-php": "~3.0",
                 "mockery/mockery": "~0.9.4",
                 "pda/pheanstalk": "~3.0",
                 "phpunit/phpunit": "~5.4",
