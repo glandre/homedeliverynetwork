@@ -103,8 +103,8 @@
             <nav class="main-navigation" id="main-nav">
                 <ul class="menu">
                     <li class="menu-item-has-children current-menu-item">
-                        <a href="{{url('/home')}}">Home</a>
-                        <a href="{{url('/store')}}">Shop</a>
+                        <a href="{{url('/store')}}">Home</a>
+                        <a href="{{url('/catalog')}}">Products</a>
                     <li class="menu-item-has-children current-menu-item">
                     </li>
                     <li><a href="{{url('/about')}}">About</a></li>

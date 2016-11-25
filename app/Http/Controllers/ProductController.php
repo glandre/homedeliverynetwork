@@ -53,6 +53,12 @@ class ProductController extends CRUDController
         Product::validator($data, $isUpdate)->validate();
     }
 
+    public function catalog()
+    {
+        $products = Product::all();
+        return view('store.catalog', compact('products'));
+    }
+
     public function store()
     {
         $this->validateRequest();
