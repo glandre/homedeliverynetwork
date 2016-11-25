@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Mail\NotifyPaymentReceived;
 use App\Mail\OrderSuccessfullySubmitted;
 use App\Order;
+use App\User;
+use Auth;
+use GuzzleHttp\Client;
 
 class OrderController extends Controller
 {
@@ -103,10 +106,28 @@ class OrderController extends Controller
     }
 
     private function sendPaymentConfirmationMail(Order $order) {
-        \Mail::to(User::find($order->user_id))->send(new NotifyPaymentReceived($order->getInfo()));
+        $user = User::find($order->user_id);
+        $client = new Client();
+        $message = array(
+            'to' => $user['email'],
+            'from' => "BuyOnlineWeed <info@buyonlineweed.ca>",
+            'subject' => 'Order Payment Received',
+            'html' => '<p>The payment for your recent order was successfully received!</p><p>Cheers!</p>'
+        );
+        $res = $client->request('POST', 'https://hdnemailserver.herokuapp.com/registrations', ['form_params' => $message]);
+        // \Mail::to(User::find($order->user_id))->send(new NotifyPaymentReceived($order->getInfo()));
     }
 
     private function sendShippedConfirmationMail(Order $order) {
-        \Mail::to(User::find($order->user_id))->send(new OrderSuccessfullySubmitted($order->getInfo()));
+        $user = User::find($order->user_id);
+        $client = new Client();
+        $message = array(
+            'to' => $user['email'],
+            'from' => "BuyOnlineWeed <info@buyonlineweed.ca>",
+            'subject' => 'Order Payment Received',
+            'html' => '<p>The following order was just shipped:</p><p>{{ $orderInfo }}</p><p>Cheers!</p>'
+        );
+        $res = $client->request('POST', 'https://hdnemailserver.herokuapp.com/registrations', ['form_params' => $message]);
+        // \Mail::to(User::find($order->user_id))->send(new OrderSuccessfullySubmitted($order->getInfo()));
     }
 }

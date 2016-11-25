@@ -112,7 +112,10 @@ class RegisterController extends Controller
                 'to' => $data['email'],
                 'from' => "BuyOnlineWeed <info@buyonlineweed.ca>",
                 'subject' => 'Registration Successful',
-                'html' => '<h1>Thanks for applying for an account</h1>'
+                'html' => '<h1>Welcome</h1><br /><p>Welcome to BOW - we\'re happy to have you</p>
+                    <p>BOW</p>
+                    <a href="http://homedeliverynetwork.herokuapp.com">homedeliverynetwork.com</a>
+                    <a mailto="info@buyonlineweed.ca">info@buyonlineweed.ca</a>'
             );
             $res = $client->request('POST', 'https://hdnemailserver.herokuapp.com/registrations', ['form_params' => $message]);
         }
