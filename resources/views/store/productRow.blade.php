@@ -1,7 +1,7 @@
 <div class="row">
     @foreach($products as $product)
         <div class="col-lg-3 col-sm-6">
-            <div class="shop-item">
+            <div class="shop-item" style="height: 200px;">
                 <div class="shop-thumbnail">
                     @if($rated)
                         @include('store.stars', $product->stars())

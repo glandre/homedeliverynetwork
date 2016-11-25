@@ -1,10 +1,10 @@
 <div class="col-lg-9 col-md-8">
     <!-- Nav Tabs -->
-    <ul class="nav-tabs text-center" role="tablist">
+    <!-- <ul class="nav-tabs text-center" role="tablist">
         <li class="active"><a href="#newcomers" role="tab" data-toggle="tab">New Arrivals</a></li>
         <li><a href="#toprated" role="tab" data-toggle="tab">Top Rated</a></li>
         <li><a href="#onsale" role="tab" data-toggle="tab">On Sale</a></li>
-    </ul><!-- .nav-tabs -->
+    </ul> --><!-- .nav-tabs -->
 
     <!-- Tab Panes -->
     <div class="tab-content">
