@@ -68,6 +68,7 @@ h1 {
   font-size: 2em;
   margin: 0.67em 0; }
 
+
 mark {
   background: #ff0;
   color: #000; }
@@ -2994,6 +2995,8 @@ input[type="button"].btn-block {
   background-color: transparent;
   border-color: #ccc; }
 
+
+
 .card-info-outline {
   background-color: transparent;
   border-color: #3db9dc; }
@@ -4389,6 +4392,9 @@ a.bg-success:focus, a.bg-success:hover {
 
 a.bg-info:focus, a.bg-info:hover {
   background-color: #23a0c3; }
+.bg-custom { background-color: #F26157 !important;
+
+}
 
 .bg-warning {
   color: #fff !important;
@@ -23018,7 +23024,7 @@ div.hopscotch-bubble .hopscotch-bubble-arrow-container.down .hopscotch-bubble-ar
    Accounts pages
 ============= */
 .account-pages {
-  background: #64b0f2;
+  background-image: url(/images/featured/blog.jpg);
   position: absolute;
   height: 100%;
   width: 100%;
@@ -23035,7 +23041,7 @@ div.hopscotch-bubble .hopscotch-bubble-arrow-container.down .hopscotch-bubble-ar
     margin: 20px 15px; }
   .wrapper-page .card-box {
     box-shadow: 0 0px 24px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
-    border: 5px solid #64b0f2; }
+    border: 5px solid #000; }
   .wrapper-page .logo {
     float: none !important;
     line-height: 36px;
@@ -23062,3 +23068,8 @@ div.hopscotch-bubble .hopscotch-bubble-arrow-container.down .hopscotch-bubble-ar
   text-shadow: rgba(255, 255, 255, 0.3) 5px 1px, rgba(255, 255, 255, 0.2) 12px 3px, rgba(255, 255, 255, 0.1) 6px 4px; }
 
 /*# sourceMappingURL=style.css.map */
+
+.shop-item { 
+    height: 200px;
+}
+

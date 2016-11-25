@@ -20,73 +20,29 @@
 @section('content')
 
     <div class="left side-menu">
-
-                  <div class="row">
-                            
-                            <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                               <a href="{{ url('/products/create') }}"> <div class="card-box tilebox-one">
-                                    <i class="zmdi zmdi-shopping-basket text-muted"></i>
-                           <br>   <br>
-                                    <h6 class="text-muted text-uppercase m-b-20">Add <br>New Product</h6>
-                                   
-                                    <span class=""> </span> <span class="text-muted"></span>
-                                </div></a>
-                            </div>
-
-                            <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                                 <a href="{{ url('/orders-new') }}"> <div class="card-box tilebox-one">
-                                    <i class="zmdi zmdi-local-shipping text-muted"></i>
-                           <br>   <br>
-                                    <h6 class="text-muted text-uppercase m-b-20">View <br>Recent Orders</h6>
-                                   
-                                    <span class=""> </span> <span class="text-muted"></span>
-                                </div></a>
-                            </div>
-
-                            <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                                   <a href="{{ url('/users/create') }}"> <div class="card-box tilebox-one">
-                                    <i class="ion-person-add text-muted"></i>
-                           <br>   <br>
-                                    <h6 class="text-muted text-uppercase m-b-20">Add <br>Staff Member</h6>
-                                   
-                                    <span class=""> </span> <span class="text-muted"></span>
-                                </div></a>
-                            </div>
-
-                            <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                                  <a href="{{url('/products/inventory')}}"> <div class="card-box tilebox-one">
-                                    <i class="zmdi zmdi-chart text-muted"></i>
-                           <br>   <br>
-                                    <h6 class="text-muted text-uppercase m-b-20">Update <br>Inventory</h6>
-                                   
-                                    <span class=""> </span> <span class="text-muted"></span>
-                                </div></a>
-                            </div>
-                        </div>
-
         <div class="row">
             <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                <div class="card-box tilebox-one">
-                    <i class="icon-layers pull-xs-right text-muted"></i>
-                    <h6 class="text-muted text-uppercase m-b-20">Orders</h6>
+                <div class="card-box tilebox-one bg-info">
+                    <i class="icon-layers pull-xs-right text-muted" ></i>
+                    <h6 class="text-muted text-uppercase m-b-20" style="color:#fff;">Orders</h6>
                     <h2 class="m-b-20" data-plugin="counterup">25</h2>
                     {{--<span class="label label-success"> +11% </span> <span class="text-muted">From previous period</span>--}}
                 </div>
             </div>
 
             <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                <div class="card-box tilebox-one">
-                    <i class="icon-paypal pull-xs-right text-muted"></i>
-                    <h6 class="text-muted text-uppercase m-b-20">Revenue</h6>
+                <div class="card-box tilebox-one bg-success">
+                    <i class="icon-paypal pull-xs-right text-muted" style="color:#fff;"></i>
+                    <h6 class="text-muted text-uppercase m-b-20" style="color:#fff;">Revenue</h6>
                     <h2 class="m-b-20">$<span data-plugin="counterup">{{ \App\Order::revenue() }}</span></h2>
                     {{--<span class="label label-danger"> -29% </span> <span class="text-muted">From previous period</span>--}}
                 </div>
             </div>
 
             <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                <div class="card-box tilebox-one">
-                    <i class="icon-chart pull-xs-right text-muted"></i>
-                    <h6 class="text-muted text-uppercase m-b-20">Average Price</h6>
+                <div class="card-box tilebox-one bg-warning">
+                    <i class="icon-chart pull-xs-right text-muted" style="color:#fff;"></i>
+                    <h6 class="text-muted text-uppercase m-b-20" style="color:#fff;">Average Price</h6>
                     <h2 class="m-b-20">
                         $<span data-plugin="counterup">
                             {{ \App\Order::averagePrice() }}
@@ -97,14 +53,58 @@
             </div>
 
             <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                <div class="card-box tilebox-one">
-                    <i class="icon-rocket pull-xs-right text-muted"></i>
-                    <h6 class="text-muted text-uppercase m-b-20">Product Sold</h6>
-                    <h2 class="m-b-20" data-plugin="counterup">{{ \App\Order::productSold() }}</h2>
+                <div class="card-box tilebox-one bg-custom">
+                    <i class="icon-rocket pull-xs-right text-muted" style="color:#fff;"></i>
+                    <h6 class="text-muted text-uppercase m-b-20" style="color:#fff;">Product Sold</h6>
+                    <h2 class="m-b-20" data-plugin="counterup" style="color:#fff;">{{ \App\Order::productSold() }}</h2>
                     {{--<span class="label label-warning"> +89% </span> <span class="text-muted">Last year</span>--}}
                 </div>
             </div>
         </div>
+    <div class="row">
+        
+        <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+           <a href="{{ url('/products/create') }}"> <div class="card-box tilebox-one">
+                <i class="zmdi zmdi-shopping-basket text-muted"></i>
+       <br>   <br>
+                <h6 class="text-muted text-uppercase m-b-20">Add <br>New Product</h6>
+               
+                <span class=""> </span> <span class="text-muted"></span>
+            </div></a>
+        </div>
+
+        <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+             <a href="{{ url('/orders-new') }}"> <div class="card-box tilebox-one">
+                <i class="zmdi zmdi-local-shipping text-muted"></i>
+       <br>   <br>
+                <h6 class="text-muted text-uppercase m-b-20">View <br>Recent Orders</h6>
+               
+                <span class=""> </span> <span class="text-muted"></span>
+            </div></a>
+        </div>
+
+        <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+               <a href="{{ url('/users/create') }}"> <div class="card-box tilebox-one">
+                <i class="ion-person-add text-muted"></i>
+       <br>   <br>
+                <h6 class="text-muted text-uppercase m-b-20">Add <br>Staff Member</h6>
+               
+                <span class=""> </span> <span class="text-muted"></span>
+            </div></a>
+        </div>
+
+        <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+              <a href="{{url('/products/inventory')}}"> <div class="card-box tilebox-one">
+                <i class="zmdi zmdi-chart text-muted"></i>
+       <br>   <br>
+                <h6 class="text-muted text-uppercase m-b-20">Update <br>Inventory</h6>
+               
+                <span class=""> </span> <span class="text-muted"></span>
+            </div></a>
+        </div>
+    </div>
+
+       
         <!-- end row -->
 
 
