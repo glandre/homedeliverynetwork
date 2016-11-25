@@ -5766,4 +5766,7 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+.shop-item {
+  height: 200px; }
+
 /*# sourceMappingURL=app.css.map */

@@ -10,8 +10,9 @@
         <div class="account-bg">
             <div class="card-box m-b-0">
                 <div class="text-xs-center m-t-20">
+                <h6 class="text-muted text-uppercase m-b-0 m-t-0">BUY WEED ONLINE</h6>
                     <a href="{{url('/')}}" class="logo">
-                        <i class="zmdi zmdi-group-work icon-c-logo"></i>
+                        <img style="max-width: 150px;" src="/images/logo.jpg">
                         <span>{{config('app.name')}}</span>
                     </a>
                 </div>
