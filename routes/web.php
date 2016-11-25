@@ -54,7 +54,6 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 // Back-end
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/home', 'HomeController@home');
     Route::get('/admin', 'HomeController@admin');
     Route::get('/dashboard', 'HomeController@dashboard');
 
@@ -82,6 +81,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Product Vendors
     Route::resource('vendors', 'VendorController');
     // Product
+    Route::get('/catalog', 'ProductController@catalog');
     Route::get('products/inventory', 'ProductController@showInventory');
     Route::post('products/inventory/update', 'ProductController@updateInventory');
     Route::resource('products', 'ProductController');
