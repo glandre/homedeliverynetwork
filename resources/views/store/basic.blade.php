@@ -63,9 +63,11 @@
         <div class="navbar-header">
 
             <!-- Site Logo -->
-            <a href="index.html" class="site-logo visible-desktop">
+            <img class="" src="/images/logo.jpg" style="text-align:center; width: 100%; max-width: 200px;">
+            <a href="/" class="site-logo visible-desktop">
                 <span>Buy Weed Online Canada</span>
                 <span class="text-gray"></span> <span></span>
+               
             </a><!-- site-logo.visible-desktop -->
             <a href="index.html" class="site-logo visible-mobile">
                 <span>Buy Weed Online Canada</span><span></span>
@@ -102,15 +104,14 @@
             <!-- Main Navigation -->
             <nav class="main-navigation" id="main-nav">
                 <ul class="menu">
-                    <li class="menu-item-has-children current-menu-item">
-                        <a href="{{url('/store')}}">Home</a>
-                        <a href="{{url('/catalog')}}">Products</a>
-                    <li class="menu-item-has-children current-menu-item">
+                    <li class=""><a href="{{url('/store')}}">Home</a></li>
+                       <li><a href="{{url('/catalog')}}">Shop</a></li>
+                    <li class="">
                     </li>
                     <li><a href="{{url('/about')}}">About</a></li>
                     <li><a href="{{url('/faq')}}">FAQ</a></li>
                     <li><a href="{{url('/register')}}">Register</a></li>
-                    <li><a href="{{url('/blog')}}">Blog</a></li>
+                    
                 </ul><!-- .menu -->
 
             </nav><!-- .main-navigation -->
@@ -153,9 +154,38 @@
 
         <!-- Footer -->
         <footer class="footer">
+        <div class="column">
+                <h3 class="widget-title">
+                   <i class="material-icons dp48">payment</i> Payment Method
+                    <small>We support Interac.</small>
+                </h3>
+                <div class="cards"><img src="/images/interac/interac-e-transfer.jpg" alt="Interac e-Transfer"> <br>
+                </div></div>
+                <!-- Scroll To Top Button -->
+               
+           <!-- .column -->
             <div class="column">
-                <p class="text-sm">Need support? Call <span class="text-primary">{{{ config('app.phone') }}}</span></p>
-                <div class="social-bar text-center space-bottom">
+                <h3 class="widget-title">
+                <i class="material-icons medium dp48">email</i>
+                    Subscription
+                    <small>To receive latest offers and discounts from the shop.</small>
+                </h3>
+                <form action="{{url('store/subscribe') }}"
+                      method="post" target="_blank" class="subscribe-form" novalidate="">
+                    {{csrf_field()}}
+                    <input type="email" class="form-control" name="subscribe_email" placeholder="Your e-mail">
+                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
+                                                                                              name="b_c7103e2c981361a6639545bd5_1194bb7544"
+                                                                                              tabindex="-1" value=""></div>
+                    <button type="submit"><i class="material-icons send"></i></button>
+                </form>
+            </div><!-- .column -->
+             <div class="column">
+      
+           
+                <p class="text-sm"> <i class="material-icons medium dp48">question_answer</i> Need support? Email <span class="text-primary">info@buyonlineweed.com</span></p>
+                <!-- <div class="social-bar text-center space-bottom">
                     <a href="#" class="sb-skype" data-toggle="tooltip" data-placement="top" title="{{{ config('app.skype_id') }}}"
                        data-original-title="Skype">
                         <i class="socicon-skype"></i>
@@ -176,34 +206,13 @@
                        data-original-title="Instagram">
                         <i class="socicon-instagram"></i>
                     </a>
-                </div><!-- .social-bar -->
-                <p class="copyright">© {{ date('Y') }}.</p>
-            </div><!-- .column -->
-            <div class="column">
-                <h3 class="widget-title">
-                    Subscription
-                    <small>To receive latest offers and discounts from the shop.</small>
-                </h3>
-                <form action="{{url('store/subscribe') }}"
-                      method="post" target="_blank" class="subscribe-form" novalidate="">
-                    {{csrf_field()}}
-                    <input type="email" class="form-control" name="subscribe_email" placeholder="Your e-mail">
-                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
-                                                                                              name="b_c7103e2c981361a6639545bd5_1194bb7544"
-                                                                                              tabindex="-1" value=""></div>
-                    <button type="submit"><i class="material-icons send"></i></button>
-                </form>
-            </div><!-- .column -->
-            <div class="column">
-                <h3 class="widget-title">
-                    Payment Method
-                    <small>We support Interac.</small>
-                </h3>
-                <div class="cards"><img src="/images/interac/interac-e-transfer.jpg" alt="Interac e-Transfer"></div>
-                <!-- Scroll To Top Button -->
-                <div class="scroll-to-top-btn"><i class="material-icons trending_flat"></i></div>
-            </div><!-- .column -->
+                </div> --><!-- .social-bar -->
+                 <br>
+            <br>
+                <p class="copyright">© Buy Onine Online  {{ date('Y') }}.</p>
+            </div>
+            <!-- .column -->
+        </div>
         </footer><!-- .footer -->
     </main>
 

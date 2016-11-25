@@ -68,6 +68,7 @@ h1 {
   font-size: 2em;
   margin: 0.67em 0; }
 
+
 mark {
   background: #ff0;
   color: #000; }
@@ -2993,6 +2994,8 @@ input[type="button"].btn-block {
 .card-secondary-outline {
   background-color: transparent;
   border-color: #ccc; }
+
+
 
 .card-info-outline {
   background-color: transparent;
@@ -23018,7 +23021,7 @@ div.hopscotch-bubble .hopscotch-bubble-arrow-container.down .hopscotch-bubble-ar
    Accounts pages
 ============= */
 .account-pages {
-  background: #64b0f2;
+  background-image: url(/images/featured/blog.jpg);
   position: absolute;
   height: 100%;
   width: 100%;
@@ -23062,3 +23065,8 @@ div.hopscotch-bubble .hopscotch-bubble-arrow-container.down .hopscotch-bubble-ar
   text-shadow: rgba(255, 255, 255, 0.3) 5px 1px, rgba(255, 255, 255, 0.2) 12px 3px, rgba(255, 255, 255, 0.1) 6px 4px; }
 
 /*# sourceMappingURL=style.css.map */
+
+.shop-item { 
+    height: 200px;
+}
+

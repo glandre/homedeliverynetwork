@@ -3550,6 +3550,7 @@ input[type="button"].btn-block {
 .shop-item {
   width: 100%;
   margin-bottom: 36px;
+  height: 200px;
 }
 
 .shop-item .shop-thumbnail {
