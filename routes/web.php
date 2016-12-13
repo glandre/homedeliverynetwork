@@ -60,6 +60,7 @@ Route::group(['middleware' => 'auth'], function () {
     // User Management
     Route::post('users/{id}/approve', 'UserManagementController@approve');
     Route::post('users/{id}/reject', 'UserManagementController@reject');
+    Route::get('users/{id}', 'UserShowController@show');
     Route::resource('users', 'UserManagementController');
 
     // User Profile and Settings

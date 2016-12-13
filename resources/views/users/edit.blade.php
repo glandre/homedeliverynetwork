@@ -32,13 +32,13 @@
 @endsection
 
 @section('page-title')
-{{{ $title }}} User
+    {{{ $title }}}
 @endsection
 
 @section('content')
 
     <div class="col-sm-6 col-xs-12 m-t-20">
-        <h4 class="header-title m-t-0">{{{ $title }}} User</h4>
+        <h4 class="header-title m-t-0">{{{ $title }}}</h4>
         <p class="text-muted font-13 m-b-10">
             Here you can view user information. Click on edit to enable updates.
         </p>
@@ -91,6 +91,59 @@
                     </div>
                 </div>
             @endif
+
+            <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap4 no-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="datatable" class="table table-striped table-bordered dataTable no-footer"
+                               role="grid" aria-describedby="datatable_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Name: activate to sort column descending">
+                                        Date
+                                    </th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Name: activate to sort column descending">
+                                        Status
+                                    </th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Name: activate to sort column descending">
+                                        Customer Email
+                                    </th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Name: activate to sort column descending">
+                                        Cost
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach($orders as $order)
+                                    <tr role="row" class="odd">
+                                        <td class="sorting_asc">{{{ $order->created_at }}}</td>
+                                        <td class="sorting_asc">
+                                            {{{ $order->status }}}
+                                        </td>
+                                        <td class="sorting_asc">
+                                            <a href="{{ url("/orders/{$order->id}") }}">
+                                                {{{ $order->user->email }}}
+                                            </a>
+                                        </td>
+                                        <td class="sorting_asc">
+                                            $ {{{ $order->cost }}}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
             {{Form::open([
                 'url' => $url,
