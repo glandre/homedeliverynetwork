@@ -14,7 +14,8 @@ class Order extends Model
      */
     protected $fillable = [
         'user_id',
-        'status'
+        'status',
+        'cost'
     ];
 
     public static function validator(array $data, $isUpdate = false)
@@ -112,6 +113,7 @@ class Order extends Model
             if ($allowed)
             {
                 $this->status = $status;
+                $this->cost = $this->total();
                 if ($this->save())
                 {
                     if($status == 'Shipped')

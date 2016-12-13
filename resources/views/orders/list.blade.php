@@ -42,13 +42,23 @@
                                 <tr role="row">
                                     <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
                                         colspan="1" aria-sort="ascending"
-                                        aria-label="Name: activate to sort column descending"
-                                        style="width: 279.5px;">Customer
+                                        aria-label="Name: activate to sort column descending">
+                                        Date
                                     </th>
                                     <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
                                         colspan="1" aria-sort="ascending"
-                                        aria-label="Name: activate to sort column descending"
-                                        style="width: 279.5px;">Status
+                                        aria-label="Name: activate to sort column descending">
+                                        Status
+                                    </th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Name: activate to sort column descending">
+                                        Customer Email
+                                    </th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Name: activate to sort column descending">
+                                        Cost
                                     </th>
                                 </tr>
                                 </thead>
@@ -57,13 +67,17 @@
 
                                 @foreach($orders as $order)
                                 <tr role="row" class="odd">
+                                    <td class="sorting_asc">{{{ $order->created_at }}}</td>
+                                    <td class="sorting_asc">
+                                        {{{ $order->status }}}
+                                    </td>
                                     <td class="sorting_asc">
                                         <a href="{{ url("/orders/{$order->id}") }}">
                                             {{{ $order->user->email }}}
                                         </a>
                                     </td>
                                     <td class="sorting_asc">
-                                        {{{ $order->status }}}
+                                        $ {{{ $order->cost }}}
                                     </td>
                                 </tr>
                                 @endforeach

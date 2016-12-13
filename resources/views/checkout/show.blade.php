@@ -3,7 +3,7 @@
 @section('content')
     <!-- Container -->
     <form method="POST" action="/checkout" class="container padding-top-3x padding-bottom-2x">
-    	{{ csrf_field() }}
+        {{ csrf_field() }}
         <h1 class="space-top-half">Checkout</h1>
         <div class="row padding-top">
 

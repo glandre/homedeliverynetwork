@@ -86,18 +86,23 @@
                                 <tr role="row">
                                     <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
                                         colspan="1" aria-sort="ascending"
-                                        aria-label="Name: activate to sort column descending"
-                                        style="width: 279.5px;">Product
+                                        aria-label="Name: activate to sort column descending">
+                                        Product
                                     </th>
                                     <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
                                         colspan="1" aria-sort="ascending"
-                                        aria-label="Name: activate to sort column descending"
-                                        style="width: 279.5px;">Quantity
+                                        aria-label="Name: activate to sort column descending">
+                                        Quantity
                                     </th>
                                     <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
                                         colspan="1" aria-sort="ascending"
-                                        aria-label="Name: activate to sort column descending"
-                                        style="width: 279.5px;">Inventory
+                                        aria-label="Name: activate to sort column descending">
+                                        Inventory
+                                    </th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Name: activate to sort column descending">
+                                        Cost
                                     </th>
                                 </tr>
                                 </thead>
@@ -118,6 +123,9 @@
                                     </td>
                                     <td class="sorting_asc">
                                         {{{ ($product->quantity > 0) ? $product->quantity : 'N/A' }}}
+                                    </td>
+                                    <td class="sorting_asc">
+                                        {{{ $product->price }}}
                                     </td>
                                 </tr>
                                 @endforeach

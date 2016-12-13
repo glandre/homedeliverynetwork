@@ -7,6 +7,7 @@ use App\Mail\RegistrationApproved;
 use App\Mail\RegistrationRejected;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Order;
 use App\User;
 
 class UserManagementController extends CRUDController
@@ -24,6 +25,7 @@ class UserManagementController extends CRUDController
 
     protected function editView()
     {
+        dd($this->model['email']);
         return 'users.edit';
     }
 
@@ -163,5 +165,13 @@ class UserManagementController extends CRUDController
         \Mail::to($model)->send(new RegistrationRejected($model, $reasons));
         session()->flash('message_success', 'User Rejected!');
         return back();
+    }
+
+    public function show($id)
+    {
+        $model = User::findOrFail($id);
+        $orders = Order::where('user_id', $id);
+        $title = 'Edit User';
+        return view('users.edit', compact('model', 'orders', 'title'));
     }
 }
