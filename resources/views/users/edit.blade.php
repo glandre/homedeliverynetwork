@@ -44,7 +44,7 @@
         </p>
 
         <div class="">
-            <img src="{{ $model->picture }}" style="height:120px;width:auto;">
+            <img src="{{ $model->picture }}" style="height:500px;width:auto;">
         </div>
 
         <div class="p-20">
