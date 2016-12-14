@@ -23,28 +23,22 @@
 @endsection
 
 @section('content')
-<div class="row">
-                            
-                            <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                               <a href="{{ url('/products/create') }}"> <div class="card-box tilebox-one">
-                                    <i class="zmdi zmdi-shopping-basket text-muted"></i>
-                           <br>   <br>
-                                    <h6 class="text-muted text-uppercase m-b-20">Add <br>New Product</h6>
-                                   
-                                    <span class=""> </span> <span class="text-muted"></span>
-                                </div></a>
-                            </div>
-
-                            <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                                  <a href="{{url('/products/inventory')}}"> <div class="card-box tilebox-one">
-                                    <i class="zmdi zmdi-chart text-muted"></i>
-                           <br>   <br>
-                                    <h6 class="text-muted text-uppercase m-b-20">Update <br>Inventory</h6>
-                                   
-                                    <span class=""> </span> <span class="text-muted"></span>
-                                </div></a>
-                            </div>
-                        </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+            <a href="{{ url('/products/create') }}">
+                <div class="card-box tilebox-one">
+                    <i class="zmdi zmdi-shopping-basket text-muted"></i>
+                    <br>
+                    <br>
+                    <h6 class="text-muted text-uppercase m-b-20">
+                        Add<br>New Product
+                    </h6>
+                    <span class=""> </span>
+                    <span class="text-muted"></span>
+                </div>
+            </a>
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-12">
             <div class="card-box table-responsive">
