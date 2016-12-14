@@ -64,8 +64,6 @@
                             {{Form::hidden('id', $model->id)}}
                         {{Form::close()}}
 
-                        {{Form::close()}}
-
                         {{Form::open([
                             'url' => "users/{$model->id}/reject",
                             'method' => 'POST'
@@ -153,7 +151,6 @@
             ])}}
                 {{Form::hidden('id', $model->id)}}
 
-
                 <div class="form-group">
                     {{Form::label('picture', 'Avatar:')}}
                     {{Form::file('picture', [
@@ -208,6 +205,7 @@
                                placeholder="Re-Type Password" data-parsley-id="38">
                     </div>
                 </div>
+
                 @if($saveEnabled && !$model->isSuper())
                     <div class="form-group">
 
@@ -221,14 +219,11 @@
                     </div>
 
                     <div class="form-group">
-
-                            {{Form::label('role_id', 'Role:')}}
-
-                            {{Form::select('role_id', (new App\Role())->pluckNames(), $model->role->id ?? null, [
-                                $readonly,
-                                'class' => 'form-control'
-                            ])}}
-
+                        {{Form::label('role_id', 'Role:')}}
+                        {{Form::select('role_id', (new App\Role())->pluckNames(), $model->role->id ?? null, [
+                            $readonly,
+                            'class' => 'form-control'
+                        ])}}
                     </div>
 
                     <div class="form-group">
