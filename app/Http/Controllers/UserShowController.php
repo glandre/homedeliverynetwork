@@ -31,10 +31,4 @@ class UserShowController extends Controller
         return view('users.edit', compact('disabled', 'method', 'model', 'orders', 'readonly', 'saveEnabled', 'title', 'url'));
     }
 
-    public function generate($id)
-    {
-        $pdf = PDF::loadView('orders.pdf');
-        return $pdf->download('invoice.pdf');
-    }
-
 }
