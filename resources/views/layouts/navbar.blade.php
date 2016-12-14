@@ -38,9 +38,6 @@
                         <ul class="submenu megamenu">
                             <li>
                                 <ul>
-                                    <li><a href="{{ url('/products/inventory') }}">Inventory</a></li>
-                                </ul>
-                                <ul>
                                     <li><a href="{{ url('/product-types') }}">Product Types</a></li>
                                 </ul>
                                 <ul>
