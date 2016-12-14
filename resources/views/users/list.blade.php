@@ -27,7 +27,7 @@
 
     <input hidden id="activeView" value="users_widget" />
 
-    <div class="row" id="users_table" style="display: none;">
+    <div class="row" id="users_table" style="">
         <div class="col-sm-12">
             <div class="card-box table-responsive">
                 <h4 class="m-t-0 header-title"><b>Managing users:</b></h4>
@@ -154,18 +154,18 @@
     <script type="text/javascript">
 
         function switchView() {
-            $('#users_table').attr('style', 'display: none');
-            $('#users_widget').attr('style', 'display: none');
-            $('#' + $('#activeView').val()).attr('style', 'display: inline');
+            // $('#users_table').attr('style', 'display: none');
+            // $('#users_widget').attr('style', 'display: none');
+            // $('#' + $('#activeView').val()).attr('style', 'display: inline');
 
-            if($('#activeView').val() == 'users_table') {
-                $('#activeView').val('users_widget');
-                $('#showMenuItem').html('Show Users Widgets');
-            }
-            else {
-                $('#activeView').val('users_table');
-                $('#showMenuItem').html('Show Users Table');
-            }
+            // if($('#activeView').val() == 'users_table') {
+            //     $('#activeView').val('users_widget');
+            //     $('#showMenuItem').html('Show Users Widgets');
+            // }
+            // else {
+            //     $('#activeView').val('users_table');
+            //     $('#showMenuItem').html('Show Users Table');
+            // }
         }
 
         $(document).ready(function() {
@@ -177,11 +177,10 @@
                 buttons: ['copy', 'excel', 'pdf', 'colvis']
             });
 
-            table.buttons().container()
-                    .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+            table.buttons().container().appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
 
             switchView();
-            textFromRole();
+            // textFromRole();
         } );
 
     </script>
