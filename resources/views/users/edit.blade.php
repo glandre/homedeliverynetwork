@@ -64,8 +64,6 @@
                             {{Form::hidden('id', $model->id)}}
                         {{Form::close()}}
 
-                        {{Form::close()}}
-
                         {{Form::open([
                             'url' => "users/{$model->id}/reject",
                             'method' => 'POST'
@@ -153,7 +151,6 @@
             ])}}
                 {{Form::hidden('id', $model->id)}}
 
-
                 <div class="form-group">
                     {{Form::label('picture', 'Avatar:')}}
                     {{Form::file('picture', [
@@ -208,64 +205,63 @@
                                placeholder="Re-Type Password" data-parsley-id="38">
                     </div>
                 </div>
-            @if($saveEnabled && !$model->isSuper())
-                <div class="form-group">
 
-                    {{Form::label('registration_status', 'Registration Status:')}}
+                @if($saveEnabled && !$model->isSuper())
+                    <div class="form-group">
 
-                    {{Form::select('registration_status', $model->pluckRegistrationStatus(), $model->registration_status, [
-                        $readonly,
-                        $disabled,
-                        'class' => 'form-control'
-                    ])}}
-                </div>
+                        {{Form::label('registration_status', 'Registration Status:')}}
 
-                <div class="form-group">
+                        {{Form::select('registration_status', $model->pluckRegistrationStatus(), $model->registration_status, [
+                            $readonly,
+                            $disabled,
+                            'class' => 'form-control'
+                        ])}}
+                    </div>
 
+                    <div class="form-group">
                         {{Form::label('role_id', 'Role:')}}
-
                         {{Form::select('role_id', (new App\Role())->pluckNames(), $model->role->id ?? null, [
                             $readonly,
                             'class' => 'form-control'
                         ])}}
-
-                </div>
-
-                <div class="form-group">
-                    {{Form::label(
-                        'referrer',
-                        'Referrer: ' . ($model->referrer->name ?? '-')
-                    )}}
-                </div>
-            @else
-                <div class="form-group">
-                    {{Form::label(
-                        'role',
-                        'Role: ' . $model->role->name
-                    )}}
-
-                    -
-                    {{Form::label(
-                        'referrer',
-                        'Referrer: ' . ($model->referrer->name ?? '-')
-                    )}}
-                </div>
-            @endif
-
-            ({{Form::label('registration_status', 'Registration Status: ' . $model->registration_status)}})
-
-            @if($saveEnabled)
-                <div class="form-group">
-                    <div>
-                        <button type="submit" class="btn btn-primary waves-effect waves-light">
-                            Submit
-                        </button>
-                        <button type="reset" class="btn btn-secondary waves-effect m-l-5">
-                            Cancel
-                        </button>
                     </div>
-                </div>
-            @endif
+
+                    <div class="form-group">
+                        {{Form::label(
+                            'referrer',
+                            'Referrer: ' . ($model->referrer->name ?? '-')
+                        )}}
+                    </div>
+                @else
+                    <div class="form-group">
+                        {{Form::label(
+                            'role',
+                            'Role: ' . $model->role->name
+                        )}}
+
+                        -
+                        {{Form::label(
+                            'referrer',
+                            'Referrer: ' . ($model->referrer->name ?? '-')
+                        )}}
+                    </div>
+                @endif
+
+                ({{Form::label('registration_status', 'Registration Status: ' . $model->registration_status)}})
+
+                @if($saveEnabled)
+                    <div class="form-group">
+                        <div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                Submit
+                            </button>
+                            <button type="reset" class="btn btn-secondary waves-effect m-l-5">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                @endif
+
             {{Form::close()}}
         </div>
     </div>

@@ -104,6 +104,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('orders/{orderId}/new', 'StoreController@submitOrder');
     Route::post('orders/{orderId}/paid', 'OrderController@changeOrderStatusToPaid');
     Route::post('orders/{orderId}/shipped', 'OrderController@changeOrderStatusToShipped');
+    Route::get('orders/{id}/pdf', 'OrderController@generate');
 
     Route::get('orders-new', 'OrderController@showNewOrders');
     Route::get('orders-paid', 'OrderController@showPaidOrders');

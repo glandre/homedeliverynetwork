@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Order;
 use App\User;
+use PDF;
 
 class UserShowController extends Controller
 {
@@ -27,7 +28,7 @@ class UserShowController extends Controller
         $readonly = 'readonly';
         $disabled = '';
         $saveEnabled = false;
-        // dd($orders);
         return view('users.edit', compact('disabled', 'method', 'model', 'orders', 'readonly', 'saveEnabled', 'title', 'url'));
     }
+
 }
