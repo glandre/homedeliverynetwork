@@ -25,7 +25,6 @@ class UserManagementController extends CRUDController
 
     protected function editView()
     {
-        dd($this->model['email']);
         return 'users.edit';
     }
 
