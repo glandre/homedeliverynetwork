@@ -38,42 +38,41 @@
                             'method' => 'POST',
                             'class' => 'form-horizontal',
                         ])}}
-
-                        <div class="form-group">
-                            <div>
-                                <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                    Mark as Paid
-                                </button>
+                            <div class="form-group">
+                                <div>
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                        Mark as Paid
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-
                         {{Form::close()}}
 
                     @elseif($order->status == 'Paid')
-                    {{Form::open([
-                        'url' => url("/orders/{$order->id}/shipped"),
-                        'method' => 'POST',
-                        'class' => 'form-horizontal',
-                    ])}}
+                        {{Form::open([
+                            'url' => url("/orders/{$order->id}/shipped"),
+                            'method' => 'POST',
+                            'class' => 'form-horizontal',
+                        ])}}
 
+                            <div class="form-group">
+                                <div>
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                        Mark as Shipped
+                                    </button>
+                                </div>
+                            </div>
+
+                        {{Form::close()}}
+
+                        <a href="/orders/{{ $order->id }}/pdf">Generate PDF Receipt</a>
+                    @else
                         <div class="form-group">
                             <div>
-                                <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                    Mark as Shipped
+                                <button type="submit" disabled class="btn btn-block waves-effect waves-light">
+                                    Order is {{$order->status}}
                                 </button>
                             </div>
                         </div>
-
-                    {{Form::close()}}
-
-                    @else
-                    <div class="form-group">
-                        <div>
-                            <button type="submit" disabled class="btn btn-block waves-effect waves-light">
-                                Order is {{$order->status}}
-                            </button>
-                        </div>
-                    </div>
                     @endif
 
 
@@ -125,7 +124,7 @@
                                         {{{ ($product->quantity > 0) ? $product->quantity : 'N/A' }}}
                                     </td>
                                     <td class="sorting_asc">
-                                        {{{ $product->price }}}
+                                        ${{{ $product->price }}}
                                     </td>
                                 </tr>
                                 @endforeach

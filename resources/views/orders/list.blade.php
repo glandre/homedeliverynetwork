@@ -60,26 +60,34 @@
                                         aria-label="Name: activate to sort column descending">
                                         Cost
                                     </th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Name: activate to sort column descending">
+                                        Receipt
+                                    </th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
 
                                 @foreach($orders as $order)
-                                <tr role="row" class="odd">
-                                    <td class="sorting_asc">{{{ $order->created_at }}}</td>
-                                    <td class="sorting_asc">
-                                        {{{ $order->status }}}
-                                    </td>
-                                    <td class="sorting_asc">
-                                        <a href="{{ url("/orders/{$order->id}") }}">
-                                            {{{ $order->user->email }}}
-                                        </a>
-                                    </td>
-                                    <td class="sorting_asc">
-                                        $ {{{ $order->cost }}}
-                                    </td>
-                                </tr>
+                                    <tr role="row" class="odd">
+                                        <td class="sorting_asc">{{{ $order->created_at }}}</td>
+                                        <td class="sorting_asc">
+                                            {{{ $order->status }}}
+                                        </td>
+                                        <td class="sorting_asc">
+                                            <a href="{{ url("/orders/{$order->id}") }}">
+                                                {{{ $order->user->email }}}
+                                            </a>
+                                        </td>
+                                        <td class="sorting_asc">
+                                            $ {{{ $order->cost }}}
+                                        </td>
+                                        <td>
+                                            <a href="/orders/{{$order->id}}/pdf">Generate PDF</a>
+                                        </td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
                             </table>

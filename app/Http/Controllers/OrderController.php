@@ -8,9 +8,18 @@ use App\Order;
 use App\User;
 use Auth;
 use GuzzleHttp\Client;
+use PDF;
 
 class OrderController extends Controller
 {
+    public function generate($id)
+    {
+        $data = Order::find($id);
+        $data->email = User::find($data->user_id)->email;
+        $pdf = PDF::loadView('orders.pdf', $data);
+        return $pdf->download('invoice.pdf');
+    }
+
     public function index()
     {
         return $this->showOrders(Order::where('status', '<>', 'Cart')->get());
