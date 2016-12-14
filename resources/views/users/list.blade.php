@@ -168,6 +168,10 @@
             // }
         }
 
+        function selectFifty() {
+            $('.dataTables_length option[value="50"]').prop('selected', true).change();
+        }
+
         $(document).ready(function() {
             $('#datatable').DataTable();
 
@@ -180,6 +184,7 @@
             table.buttons().container().appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
 
             switchView();
+            selectFifty();
             // textFromRole();
         } );
 
