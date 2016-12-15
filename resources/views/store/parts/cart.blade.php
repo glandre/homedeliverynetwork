@@ -6,7 +6,7 @@
                     <img src="{{{ $product->picture }}}" alt="{{{ $product->name }}}">
                 </a>
                 <div class="item-details">
-                    <h3 class="item-title"><a href="shop-single.html">{{{ $product->name }}}</a></h3>
+                    <h3 class="item-title"><a href="/products/{{ $product->id }}">{{{ $product->name }}}</a></h3>
                     <h4 class="item-price">${{{ $product->price }}}</h4>
                     <div class="count-input">
                         <a class="incr-btn" onclick="decreaseQuantity({{{ $product->id }}})"
