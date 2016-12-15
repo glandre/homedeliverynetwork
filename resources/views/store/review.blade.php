@@ -47,8 +47,9 @@
                                 <h4 class="item-price">${{ $product->price }}</h4>
                                 <div class="count-input">
                                     <!-- <a class="incr-btn" data-action="decrease" href="#">–</a> -->
-                                    Quantity: {{{ ($product->pivot->quantity > 0) ? $product->pivot->quantity : 'N/A' }}}
-                                    {{ ($product->pivot->quantity > $product->quantity) ? '(Not available in inventory)' : '' }}
+                                    Quantity: {{ $product->quantity }}
+                                    <!-- Quantity: {{{ ($product->pivot->quantity > 0) ? $product->pivot->quantity : 'N/A' }}} -->
+                                    <!-- {{ ($product->pivot->quantity > $product->quantity) ? '(Not available in inventory)' : '' }} -->
                                     <!-- <input class="quantity" type="text" value="1"> -->
                                     <!-- <a class="incr-btn" data-action="increase" href="#">+</a> -->
                                 </div>

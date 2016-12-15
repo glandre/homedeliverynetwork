@@ -126,7 +126,28 @@ class StoreController extends Controller
     {
         $messages = $this->getOrder()->validateProducts();
         $this->flashMessagesToSession($messages, '', false);
-        return view('store.review', ['order' => $this->getOrder()]);
+        $order = $this->getOrder();
+        $formattedProducts = array();
+        $product_names = array();
+            // assign products to array with quantity of each specific product
+        foreach ($order->products as $key => $value) {
+
+            $index = array_search($value->name, $product_names);
+            if ($index === false) {
+                $product_to_push = $value;
+                $product_to_push->quantity = 1;
+                array_push($formattedProducts, $product_to_push);
+                array_push($product_names, $value->name);
+            } else {
+                $formattedProducts[$index]->quantity += 1;
+                $formattedProducts[$index]->price += $formattedProducts[$index]->price;
+            }
+        }
+        
+        // dd($formattedProducts);
+        $order->products = $formattedProducts;
+        // dd($this->getOrder()->products);
+        return view('store.review', ['order' => $order]);
     }
 
     public function submitOrder()
