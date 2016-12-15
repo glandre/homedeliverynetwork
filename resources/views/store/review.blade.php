@@ -75,7 +75,7 @@
                 </div><!-- .shopping-cart -->
             
                 <!-- Coupon -->
-                <div class="">
+                <!-- <div class="">
                     <p class="text-gray text-sm">Have discount coupon?</p>
                     <form method="post" class="row">
                         <div class="col-md-8 col-sm-7">
@@ -87,7 +87,7 @@
                             <button type="submit" class="btn btn-default btn-ghost btn-block space-top-none space-bottom">Apply Coupon</button>
                         </div>
                     </form>
-                </div>
+                </div> -->
             </div><!-- .col-sm-8 -->
 
             <!-- Sidebar -->
