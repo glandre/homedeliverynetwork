@@ -21,15 +21,15 @@
                         <a href="{{ url('/users') }}">
                             <i class="zmdi zmdi-collection-item"></i> <span> Users </span>
                         </a>
-                        <ul class="submenu megamenu">
-                            <li>
+                        <!-- <ul class="submenu megamenu"> -->
+                            <!-- <li>
                                 <ul>
                                     <li><a href="{{ url('/users') }}">Manage Users</a></li>
                                     <li><a href="{{ url('/subscriptions') }}">Subscriptions</a></li>
                                 </ul>
-                            </li>
+                            </li> -->
 
-                        </ul>
+                        <!-- </ul> -->
                     </li>
                     <li class="has-submenu last-elements">
                         <a href="{{ url('/products') }}">

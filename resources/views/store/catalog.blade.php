@@ -155,7 +155,7 @@
                             </div>
                         </div>
                         <div class="shop-item-details">
-                            <h3 class="shop-item-title"><a href="shop-single.html">{{ $product->name }}</a></h3>
+                            <h3 class="shop-item-title"><a href="/products/{{ $product->id }}">{{ $product->name }}</a></h3>
                             <span class="shop-item-price">
                                 <span class="price">{{ $product->price }}</span>
                             </span>
