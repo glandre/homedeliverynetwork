@@ -110,17 +110,37 @@
                     <input type="hidden" name="UPLOADCARE_STORE" value="1">
                 </div>
 
-                @if($saveEnabled)
                 <div class="form-group">
-                    <div>
-                        <button type="submit" class="btn btn-primary waves-effect waves-light">
-                            Submit
-                        </button>
-                        <button type="reset" class="btn btn-secondary waves-effect m-l-5">
-                            Cancel
-                        </button>
-                    </div>
+                    <input type="hidden" role="uploadcare-uploader" name="picture_two">
+                    <input type="hidden" name="UPLOADCARE_STORE" value="1">
                 </div>
+
+                <div class="form-group">
+                    <input type="hidden" role="uploadcare-uploader" name="picture_three">
+                    <input type="hidden" name="UPLOADCARE_STORE" value="1">
+                </div>
+
+                <div class="form-group">
+                    <input type="hidden" role="uploadcare-uploader" name="picture_four">
+                    <input type="hidden" name="UPLOADCARE_STORE" value="1">
+                </div>
+
+                <div class="form-group">
+                    <input type="hidden" role="uploadcare-uploader" name="picture_five">
+                    <input type="hidden" name="UPLOADCARE_STORE" value="1">
+                </div>
+
+                @if($saveEnabled)
+                    <div class="form-group">
+                        <div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                Submit
+                            </button>
+                            <button type="reset" class="btn btn-secondary waves-effect m-l-5">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
                 @endif
             {{Form::close()}}
         </div>

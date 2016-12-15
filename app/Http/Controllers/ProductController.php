@@ -79,6 +79,22 @@ class ProductController extends CRUDController
             $values['picture'] = $this->request['picture'];
         }
 
+        if($this->request['picture_two']) {
+            $values['picture_two'] = $this->request['picture_two'];
+        }
+
+        if($this->request['picture_three']) {
+            $values['picture_three'] = $this->request['picture_three'];
+        }
+
+        if($this->request['picture_four']) {
+            $values['picture_four'] = $this->request['picture_four'];
+        }
+
+        if($this->request['picture_five']) {
+            $values['picture_five'] = $this->request['picture_five'];
+        }
+
         Product::create($values);
 
         session()->flash('message_success', trans('strings.saveSuccess'));

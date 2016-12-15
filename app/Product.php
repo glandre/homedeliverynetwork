@@ -22,7 +22,11 @@ class Product extends Model
         'continue_selling',
         'type_id',
         'vendor_id',
-        'picture'
+        'picture',
+        'picture_two',
+        'picture_three',
+        'picture_four',
+        'picture_five'
     ];
 
     public static function validator(array $data, $isUpdate = false)
