@@ -65,12 +65,12 @@
             <!-- Site Logo -->
             <img class="" src="/images/logo.jpg" style="text-align:center; width: 100%; max-width: 200px;">
             <a href="/" class="site-logo visible-desktop">
-                <span>Buy Weed Online Canada</span>
+                <span>Buy Online Weed Canada</span>
                 <span class="text-gray"></span> <span></span>
                
             </a><!-- site-logo.visible-desktop -->
             <a href="index.html" class="site-logo visible-mobile">
-                <span>Buy Weed Online Canada</span><span></span>
+                <span>Buy Online Weed Canada</span><span></span>
             </a><!-- site-logo.visible-mobile -->
 
             <!-- Mobile Menu Toggle -->
@@ -209,7 +209,7 @@
                 </div> --><!-- .social-bar -->
                  <br>
             <br>
-                <p class="copyright">© Buy Onine Online  {{ date('Y') }}.</p>
+                <p class="copyright">© Buy Onine Weed  {{ date('Y') }}.</p>
             </div>
             <!-- .column -->
         </div>

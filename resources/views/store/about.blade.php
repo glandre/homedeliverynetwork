@@ -7,7 +7,7 @@
 
     <!-- Content -->
    <section class="container padding-top-3x padding-bottom-3x">
-        <h1>About <strong>Buy Weed Online Canada</strong </span> </h1>
+        <h1>About <strong>Buy Online Weed Canada</strong </span> </h1>
         <div class="row padding-top">
           <div class="">
             <h3>The Brand</h3>
@@ -29,7 +29,7 @@
 Humanity has been denied the many benefits of marijuana for too long. But now the world is waking up to how important it is to legalize this miracle plant. We believe all adult (21 years or older) Canadians of sound mind should have access to the many benefits of marijuana. 
 We also hope that legalizing marijuana will keep it out of the reach of teens and reduce the profits gained in the illicit dealings of street sales. We share this hope with our Prime Minister, Justin Trudeau.
 </p>
-                <cite> Our Team at Buy weed online Canada </cite>
+                <cite> Our Team at Buy Online Weed Canada </cite>
               </blockquote>
             </div><!-- .quotation -->
           </div>
