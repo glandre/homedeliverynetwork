@@ -22,6 +22,29 @@ class StoreController extends Controller
                 $this->order = Order::where('user_id', \Auth::user()->id)
                     ->where('status', 'Cart')->first();
 
+                if ($this->order) {
+                    $this->order->cost = 0;
+                    $formattedProducts = array();
+                    $product_names = array();
+                    foreach ($this->order->products as $key => $value) {
+                        $index = array_search($value->name, $product_names);
+
+                        if ($index === false) {
+                            $product_to_push = $value;
+                            $product_to_push->quantity = 1;
+                            array_push($formattedProducts, $product_to_push);
+                            array_push($product_names, $value->name);
+                        } else {
+                            $formattedProducts[$index]->quantity += 1;
+                            $formattedProducts[$index]->price += $formattedProducts[$index]->price;
+                        }
+                        $this->order->cost += $value->price;
+                    }
+                    $this->order->save();
+                    $this->order->products = $formattedProducts;
+
+                }
+
                 if (!$this->order) {
                     $this->order = Order::create([
                         'user_id' => \Auth::user()->id,
@@ -32,6 +55,7 @@ class StoreController extends Controller
                 $this->order = new Order();
             }
         }
+        // dd($this->order);
         return $this->order;
     }
 
@@ -127,26 +151,7 @@ class StoreController extends Controller
         $messages = $this->getOrder()->validateProducts();
         $this->flashMessagesToSession($messages, '', false);
         $order = $this->getOrder();
-        $formattedProducts = array();
-        $product_names = array();
-            // assign products to array with quantity of each specific product
-        foreach ($order->products as $key => $value) {
-
-            $index = array_search($value->name, $product_names);
-            if ($index === false) {
-                $product_to_push = $value;
-                $product_to_push->quantity = 1;
-                array_push($formattedProducts, $product_to_push);
-                array_push($product_names, $value->name);
-            } else {
-                $formattedProducts[$index]->quantity += 1;
-                $formattedProducts[$index]->price += $formattedProducts[$index]->price;
-            }
-        }
         
-        // dd($formattedProducts);
-        $order->products = $formattedProducts;
-        // dd($this->getOrder()->products);
         return view('store.review', ['order' => $order]);
     }
 
