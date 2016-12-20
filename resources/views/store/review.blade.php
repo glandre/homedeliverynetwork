@@ -45,13 +45,12 @@
                             <div class="item-details">
                                 <h3 class="item-title">{{ $product->name }}</h3>
                                 <h4 class="item-price">${{ $product->price }}</h4>
+                                <h4>Quantity:</h4>
                                 <div class="count-input">
-                                    <!-- <a class="incr-btn" data-action="decrease" href="#">–</a> -->
-                                    Quantity: {{ $product->quantity }}
-                                    <!-- Quantity: {{{ ($product->pivot->quantity > 0) ? $product->pivot->quantity : 'N/A' }}} -->
+                                    <a class="incr-btn" data-action="decrease" href="#">–</a>
+                                    <h4 style="text-align:center;margin-left:auto;margin-right:auto;">{{{ ($product->pivot->quantity > 0) ? $product->pivot->quantity : 'N/A' }}}</h4>
                                     <!-- {{ ($product->pivot->quantity > $product->quantity) ? '(Not available in inventory)' : '' }} -->
-                                    <!-- <input class="quantity" type="text" value="1"> -->
-                                    <!-- <a class="incr-btn" data-action="increase" href="#">+</a> -->
+                                    <a class="incr-btn" data-action="increase" href="#">+</a>
                                 </div>
                             </div>
                             @if($order->status == 'Cart')
@@ -60,13 +59,13 @@
                                     'url' => "store/cart/remove/$product->id",
                                     'method' => 'DELETE'
                                 ])}}
-                                {{ csrf_field() }}
+                                    {{ csrf_field() }}
                                     <!-- <a href="JavaScript:removeFromCart({{{ $product->id }}})" class="item-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove">
                                         <i class="material-icons remove_shopping_cart"></i>
                                     </a> -->
-                                <button type="submit" class="btn btn-danger waves-effect waves-light">
-                                    Remove
-                                </button>
+                                    <button type="submit" class="btn btn-danger waves-effect waves-light">
+                                        Remove
+                                    </button>
                                 {{Form::close()}}
                             </div>
                             @endif

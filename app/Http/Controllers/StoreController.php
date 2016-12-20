@@ -8,6 +8,7 @@ use App\Product;
 use App\User;
 use App\UserThatShouldBeNotified;
 use Auth;
+use DB;
 use GuzzleHttp\Client;
 
 class StoreController extends Controller
@@ -22,29 +23,6 @@ class StoreController extends Controller
                 $this->order = Order::where('user_id', \Auth::user()->id)
                     ->where('status', 'Cart')->first();
 
-                if ($this->order) {
-                    $this->order->cost = 0;
-                    $formattedProducts = array();
-                    $product_names = array();
-                    foreach ($this->order->products as $key => $value) {
-                        $index = array_search($value->name, $product_names);
-
-                        if ($index === false) {
-                            $product_to_push = $value;
-                            $product_to_push->quantity = 1;
-                            array_push($formattedProducts, $product_to_push);
-                            array_push($product_names, $value->name);
-                        } else {
-                            $formattedProducts[$index]->quantity += 1;
-                            $formattedProducts[$index]->price += $formattedProducts[$index]->price;
-                        }
-                        $this->order->cost += $value->price;
-                    }
-                    $this->order->save();
-                    $this->order->products = $formattedProducts;
-
-                }
-
                 if (!$this->order) {
                     $this->order = Order::create([
                         'user_id' => \Auth::user()->id,
@@ -55,7 +33,6 @@ class StoreController extends Controller
                 $this->order = new Order();
             }
         }
-        // dd($this->order);
         return $this->order;
     }
 
@@ -137,7 +114,9 @@ class StoreController extends Controller
 
     public function showCheckout()
     {
-        return view('checkout.show');
+        $order = Order::where('user_id', \Auth::user()->id)->where('status', 'Cart')->first();
+        $order->products = DB::table('order_product')->where('order_id', $order->id)->get();
+        return view('checkout.show', compact('order'));
     }
 
     public function showItem($id)
@@ -187,14 +166,14 @@ class StoreController extends Controller
         $orderInfo = $this->getOrder()->getInfo();
         $client = new Client();
         $customer_message = array(
-            'to' => $user['email'],
+            'to' => 'garryhicks21@gmail.com',
             'from' => "BuyOnlineWeed <info@buyonlineweed.ca>",
             'subject' => 'Order Successfully Submitted',
             'html' => '<p>We received your order!</p><p>Payment can be sent via Interac E-transfer, 
                         and will be set for shipment within 24 hours</p><p>Cheers!</p>'
         );
         $staff_message = array(
-            'to' => 'mike.g.moll@gmail.com',
+            'to' => 'garryhicks21@gmail.com',
             'from' => "BuyOnlineWeed <info@buyonlineweed.ca>",
             'subject' => 'Order Successfully Submitted',
             'html' => '<p>A new Order was submitted:</p><p>Cheers!</p>'
