@@ -63,7 +63,7 @@
         <div class="navbar-header">
 
             <!-- Site Logo -->
-            <img class="" src="/images/logo.jpg" style="text-align:center; width: 100%; max-width: 200px;">
+            <!-- <img class="" src="/images/logo.jpg" style="text-align:center; width: 100%; max-width: 200px;"> -->
             <a href="/" class="site-logo visible-desktop">
                 <span>Buy Online Weed Canada</span>
                 <span class="text-gray"></span> <span></span>
@@ -88,7 +88,7 @@
                 <div class="cart-btn">
                     <a href="/store/cart/review" class="toolbar-toggle">
                         <i>
-                            <span class="material-icons shopping_basket"></span>
+                            <span class="material-icons local_grocery_store""></span>
                             @if(count(cart()->products) > 0)
                                 <span class="count">{{{ count(cart()->products) }}}</span>
                             @endif
