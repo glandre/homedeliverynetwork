@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Mail\OrderSuccessfullySubmitted;
 use App\Order;
 use App\Product;
@@ -46,10 +47,15 @@ class StoreController extends Controller
         return view('store.home', ['order' => $this->getOrder()]);
     }
 
+    public function addMultipleToCart(Request $request)
+    {
+        $this->getOrder()->products()->attach($request->$productId, ['quantity' => $request->product_quantity]);
+        return redirect('/catalog');
+    }
+
     public function addToCart($productId)
     {
         $this->getOrder()->products()->attach($productId, ['quantity' => 1]);
-        // return $this->index();
         return redirect('/catalog');
     }
 
@@ -110,6 +116,11 @@ class StoreController extends Controller
         return view('store.review', ['order' => $this->getOrder()]);
     }
 
+    public function plusByOne($product_quantity)
+    {
+        return $product_quantity++;
+    }
+
     public function removeFromCart($productId) {
         $this->getOrder()->products()->detach($productId);
         return back();
@@ -125,7 +136,8 @@ class StoreController extends Controller
     public function showItem($id)
     {
         $product = Product::find($id);
-        return view('store.view', compact('product'));
+        $product_quantity = 1;
+        return view('store.view', compact('product', 'product_quantity'));
     }
 
     public function showReviewOrder()
@@ -169,7 +181,7 @@ class StoreController extends Controller
         $orderInfo = $this->getOrder()->getInfo();
         $client = new Client();
         $customer_message = array(
-            'to' => 'garryhicks21@gmail.com',
+            'to' => $user['email'],
             'from' => "BuyOnlineWeed <info@buyonlineweed.ca>",
             'subject' => 'Order Successfully Submitted',
             'html' => '<p>We received your order!</p><p>Payment can be sent via Interac E-transfer, 
