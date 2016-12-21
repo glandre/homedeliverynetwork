@@ -26,18 +26,6 @@
 					<li id="preview02" class="current"><img src="{{ $product->picture }}" alt="Product"></li>
 					<li id="preview03"><img src="{{ $product->picture }}" alt="Product"></li>
             	</ul><!-- .product-gallery-preview -->
-            	<!-- Thumblist -->
-            	<!-- <ul class="product-gallery-thumblist">
-              		<li><a href="#preview01">
-                		<img src="https://ucarecdn.com/8cf3ac13-7f9e-4af4-89d9-4117ba6ad042/" alt="Product">
-              		</a></li>
-              		<li class="active"><a href="#preview02">
-                		<img src="https://ucarecdn.com/3c532335-3451-4c41-997d-a0cd0e6847e6/" alt="Product">
-              		</a></li>
-              		<li><a href="#preview03">
-                		<img src="{{ $product->picture }}" alt="Product">
-              		</a></li>
-            	</ul> --><!-- .product-gallery-thumblist -->
           	</div><!-- .product-gallery -->
         </div><!-- .container -->
 	</section><!-- .fw-section.bg-gray -->
@@ -67,19 +55,18 @@
 					</span>
             	</div><!-- .product-meta -->
             	<div class="product-tools shop-item">
-              		<div class="count-input">
-                		<a class="incr-btn" data-action="decrease" href="#">–</a>
-                		<input class="quantity" type="text" value="1">
-                		<a class="incr-btn" data-action="increase" href="#">+</a>
-              		</div><!-- .count-input -->
-              		<div class="form-element">
-                		<select class="form-control form-control-sm color-select">
-							<option value="blue" data-image="preview02">Blue</option>
-							<option value="creme" data-image="preview01">Creme</option>
-							<option value="red" data-image="preview03">Red</option>
-						</select>
-              		</div><!-- .form-element -->
-              		<a href="JavaScript:addToCart({{{ $product->id }}})" class="add-to-cart">
+              		<!-- <div class="count-input">
+	              		{{Form::open(['url' => "store/cart/add/$product->id/$product_quantity",
+                            'method' => 'GET'
+                        ])}}
+	                        {{ csrf_field() }}
+
+	                		<a class="incr-btn" data-action="decrease" href="JavaScript:minusOne({{ $product_quantity }})">–</a>
+	                		<input id="product-quantity" class="quantity" name="product_quantity" type="text" value="{{ $product_quantity }}">
+	                		<a class="incr-btn" data-action="increase" href="JavaScript:plusOne({{ $product_quantity }})">+</a>
+	                	{{Form::close() }}
+              		</div> --><!-- .count-input -->
+              		<a href="/store/cart/add/{{$product->id}}" class="add-to-cart">
                 		<em>Add to Cart</em>
                 		<svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
                                 <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>
@@ -205,4 +192,28 @@
       		</div><!-- .col-lg-3.col-sm-6 -->
     	</div><!-- .row -->
   	</section><!-- .container -->
+@endsection
+
+@section('js')
+  	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  	<script type="text/javascript">
+  		function minusOne(oldval) {
+  			$('#product-quantity').val(function(i, oldval) {
+  				if (oldval < 2) {
+  					var newval = 1;
+	  				return newval;
+	  			} else {
+	  				var newval = oldval - 1;
+	  				return newval;
+	  			}
+  			});		
+  		}
+  		function plusOne(oldval) {
+  			$('#product-quantity').val( function(i, oldval) {
+  				var newval = parseInt(oldval) + 1;
+  				return newval;
+  			});		
+  		}
+  	
+  	</script>
 @endsection

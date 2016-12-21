@@ -90,7 +90,9 @@ Route::group(['middleware' => 'auth'], function () {
     // Store
     Route::get('/store', 'StoreController@index');
     Route::get('/store/{productId}', 'StoreController@showItem');
+    // Route::get('store/cart/add/{productId}/{productQuantity}', 'StoreController@addMultipleToCart');
     Route::get('store/cart/add/{productId}', 'StoreController@addToCart');
+    
     Route::delete('store/cart/remove/{productId}', 'StoreController@removeFromCart');
     Route::get('store/cart/review', 'StoreController@showReviewOrder');
     Route::get('store/cart/review/increase/{productId}', 'StoreController@increaseQuantity');

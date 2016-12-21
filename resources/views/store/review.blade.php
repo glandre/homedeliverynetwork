@@ -54,20 +54,20 @@
                                 </div>
                             </div>
                             @if($order->status == 'Cart')
-                            <div>
-                                {{Form::open([
-                                    'url' => "store/cart/remove/$product->id",
-                                    'method' => 'DELETE'
-                                ])}}
-                                    {{ csrf_field() }}
-                                    <!-- <a href="JavaScript:removeFromCart({{{ $product->id }}})" class="item-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove">
-                                        <i class="material-icons remove_shopping_cart"></i>
-                                    </a> -->
-                                    <button type="submit" class="btn btn-danger waves-effect waves-light">
-                                        Remove
-                                    </button>
-                                {{Form::close()}}
-                            </div>
+                                <div>
+                                    {{Form::open([
+                                        'url' => "store/cart/remove/$product->id",
+                                        'method' => 'DELETE'
+                                    ])}}
+                                        {{ csrf_field() }}
+                                        <!-- <a href="JavaScript:removeFromCart({{{ $product->id }}})" class="item-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove">
+                                            <i class="material-icons remove_shopping_cart"></i>
+                                        </a> -->
+                                        <button type="submit" class="btn btn-danger waves-effect waves-light">
+                                            Remove
+                                        </button>
+                                    {{Form::close()}}
+                                </div>
                             @endif
                         </div><!-- .item -->
                     @endforeach
