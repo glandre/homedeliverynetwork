@@ -49,7 +49,8 @@ class StoreController extends Controller
     public function addToCart($productId)
     {
         $this->getOrder()->products()->attach($productId, ['quantity' => 1]);
-        return $this->index();
+        // return $this->index();
+        return redirect('/catalog');
     }
 
     public function checkout()
@@ -78,14 +79,15 @@ class StoreController extends Controller
     public function increaseQuantity($productId) {
         $newQuantity = $this->getOrder()->product($productId)->pivot->quantity + 1;
         $this->getOrder()->products()->updateExistingPivot($productId, ['quantity' => $newQuantity]);
-        return response()->json(
-            [
-                'status' => 'success',
-                'data' => [
-                    'products' => $this->getOrder()->products(),
-                    'total' => $this->getOrder()->total()
-                ]
-            ]);
+        // return response()->json(
+        //     [
+        //         'status' => 'success',
+        //         'data' => [
+        //             'products' => $this->getOrder()->products(),
+        //             'total' => $this->getOrder()->total()
+        //         ]
+        //     ]);
+        return view('store.review', ['order' => $this->getOrder()]);
     }
 
     public function decreaseQuantity($productId) {
@@ -97,14 +99,15 @@ class StoreController extends Controller
         }
 
         $this->getOrder()->products()->updateExistingPivot($productId, ['quantity' => $newQuantity]);
-        return response()->json(
-            [
-                'status' => 'success',
-                'data' => [
-                    'products' => $this->getOrder()->products(),
-                    'total' => $this->getOrder()->total()
-                ]
-            ]);
+        // return response()->json(
+        //     [
+        //         'status' => 'success',
+        //         'data' => [
+        //             'products' => $this->getOrder()->products(),
+        //             'total' => $this->getOrder()->total()
+        //         ]
+        //     ]);
+        return view('store.review', ['order' => $this->getOrder()]);
     }
 
     public function removeFromCart($productId) {
