@@ -47,10 +47,10 @@
                                 <h4 class="item-price">${{ $product->price }}</h4>
                                 <h4>Quantity:</h4>
                                 <div class="count-input">
-                                    <a class="incr-btn" data-action="decrease" href="#">–</a>
+                                    <a class="incr-btn" data-action="decrease" href="/store/cart/review/decrease/{{ $product->id }}">–</a>
                                     <h4 style="text-align:center;margin-left:auto;margin-right:auto;">{{{ ($product->pivot->quantity > 0) ? $product->pivot->quantity : 'N/A' }}}</h4>
                                     <!-- {{ ($product->pivot->quantity > $product->quantity) ? '(Not available in inventory)' : '' }} -->
-                                    <a class="incr-btn" data-action="increase" href="#">+</a>
+                                    <a class="incr-btn" data-action="increase" href="/store/cart/review/increase/{{ $product->id }}">+</a>
                                 </div>
                             </div>
                             @if($order->status == 'Cart')
